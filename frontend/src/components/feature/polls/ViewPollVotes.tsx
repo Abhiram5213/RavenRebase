@@ -75,7 +75,7 @@ interface ViewPollVotesModalContentProps {
 const ViewPollVotesModalContent = ({ onClose, poll }: ViewPollVotesModalContentProps) => {
 
     // fetch poll votes using poll_id
-    const { data, error } = useFrappeGetCall<{ message: PollVotesResponse }>('raven.api.raven_poll.get_all_votes', {
+    const { data, error } = useFrappeGetCall<{ message: PollVotesResponse }>('axon.api.axon_poll.get_all_votes', {
         'poll_id': poll.poll.name,
     }, `poll_votes_${poll.poll.name}`, {
         revalidateOnFocus: false,

@@ -1,5 +1,5 @@
 import { useColorScheme } from '@hooks/useColorScheme'
-import { Message } from '@raven/types/common/Message'
+import { Message } from '@axon/types/common/Message'
 import EditIcon from "@assets/icons/EditIcon.svg"
 import EditMessageSheet from './EditMessageSheet'
 import { Sheet, useSheetRef } from '@components/nativewindui/Sheet'

@@ -1,9 +1,9 @@
 import { useFrappePostCall, useSWRConfig } from 'frappe-react-sdk'
-import useFileUpload from '@raven/lib/hooks/useFileUpload'
+import useFileUpload from '@axon/lib/hooks/useFileUpload'
 import { useAtomValue } from 'jotai'
 import { selectedReplyMessageAtomFamily } from '@lib/ChatInputUtils'
-import { RavenMessage } from '@raven/types/RavenMessaging/RavenMessage'
-import { GetMessagesResponse } from '@raven/types/common/ChatStream'
+import { AxonMessage } from '@axon/types/AxonMessaging/AxonMessage'
+import { GetMessagesResponse } from '@axon/types/common/ChatStream'
 
 // TODO: This is older version of the useSendMessage hook compared to web, needs to be updated.
 export const useSendMessage = (siteID: string, channelID: string, onSend: VoidFunction) => {
@@ -11,7 +11,7 @@ export const useSendMessage = (siteID: string, channelID: string, onSend: VoidFu
 
     const selectedMessage = useAtomValue(selectedReplyMessageAtomFamily(siteID + channelID))
     const { uploadFiles } = useFileUpload(siteID, channelID)
-    const { call, loading } = useFrappePostCall('raven.api.raven_message.send_message')
+    const { call, loading } = useFrappePostCall('axon.api.axon_message.send_message')
 
     const onMessageSendCompleted = useOnMessageSendCompleted(channelID)
 
@@ -56,7 +56,7 @@ export const useSendMessage = (siteID: string, channelID: string, onSend: VoidFu
 const useOnMessageSendCompleted = (channelID: string) => {
     const { mutate } = useSWRConfig()
 
-    const onMessageSendCompleted = (messages: RavenMessage[]) => {
+    const onMessageSendCompleted = (messages: AxonMessage[]) => {
         // Update the messages in the cache
 
         mutate({ path: `get_messages_for_channel_${channelID}` }, (data?: GetMessagesResponse) => {

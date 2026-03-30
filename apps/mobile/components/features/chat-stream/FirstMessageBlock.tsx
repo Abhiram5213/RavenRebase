@@ -1,18 +1,18 @@
 import { View } from "react-native"
 import { Text } from "@components/nativewindui/Text"
 import { useCurrentChannelData } from "@hooks/useCurrentChannelData"
-import { ChannelListItem, DMChannelListItem } from "@raven/types/common/ChannelListItem"
-import useCurrentRavenUser from "@raven/lib/hooks/useCurrentRavenUser"
-import { useGetUser } from "@raven/lib/hooks/useGetUser"
+import { ChannelListItem, DMChannelListItem } from "@axon/types/common/ChannelListItem"
+import useCurrentAxonUser from "@axon/lib/hooks/useCurrentAxonUser"
+import { useGetUser } from "@axon/lib/hooks/useGetUser"
 import { useMemo } from "react"
 import { useIsUserActive } from "@hooks/useIsUserActive"
-import { replaceCurrentUserFromDMChannelName } from "@raven/lib/utils/operations"
+import { replaceCurrentUserFromDMChannelName } from "@axon/lib/utils/operations"
 import UserAvatar from "@components/layout/UserAvatar"
 import { ChannelIcon } from "../channels/ChannelList/ChannelIcon"
 import { useColorScheme } from "@hooks/useColorScheme"
 import { useFrappeGetDoc } from "frappe-react-sdk"
 import { BaseMessageItem } from "./BaseMessageItem"
-import { formatDate } from "@raven/lib/utils/dateConversions"
+import { formatDate } from "@axon/lib/utils/dateConversions"
 
 const ChannelHistoryFirstMessage = ({ channelID, isThread }: { channelID: string, isThread: boolean }) => {
 
@@ -47,7 +47,7 @@ const ChannelHeader = ({ channelID }: { channelID: string }) => {
 
 const ThreadHeader = ({ threadID }: { threadID: string }) => {
 
-    const { data } = useFrappeGetDoc("Raven Message", threadID)
+    const { data } = useFrappeGetDoc("Axon Message", threadID)
 
     const threadMessage = useMemo(() => {
         if (data) {
@@ -71,7 +71,7 @@ const ThreadHeader = ({ threadID }: { threadID: string }) => {
 
 const FirstMessageBlockForDM = ({ channelData }: { channelData: DMChannelListItem }) => {
 
-    const { myProfile: currentUserInfo } = useCurrentRavenUser()
+    const { myProfile: currentUserInfo } = useCurrentAxonUser()
     const peer = channelData.peer_user_id
     const peerData = useGetUser(peer)
     const { fullName, userImage, isBot } = useMemo(() => {

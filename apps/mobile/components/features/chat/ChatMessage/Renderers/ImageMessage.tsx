@@ -1,5 +1,5 @@
-import { ImageMessage } from "@raven/types/common/Message";
-import { UserFields } from "@raven/types/common/UserFields";
+import { ImageMessage } from "@axon/types/common/Message";
+import { UserFields } from "@axon/types/common/UserFields";
 import { View } from "react-native";
 import { Image } from "expo-image";
 import useFileURL, { UseFileURLReturnType } from "@hooks/useFileURL";

@@ -7,7 +7,7 @@ import PageContainer from "@/components/layout/Settings/PageContainer"
 import SettingsContentContainer from "@/components/layout/Settings/SettingsContentContainer"
 import SettingsPageHeader from "@/components/layout/Settings/SettingsPageHeader"
 import { HStack } from "@/components/layout/Stack"
-import { RavenBotInstructionTemplate } from "@/types/RavenAI/RavenBotInstructionTemplate"
+import { AxonBotInstructionTemplate } from "@/types/AxonAI/AxonBotInstructionTemplate"
 import { isEmpty } from "@/utils/validations"
 import { Button } from "@radix-ui/themes"
 import { SWRResponse, useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk"
@@ -20,7 +20,7 @@ const ViewInstructionTemplate = () => {
 
     const { ID } = useParams<{ ID: string }>()
 
-    const { data, isLoading, error, mutate } = useFrappeGetDoc<RavenBotInstructionTemplate>("Raven Bot Instruction Template", ID)
+    const { data, isLoading, error, mutate } = useFrappeGetDoc<AxonBotInstructionTemplate>("Axon Bot Instruction Template", ID)
 
     return (
         <PageContainer>
@@ -31,11 +31,11 @@ const ViewInstructionTemplate = () => {
     )
 }
 
-const ViewBotContent = ({ data, mutate }: { data: RavenBotInstructionTemplate, mutate: SWRResponse['mutate'] }) => {
+const ViewBotContent = ({ data, mutate }: { data: AxonBotInstructionTemplate, mutate: SWRResponse['mutate'] }) => {
 
-    const { updateDoc, loading, error } = useFrappeUpdateDoc<RavenBotInstructionTemplate>()
+    const { updateDoc, loading, error } = useFrappeUpdateDoc<AxonBotInstructionTemplate>()
 
-    const methods = useForm<RavenBotInstructionTemplate>({
+    const methods = useForm<AxonBotInstructionTemplate>({
         disabled: loading,
         defaultValues: data
     })
@@ -45,8 +45,8 @@ const ViewBotContent = ({ data, mutate }: { data: RavenBotInstructionTemplate, m
     const isDirty = !isEmpty(dirtyFields)
 
 
-    const onSubmit = (data: RavenBotInstructionTemplate) => {
-        updateDoc("Raven Bot Instruction Template", data.name, data)
+    const onSubmit = (data: AxonBotInstructionTemplate) => {
+        updateDoc("Axon Bot Instruction Template", data.name, data)
             .then((doc) => {
                 toast.success("Saved")
                 methods.reset(doc)
@@ -74,7 +74,7 @@ const ViewBotContent = ({ data, mutate }: { data: RavenBotInstructionTemplate, m
                     title={data.name}
                     headerBadges={isDirty ? [{ label: "Not Saved", color: "red" }] : undefined}
                     actions={<HStack>
-                        <CommonSettingsMenu doctype="Raven Bot Instruction Template" docname={data.name} label={"Instruction Template"} />
+                        <CommonSettingsMenu doctype="Axon Bot Instruction Template" docname={data.name} label={"Instruction Template"} />
                         <Button type='submit' disabled={loading}>
                             {loading && <Loader className="text-white" />}
                             {loading ? "Saving" : "Save"}

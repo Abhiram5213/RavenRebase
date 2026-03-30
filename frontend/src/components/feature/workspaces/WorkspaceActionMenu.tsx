@@ -71,7 +71,7 @@ const RenameWorkspaceDialog = ({ onOpenChange, workspaceID, workspaceName }: { o
 
     const handleSubmit = () => {
         call({
-            doctype: "Raven Workspace",
+            doctype: "Axon Workspace",
             docname: workspaceID,
             name: name,
             merge: 0
@@ -131,7 +131,7 @@ const DeleteWorkspaceDialog = ({ onOpenChange, workspaceID, workspaceName }: { o
 
     const handleDelete = () => {
         if (isNameTyped) {
-            deleteDoc("Raven Workspace", workspaceID)
+            deleteDoc("Axon Workspace", workspaceID)
                 .then(() => {
                     toast.success("Workspace deleted")
                     onOpenChange(false)

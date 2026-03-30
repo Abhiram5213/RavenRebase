@@ -1,8 +1,8 @@
 import { atomWithStorage } from "jotai/utils";
 
-export const lastWorkspaceAtom = atomWithStorage<string>('ravenLastWorkspace', '', undefined, {
+export const lastWorkspaceAtom = atomWithStorage<string>('axonLastWorkspace', '', undefined, {
     getOnInit: true
 })
-export const lastChannelAtom = atomWithStorage<string>('ravenLastChannel', '', undefined, {
+export const lastChannelAtom = atomWithStorage<string>('axonLastChannel', '', undefined, {
     getOnInit: true
 })

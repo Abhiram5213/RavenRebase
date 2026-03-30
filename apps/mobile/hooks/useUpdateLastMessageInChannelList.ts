@@ -1,4 +1,4 @@
-import { ChannelList } from "@raven/types/common/ChannelListItem"
+import { ChannelList } from "@axon/types/common/ChannelListItem"
 import { useSWRConfig } from "frappe-react-sdk"
 
 export const useUpdateLastMessageInChannelList = () => {

@@ -1,11 +1,11 @@
-import { Message } from '@raven/types/common/Message'
+import { Message } from '@axon/types/common/Message'
 import { useFrappeDeleteDoc, useSWRConfig } from 'frappe-react-sdk'
 import { useCallback } from 'react'
 import { Alert } from 'react-native'
 import { toast } from 'sonner-native'
 import TrashIcon from "@assets/icons/TrashIcon.svg"
 import { useColorScheme } from '@hooks/useColorScheme'
-import { GetMessagesResponse } from '@raven/types/common/ChatStream'
+import { GetMessagesResponse } from '@axon/types/common/ChatStream'
 import ActionButton from '@components/common/Buttons/ActionButton'
 
 interface DeleteMessageProps {
@@ -77,7 +77,7 @@ const useMessageDelete = (message: Message, onDelete: () => void) => {
             // Call the onDelete callback after the request is made
             // This is because we can close the bottom sheet since we have optimistic updates anyway
             onDelete()
-            return deleteDoc('Raven Message', messageID).then(() => {
+            return deleteDoc('Axon Message', messageID).then(() => {
                 toast.success('Message deleted', {
                     duration: 500,
                 })

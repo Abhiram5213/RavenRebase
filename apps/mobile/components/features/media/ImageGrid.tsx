@@ -33,7 +33,7 @@ const ImageGrid = ({ searchQuery, gap = 6, columns = 3 }: { searchQuery: string,
             };
         },
         async (params) => {
-            const response = await call.get("raven.api.raven_message.get_all_files_shared_in_channel", params);
+            const response = await call.get("axon.api.axon_message.get_all_files_shared_in_channel", params);
             return response.message;
         },
         {

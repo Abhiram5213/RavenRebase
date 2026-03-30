@@ -1,6 +1,6 @@
 import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
 import MessageActions from './MessageActions';
-import { Message } from '@raven/types/common/Message';
+import { Message } from '@axon/types/common/Message';
 import { Sheet } from "@components/nativewindui/Sheet";
 import { View } from "react-native";
 import { useAtomValue } from "jotai";

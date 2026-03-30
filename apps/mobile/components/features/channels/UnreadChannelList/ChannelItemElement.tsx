@@ -3,7 +3,7 @@ import { Text } from "@components/nativewindui/Text"
 import { router } from "expo-router"
 import { ChannelIcon } from "../ChannelList/ChannelIcon"
 import { useColorScheme } from "@hooks/useColorScheme"
-import { ChannelWithUnreadCount } from "@raven/lib/hooks/useGetChannelUnreadCounts"
+import { ChannelWithUnreadCount } from "@axon/lib/hooks/useGetChannelUnreadCounts"
 import { useFrappePrefetchCall } from "frappe-react-sdk"
 import UnreadCountBadge from "@components/common/Badge/UnreadCountBadge"
 
@@ -11,7 +11,7 @@ const ChannelItemElement = ({ channel }: { channel: ChannelWithUnreadCount }) =>
 
     const { colors } = useColorScheme()
 
-    const prefetchChannel = useFrappePrefetchCall('raven.api.chat_stream.get_messages', {
+    const prefetchChannel = useFrappePrefetchCall('axon.api.chat_stream.get_messages', {
         channel_id: channel.name,
         limit: 20
     }, { path: `get_messages_for_channel_${channel.name}` })

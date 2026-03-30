@@ -7,7 +7,7 @@ import PageContainer from "@/components/layout/Settings/PageContainer"
 import SettingsContentContainer from "@/components/layout/Settings/SettingsContentContainer"
 import SettingsPageHeader from "@/components/layout/Settings/SettingsPageHeader"
 import { HStack } from "@/components/layout/Stack"
-import { RavenBot } from "@/types/RavenBot/RavenBot"
+import { AxonBot } from "@/types/AxonBot/AxonBot"
 import { lastWorkspaceAtom } from "@/utils/lastVisitedAtoms"
 import { isEmpty } from "@/utils/validations"
 import { Button } from "@radix-ui/themes"
@@ -25,7 +25,7 @@ const ViewBot = (props: Props) => {
 
     const { ID } = useParams<{ ID: string }>()
 
-    const { data, isLoading, error, mutate } = useFrappeGetDoc<RavenBot>("Raven Bot", ID)
+    const { data, isLoading, error, mutate } = useFrappeGetDoc<AxonBot>("Axon Bot", ID)
 
     return (
         <PageContainer>
@@ -36,11 +36,11 @@ const ViewBot = (props: Props) => {
     )
 }
 
-const ViewBotContent = ({ data, mutate }: { data: RavenBot, mutate: SWRResponse['mutate'] }) => {
+const ViewBotContent = ({ data, mutate }: { data: AxonBot, mutate: SWRResponse['mutate'] }) => {
 
-    const { updateDoc, loading, error } = useFrappeUpdateDoc<RavenBot>()
+    const { updateDoc, loading, error } = useFrappeUpdateDoc<AxonBot>()
 
-    const methods = useForm<RavenBot>({
+    const methods = useForm<AxonBot>({
         disabled: loading,
         defaultValues: data
     })
@@ -50,8 +50,8 @@ const ViewBotContent = ({ data, mutate }: { data: RavenBot, mutate: SWRResponse[
     const isDirty = !isEmpty(dirtyFields)
 
 
-    const onSubmit = (data: RavenBot) => {
-        updateDoc("Raven Bot", data.name, data)
+    const onSubmit = (data: AxonBot) => {
+        updateDoc("Axon Bot", data.name, data)
             .then((doc) => {
                 toast.success("Saved")
                 methods.reset(doc)
@@ -81,7 +81,7 @@ const ViewBotContent = ({ data, mutate }: { data: RavenBot, mutate: SWRResponse[
                     title={data.bot_name}
                     headerBadges={isDirty ? [{ label: "Not Saved", color: "red" }] : undefined}
                     actions={<HStack>
-                        <CommonSettingsMenu doctype="Raven Bot" docname={data.name} label={"Agent"} />
+                        <CommonSettingsMenu doctype="Axon Bot" docname={data.name} label={"Agent"} />
                         <OpenChatButton bot={data} />
                         <Button type='submit' disabled={loading}>
                             {loading && <Loader className="text-white" />}
@@ -98,15 +98,15 @@ const ViewBotContent = ({ data, mutate }: { data: RavenBot, mutate: SWRResponse[
 
 }
 
-const OpenChatButton = ({ bot }: { bot: RavenBot }) => {
+const OpenChatButton = ({ bot }: { bot: AxonBot }) => {
 
     const { call } = useContext(FrappeContext) as FrappeConfig
 
     const currentWorkspace = useAtomValue(lastWorkspaceAtom)
 
     const openChat = () => {
-        call.post("raven.api.raven_channel.create_direct_message_channel", {
-            user_id: bot.raven_user
+        call.post("axon.api.axon_channel.create_direct_message_channel", {
+            user_id: bot.axon_user
         }).then((res) => {
             const chatPath = currentWorkspace
                 ? `/${currentWorkspace}/${res.message}`

@@ -6,7 +6,7 @@ import { Platform, Pressable, View } from 'react-native';
 import { Text } from '@components/nativewindui/Text';
 import SearchInput from '@components/common/SearchInput/SearchInput';
 import { ChannelIcon } from '@components/features/channels/ChannelList/ChannelIcon';
-import useGetChannels from '@raven/lib/hooks/useGetChannels';
+import useGetChannels from '@axon/lib/hooks/useGetChannels';
 import { useState } from 'react';
 import * as DropdownMenu from 'zeego/dropdown-menu';
 import HashIcon from '@assets/icons/HashIcon.svg';
@@ -14,7 +14,7 @@ import GlobeIcon from '@assets/icons/GlobeIcon.svg';
 import LockIcon from '@assets/icons/LockIcon.svg';
 import FilterIcon from '@assets/icons/FilterIcon.svg';
 import { LegendList } from '@legendapp/list';
-import { ChannelListItem } from '@raven/types/common/ChannelListItem';
+import { ChannelListItem } from '@axon/types/common/ChannelListItem';
 
 export default function BrowseChannels() {
 

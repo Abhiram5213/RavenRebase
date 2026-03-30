@@ -1,13 +1,13 @@
 import { useFrappePostCall } from 'frappe-react-sdk'
 import { Message } from '../../../../../../types/Messaging/Message'
-import { RavenMessage } from '@/types/RavenMessaging/RavenMessage'
+import { AxonMessage } from '@/types/AxonMessaging/AxonMessage'
 import { useCallback } from 'react'
 import { filesAtom } from './FileInput/useFileUpload'
 import { useAtomCallback } from 'jotai/utils'
 
-export const useSendMessage = (channelID: string, uploadFiles: (selectedMessage?: Message | null, caption?: string) => Promise<RavenMessage[]>, onMessageSent: (messages: RavenMessage[]) => void, selectedMessage?: Message | null) => {
+export const useSendMessage = (channelID: string, uploadFiles: (selectedMessage?: Message | null, caption?: string) => Promise<AxonMessage[]>, onMessageSent: (messages: AxonMessage[]) => void, selectedMessage?: Message | null) => {
 
-    const { call, loading } = useFrappePostCall<{ message: RavenMessage }>('raven.api.raven_message.send_message')
+    const { call, loading } = useFrappePostCall<{ message: AxonMessage }>('axon.api.axon_message.send_message')
 
     // const files = useAtomValue(filesAtom(channelID))
 

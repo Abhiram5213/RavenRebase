@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import Animated, { LinearTransition, ZoomIn, ZoomOut } from 'react-native-reanimated';
 import CrossIcon from '@assets/icons/CrossIcon.svg';
-import { Member } from '@raven/lib/hooks/useFetchChannelMembers';
+import { Member } from '@axon/lib/hooks/useFetchChannelMembers';
 import UserAvatar from '@components/layout/UserAvatar';
 import { Divider } from '@components/layout/Divider';
 import { useColorScheme } from '@hooks/useColorScheme';

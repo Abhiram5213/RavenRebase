@@ -4,7 +4,7 @@ import { Pressable, View } from "react-native"
 import { Button } from "@components/nativewindui/Button";
 import { Text } from "@components/nativewindui/Text";
 import { FrappeDoc, useFrappeUpdateDoc, useSWRConfig } from "frappe-react-sdk";
-import { ChannelListItem } from "@raven/types/common/ChannelListItem";
+import { ChannelListItem } from "@axon/types/common/ChannelListItem";
 import { toast } from "sonner-native";
 import GlobeIcon from "@assets/icons/GlobeIcon.svg";
 import LockIcon from "@assets/icons/LockIcon.svg";
@@ -68,7 +68,7 @@ const ChangeChannelTypeSheet = ({ channelData, bottomSheetModalRef }: ChangeChan
     }
 
     const changeChannelType = (newChannelType: 'Public' | 'Private' | 'Open') => {
-        updateDoc("Raven Channel", channelData?.name ?? null, {
+        updateDoc("Axon Channel", channelData?.name ?? null, {
             type: newChannelType
         }).then(() => {
             mutate(["channel_members", channelData?.name])

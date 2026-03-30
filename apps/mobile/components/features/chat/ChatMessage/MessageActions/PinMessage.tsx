@@ -1,4 +1,4 @@
-import { Message } from "@raven/types/common/Message"
+import { Message } from "@axon/types/common/Message"
 import { useColorScheme } from "@hooks/useColorScheme"
 import { useTogglePinMessage } from "@hooks/useTogglePinMessage"
 import PinOutlineIcon from "@assets/icons/PinOutlineIcon.svg"

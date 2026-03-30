@@ -1,10 +1,10 @@
 import { ErrorText, HelperText } from '@/components/common/Form'
 import { Stack, HStack } from '@/components/layout/Stack'
-import { RavenBot } from '@/types/RavenBot/RavenBot'
+import { AxonBot } from '@/types/AxonBot/AxonBot'
 import { Checkbox, Text, Separator, Callout, Flex, Badge, Skeleton, RadioCards } from '@radix-ui/themes'
 import { useFormContext, Controller } from 'react-hook-form'
 import { BiCheck, BiInfoCircle } from 'react-icons/bi'
-import useRavenSettings from '@/hooks/fetchers/useRavenSettings'
+import useAxonSettings from '@/hooks/fetchers/useAxonSettings'
 import { useFrappeGetCall } from 'frappe-react-sdk'
 import { Link } from 'react-router-dom'
 
@@ -52,15 +52,15 @@ const getProcessorTypeBestFor = (processorType: string) => {
 }
 
 export const BotDocumentProcessorsForm = () => {
-    const { control, watch, formState: { errors } } = useFormContext<RavenBot>()
-    const { ravenSettings } = useRavenSettings()
+    const { control, watch, formState: { errors } } = useFormContext<AxonBot>()
+    const { axonSettings } = useAxonSettings()
 
     const useDocumentParser = watch('use_google_document_parser')
-    const isGoogleApisEnabled = ravenSettings?.enable_google_apis
+    const isGoogleApisEnabled = axonSettings?.enable_google_apis
 
     // Fetch existing processors when document parsing is enabled
     const { data: existingProcessors, isLoading: loadingProcessors, error: processorsError } = useFrappeGetCall<ExistingProcessorsResponse>(
-        'raven.ai.google_ai.get_list_of_processors',
+        'axon.ai.google_ai.get_list_of_processors',
         undefined,
         useDocumentParser && isGoogleApisEnabled ? undefined : null,
         {
@@ -76,7 +76,7 @@ export const BotDocumentProcessorsForm = () => {
                         <BiInfoCircle />
                     </Callout.Icon>
                     <Callout.Text>
-                        Document Processors require Google Cloud APIs to be enabled in your Raven settings.
+                        Document Processors require Google Cloud APIs to be enabled in your Axon settings.
                     </Callout.Text>
                 </Callout.Root>
             </Stack>
@@ -104,7 +104,7 @@ export const BotDocumentProcessorsForm = () => {
                     </HStack>
                 </Text>
                 <HelperText>
-                    When images or PDFs are uploaded to the agent, Raven will automatically call Google Cloud APIs
+                    When images or PDFs are uploaded to the agent, Axon will automatically call Google Cloud APIs
                     to process the document and send its results to the agent for better context.
                 </HelperText>
             </Stack>

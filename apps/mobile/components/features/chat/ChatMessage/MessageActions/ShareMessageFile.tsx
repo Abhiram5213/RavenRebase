@@ -1,5 +1,5 @@
 import { useColorScheme } from '@hooks/useColorScheme'
-import { FileMessage } from '@raven/types/common/Message'
+import { FileMessage } from '@axon/types/common/Message'
 import useFileShare from '@hooks/useFileShare'
 import { toast } from 'sonner-native'
 import ShareIcon from "@assets/icons/ShareIcon.svg"

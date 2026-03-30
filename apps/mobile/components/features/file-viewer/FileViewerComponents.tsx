@@ -1,6 +1,6 @@
 import { useState } from "react"
 import useFileURL from "@hooks/useFileURL"
-import { getFileExtension, isImageFile, isVideoFile } from "@raven/lib/utils/operations"
+import { getFileExtension, isImageFile, isVideoFile } from "@axon/lib/utils/operations"
 import WebView from "react-native-webview"
 import { WebViewSourceUri } from "react-native-webview/lib/WebViewTypes"
 import { useVideoPlayer, VideoView } from 'expo-video'

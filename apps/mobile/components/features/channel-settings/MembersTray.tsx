@@ -2,7 +2,7 @@ import UserAvatar from "@components/layout/UserAvatar";
 import { View } from "react-native";
 import { Text } from "@components/nativewindui/Text";
 import { useLocalSearchParams } from "expo-router";
-import { useFetchChannelMembers } from "@raven/lib/hooks/useFetchChannelMembers";
+import { useFetchChannelMembers } from "@axon/lib/hooks/useFetchChannelMembers";
 import { ScrollView } from "react-native-gesture-handler";
 import { Button } from "@components/nativewindui/Button";
 interface MembersTrayProps {

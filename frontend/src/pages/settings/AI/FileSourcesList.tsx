@@ -7,9 +7,9 @@ import PageContainer from '@/components/layout/Settings/PageContainer'
 import SettingsContentContainer from '@/components/layout/Settings/SettingsContentContainer'
 import SettingsPageHeader from '@/components/layout/Settings/SettingsPageHeader'
 import { HStack, Stack } from '@/components/layout/Stack'
-import { RavenAIFileSource } from '@/types/RavenAI/RavenAIFileSource'
+import { AxonAIFileSource } from '@/types/AxonAI/AxonAIFileSource'
 import { getTimePassed } from '@/utils/dateConversions'
-import { hasRavenAdminRole, isSystemManager } from '@/utils/roles'
+import { hasAxonAdminRole, isSystemManager } from '@/utils/roles'
 import { AlertDialog, Badge, Button, IconButton, Link as RadixLink, Spinner, Table, Text } from '@radix-ui/themes'
 import { useFrappeDeleteDoc, useFrappeGetDocList } from 'frappe-react-sdk'
 import { useState } from 'react'
@@ -20,15 +20,15 @@ type Props = {}
 
 const FileSourcesList = (props: Props) => {
 
-    const isRavenAdmin = hasRavenAdminRole() || isSystemManager()
+    const isAxonAdmin = hasAxonAdminRole() || isSystemManager()
 
-    const { data, isLoading, error, mutate } = useFrappeGetDocList<RavenAIFileSource>("Raven AI File Source", {
+    const { data, isLoading, error, mutate } = useFrappeGetDocList<AxonAIFileSource>("Axon AI File Source", {
         fields: ["name", "file_name", "file", "file_type", "creation"],
         orderBy: {
             field: "modified",
             order: "desc"
         }
-    }, isRavenAdmin ? undefined : null, {
+    }, isAxonAdmin ? undefined : null, {
         errorRetryCount: 2
     })
 
@@ -38,13 +38,13 @@ const FileSourcesList = (props: Props) => {
                 <SettingsPageHeader
                     title='File Sources'
                     description='Add files that can be used by AI Agents.'
-                    actions={isRavenAdmin ? <FileSourceUploadDialog onUpload={() => mutate()} /> : undefined}
+                    actions={isAxonAdmin ? <FileSourceUploadDialog onUpload={() => mutate()} /> : undefined}
                 />
                 {isLoading && !error && <TableLoader columns={2} />}
                 <ErrorBanner error={error} />
                 <AINotEnabledCallout />
                 {data && data.length > 0 && <FileSourceTable data={data} mutate={mutate} />}
-                {(data?.length === 0 || !isRavenAdmin) && <EmptyState>
+                {(data?.length === 0 || !isAxonAdmin) && <EmptyState>
                     <EmptyStateIcon>
                         <BiFile />
                     </EmptyStateIcon>
@@ -53,7 +53,7 @@ const FileSourcesList = (props: Props) => {
                         AI Agents can use files as data sources to get more context, read instructions and execute tasks.
                         You can upload files here and use them across multiple agents.
                     </EmptyStateDescription>
-                    {isRavenAdmin && <Button asChild className='not-cal'>
+                    {isAxonAdmin && <Button asChild className='not-cal'>
                         Upload a file
                     </Button>}
                 </EmptyState>}
@@ -62,15 +62,15 @@ const FileSourcesList = (props: Props) => {
     )
 }
 
-const FileSourceTable = ({ data, mutate }: { data: RavenAIFileSource[], mutate: () => void }) => {
+const FileSourceTable = ({ data, mutate }: { data: AxonAIFileSource[], mutate: () => void }) => {
 
-    const [selected, setSelected] = useState<RavenAIFileSource | undefined>()
+    const [selected, setSelected] = useState<AxonAIFileSource | undefined>()
 
     const { deleteDoc, loading: deleteLoading, error: deleteError } = useFrappeDeleteDoc()
 
     const onDelete = () => {
         if (!selected) return
-        deleteDoc("Raven AI File Source", selected.name).then(() => {
+        deleteDoc("Axon AI File Source", selected.name).then(() => {
             setSelected(undefined)
             mutate()
         })

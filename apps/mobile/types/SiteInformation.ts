@@ -1,15 +1,15 @@
 export type SiteInformation = {
     url: string,
-    /** OAuth client ID for Raven Mobile */
+    /** OAuth client ID for Axon Mobile */
     client_id: string,
     /** Site name used for SocketIO connection */
     sitename: string,
-    /** Logo of the site as set in Navbar Settings. If not set, the path to the Raven logo is used */
+    /** Logo of the site as set in Navbar Settings. If not set, the path to the Axon logo is used */
     logo: string,
-    /** App name as set in Website Settings or System Settings - defaults to "Raven" */
+    /** App name as set in Website Settings or System Settings - defaults to "Axon" */
     app_name: string,
-    /** Version of Raven installed on the site */
-    raven_version: string,
+    /** Version of Axon installed on the site */
+    axon_version: string,
     /** Version of Frappe installed on the site */
     frappe_version: string,
     /** System timezone as set in System Settings */

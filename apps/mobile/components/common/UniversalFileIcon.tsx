@@ -1,4 +1,4 @@
-import { getFileExtension } from "@raven/lib/utils/operations"
+import { getFileExtension } from "@axon/lib/utils/operations"
 import { SvgProps } from "react-native-svg"
 import FileIcon from "@assets/icons/FileIcon.svg"
 import DocIcon from "@assets/icons/DocIcon.svg"

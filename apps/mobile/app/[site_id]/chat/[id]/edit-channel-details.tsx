@@ -33,7 +33,7 @@ export default function EditChannelDetails() {
     const { updateDoc, error, loading: updatingChannel } = useFrappeUpdateDoc()
 
     const onSubmit = async (data: EditChannelDetailsForm) => {
-        return updateDoc("Raven Channel", currentChannelID as string, {
+        return updateDoc("Axon Channel", currentChannelID as string, {
             channel_name: data.channel_name ? data.channel_name : currentChannelName,
             channel_description: data.channel_description ? data.channel_description : currentChannelDescription,
         }).then(() => {

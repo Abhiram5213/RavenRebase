@@ -25,7 +25,7 @@ const UnArchiveButton = ({ channelID }: { channelID: string }) => {
     const { mutate } = useSWRConfig()
 
     const unArchiveChannel = async () => {
-        return updateDoc('Raven Channel', channelID, {
+        return updateDoc('Axon Channel', channelID, {
             is_archived: 0
         }).then(() => {
             toast.success('Channel restored.')

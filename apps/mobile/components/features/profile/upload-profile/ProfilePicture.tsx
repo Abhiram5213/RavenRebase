@@ -1,6 +1,6 @@
 import { TouchableOpacity, View } from 'react-native';
 import { Text } from '@components/nativewindui/Text';
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser';
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser';
 import useFileURL from '@hooks/useFileURL';
 import { Sheet, useSheetRef } from '@components/nativewindui/Sheet';
 import { BottomSheetView } from '@gorhom/bottom-sheet';
@@ -11,7 +11,7 @@ import UserAvatar from '@components/layout/UserAvatar';
 
 const ProfilePicture = () => {
 
-    const { myProfile, mutate } = useCurrentRavenUser()
+    const { myProfile, mutate } = useCurrentAxonUser()
     const source = useFileURL(myProfile?.user_image ?? "")
     const bottomSheetRef = useSheetRef()
 

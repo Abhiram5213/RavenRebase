@@ -1,7 +1,7 @@
 import ImageUpIcon from "@assets/icons/ImageUpIcon.svg"
 import { useColorScheme } from "@hooks/useColorScheme"
 import * as ImagePicker from 'expo-image-picker'
-import { CustomFile } from "@raven/types/common/File"
+import { CustomFile } from "@axon/types/common/File"
 import { ActionButtonLarge } from "./ActionButtonLarge"
 import { toast } from "sonner-native"
 import { ImageManipulator, SaveFormat } from 'expo-image-manipulator'

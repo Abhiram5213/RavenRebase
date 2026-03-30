@@ -8,7 +8,7 @@ const useUnreadThreadsCount = () => {
 
     const { workspace } = useGetCurrentWorkspace()
 
-    return useFrappeGetCall<{ message: UnreadThread[] }>('raven.api.threads.get_unread_threads', {
+    return useFrappeGetCall<{ message: UnreadThread[] }>('axon.api.threads.get_unread_threads', {
         workspace: workspace
     }, ["unread_thread_count", workspace])
 
@@ -30,7 +30,7 @@ export const useUnreadThreadsCountEventListener = () => {
         // This endpoint will only return the count for that thread
         mutate(["unread_thread_count", workspace], async (data?: { message: UnreadThread[] }) => {
 
-            return call.get<{ message: UnreadThread[] }>('raven.api.threads.get_unread_threads', {
+            return call.get<{ message: UnreadThread[] }>('axon.api.threads.get_unread_threads', {
                 workspace: workspace,
                 thread_id: threadID
             }).then((res) => {

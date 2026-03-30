@@ -11,7 +11,7 @@ interface RemoveImageProps {
 
 const RemoveImage = ({ onSheetClose }: RemoveImageProps) => {
 
-    const { call } = useFrappePostCall('raven.api.raven_users.update_raven_user')
+    const { call } = useFrappePostCall('axon.api.axon_users.update_axon_user')
 
     const removeImage = async () => {
         try {

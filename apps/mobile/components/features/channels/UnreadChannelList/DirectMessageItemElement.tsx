@@ -1,16 +1,16 @@
-import { useGetUser } from "@raven/lib/hooks/useGetUser"
+import { useGetUser } from "@axon/lib/hooks/useGetUser"
 import { View, Pressable, StyleSheet } from 'react-native';
 import { Text } from '@components/nativewindui/Text';
 import { router } from 'expo-router';
 import UserAvatar from "@components/layout/UserAvatar";
-import { DMChannelWithUnreadCount } from "@raven/lib/hooks/useGetChannelUnreadCounts";
+import { DMChannelWithUnreadCount } from "@axon/lib/hooks/useGetChannelUnreadCounts";
 import { useFrappePrefetchCall } from "frappe-react-sdk";
 import UnreadCountBadge from "@components/common/Badge/UnreadCountBadge";
 
 const DirectMessageItemElement = ({ dm }: { dm: DMChannelWithUnreadCount }) => {
     const user = useGetUser(dm.peer_user_id)
 
-    const prefetchChannel = useFrappePrefetchCall('raven.api.chat_stream.get_messages', {
+    const prefetchChannel = useFrappePrefetchCall('axon.api.chat_stream.get_messages', {
         channel_id: dm.name,
         limit: 20
     }, { path: `get_messages_for_channel_${dm.name}` })

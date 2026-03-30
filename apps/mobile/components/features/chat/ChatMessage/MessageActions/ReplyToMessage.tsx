@@ -1,4 +1,4 @@
-import { Message } from '@raven/types/common/Message'
+import { Message } from '@axon/types/common/Message'
 import ReplyIcon from "@assets/icons/ReplyIcon.svg"
 import { useColorScheme } from '@hooks/useColorScheme'
 import { useSetAtom } from 'jotai'

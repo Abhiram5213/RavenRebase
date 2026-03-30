@@ -1,7 +1,7 @@
 import { atom } from "jotai";
-import { CustomFile } from "@raven/types/common/File";
+import { CustomFile } from "@axon/types/common/File";
 import { atomFamily } from "jotai/utils";
-import { Message } from "@raven/types/common/Message";
+import { Message } from "@axon/types/common/Message";
 
 export const filesAtomFamily = atomFamily((id: string) => atom<CustomFile[]>([]))
 

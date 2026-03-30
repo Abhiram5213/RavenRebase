@@ -35,7 +35,7 @@ export default function CreateChannel() {
     }
 
     const onSubmit = async (data: ChannelCreationForm) => {
-        return createDoc('Raven Channel', {
+        return createDoc('Axon Channel', {
             ...data,
             workspace: workspace
         }).then(result => {

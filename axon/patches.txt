@@ -1,0 +1,21 @@
+[pre_model_sync]
+
+[post_model_sync]
+axon.patches.v1_2.create_axon_users
+axon.patches.v1_3.create_axon_message_indexes #23
+axon.patches.v1_3.update_all_messages_to_include_message_content #2
+axon.patches.v1_3.update_all_messages_to_include_replied_message_content #2
+axon.patches.v1_6.create_axon_channel_member_index
+axon.patches.v1_6.migrate_older_axon_users #2
+axon.patches.v2_0.migrate_existing_dm_threads
+axon.patches.v2_0.create_default_workspace
+axon.patches.v2_0.create_default_company_workspace_mapping
+axon.patches.v2_4.add_unique_constraint_on_reactions #2
+axon.patches.v2_5.migrate_ai_bots_to_openai_provider
+axon.patches.v2_6.clean_duplicate_channel_members
+axon.patches.v2_6.add_unique_constraint_in_axon_channel_member
+axon.patches.v2_6.add_unique_constraint_on_dm_channels
+axon.patches.v2_6.fix_duplicate_dm_channels
+axon.patches.v2_7.clean_duplicate_poll_votes
+axon.patches.v2_7.migrate_poll_votes_to_poll_vote_selection
+axon.patches.v2_7.add_unique_constraint_on_poll_votes

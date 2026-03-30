@@ -12,7 +12,7 @@ export type LinkPreviewDetails = {
 
 export const useLinkPreview = (href: string) => {
     const { data, isLoading } = useFrappeGetCall<{ message: LinkPreviewDetails[] }>(
-        'raven.api.preview_links.get_preview_link',
+        'axon.api.preview_links.get_preview_link',
         {
             urls: JSON.stringify([href])
         },
@@ -32,7 +32,7 @@ export const useLinkPreview = (href: string) => {
 }
 
 export const useHideLinkPreview = (messageID: string) => {
-    const { call } = useFrappePostCall('raven.api.preview_links.hide_link_preview')
+    const { call } = useFrappePostCall('axon.api.preview_links.hide_link_preview')
 
     const hideLinkPreview = () => {
         call({

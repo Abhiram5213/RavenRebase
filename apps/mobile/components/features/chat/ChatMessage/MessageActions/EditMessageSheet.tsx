@@ -1,5 +1,5 @@
 import { Keyboard, View } from 'react-native'
-import { Message } from '@raven/types/common/Message'
+import { Message } from '@axon/types/common/Message'
 import TiptapEditor from '@components/features/chat/ChatInput/TiptapEditor/TiptapEditor'
 import { Button } from '@components/nativewindui/Button'
 import { Text } from '@components/nativewindui/Text'
@@ -30,7 +30,7 @@ const EditMessageSheet = ({ message, onClose }: EditMessageSheetProps) => {
     }
 
     const handleSave = async () => {
-        updateDoc('Raven Message', message.name,
+        updateDoc('Axon Message', message.name,
             { text: messageTextRef.current }).then((d) => {
                 Keyboard.dismiss()
                 onClose()

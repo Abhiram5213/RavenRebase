@@ -7,7 +7,7 @@ import FilePickerButton from "@components/common/Buttons/FilePickerButton"
 import ImagePickerButton from "@components/common/Buttons/ImagePickerButton"
 import GIFPickerButton from "@components/common/GIFPicker/GIFPickerButton"
 import { useKeyboardVisible } from "@hooks/useKeyboardVisible"
-import { CustomFile } from "@raven/types/common/File"
+import { CustomFile } from "@axon/types/common/File"
 import { useSetAtom } from 'jotai'
 import { filesAtomFamily } from "@lib/ChatInputUtils"
 import CreatePollButton from "@components/common/Buttons/CreatePollButton"

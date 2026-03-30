@@ -8,12 +8,12 @@ import { ActivityIndicator } from '@components/nativewindui/ActivityIndicator';
 import { LegendList } from '@legendapp/list';
 import AtSignIcon from '@assets/icons/AtSignIcon.svg';
 import { useCallback, useContext, useMemo } from 'react';
-import { RavenChannel } from '@raven/types/RavenChannelManagement/RavenChannel';
-import { RavenMessage } from '@raven/types/RavenMessaging/RavenMessage';
-import { getTimePassed } from '@raven/lib/utils/dateConversions';
+import { AxonChannel } from '@axon/types/AxonChannelManagement/AxonChannel';
+import { AxonMessage } from '@axon/types/AxonMessaging/AxonMessage';
+import { getTimePassed } from '@axon/lib/utils/dateConversions';
 import { ChannelIcon } from '@components/features/channels/ChannelList/ChannelIcon';
 import { BaseMessageItem } from '@components/features/chat-stream/BaseMessageItem';
-import { Message } from '@raven/types/common/Message';
+import { Message } from '@axon/types/common/Message';
 import ChevronLeftIcon from '@assets/icons/ChevronLeftIcon.svg';
 import { useRouteToChannel } from '@hooks/useRouting';
 
@@ -23,7 +23,7 @@ interface MentionObject {
     /** ID of the channel */
     channel_id: string
     /** Type of the channel */
-    channel_type: RavenChannel['type']
+    channel_type: AxonChannel['type']
     /** Name of the channel */
     channel_name: string
     /** Workspace name */
@@ -35,7 +35,7 @@ interface MentionObject {
     /** Date and time of the message */
     creation: string
     /** Type of the message */
-    message_type: RavenMessage['message_type']
+    message_type: AxonMessage['message_type']
     /** Owner of the message */
     owner: string
     /** Text of the message */
@@ -78,7 +78,7 @@ const MentionsList = () => {
         (pageIndex: number, previousPageData: { message: MentionObject[] } | null) => {
             if (previousPageData && !previousPageData.message.length) return null
             const start = pageIndex * PAGE_SIZE
-            return ['raven.api.mentions.get_mentions', {
+            return ['axon.api.mentions.get_mentions', {
                 limit: PAGE_SIZE,
                 start
             }] as const

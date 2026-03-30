@@ -6,7 +6,7 @@ import { Text } from '@components/nativewindui/Text';
 import { Link, useRouter } from 'expo-router';
 import CrossIcon from '@assets/icons/CrossIcon.svg';
 import { toast } from 'sonner-native';
-import { RavenPoll } from '@raven/types/RavenMessaging/RavenPoll';
+import { AxonPoll } from '@axon/types/AxonMessaging/AxonPoll';
 import { useForm } from 'react-hook-form';
 import { useFrappePostCall } from 'frappe-react-sdk';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -45,7 +45,7 @@ export const CloseCreatePollButton = () => {
 export const useCreatePoll = (channelID: string) => {
 
     const router = useRouter()
-    const methods = useForm<RavenPoll>({
+    const methods = useForm<AxonPoll>({
         defaultValues: {
             options: [{
                 name: '',
@@ -70,14 +70,14 @@ export const useCreatePoll = (channelID: string) => {
     })
 
     const { handleSubmit, reset: resetForm } = methods
-    const { call: createPoll, loading: creatingPoll, reset: resetCreateHook } = useFrappePostCall('raven.api.raven_poll.create_poll')
+    const { call: createPoll, loading: creatingPoll, reset: resetCreateHook } = useFrappePostCall('axon.api.axon_poll.create_poll')
 
     const reset = () => {
         resetForm()
         resetCreateHook()
     }
 
-    const onSubmit = async (data: RavenPoll) => {
+    const onSubmit = async (data: AxonPoll) => {
         return createPoll({
             ...data,
             "channel_id": channelID

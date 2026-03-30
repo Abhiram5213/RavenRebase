@@ -1,6 +1,6 @@
 import { Text } from '@components/nativewindui/Text'
 import { useMemo, useState } from "react"
-import { ChannelWithUnreadCount, DMChannelWithUnreadCount } from "@raven/lib/hooks/useGetChannelUnreadCounts"
+import { ChannelWithUnreadCount, DMChannelWithUnreadCount } from "@axon/lib/hooks/useGetChannelUnreadCounts"
 import { TouchableOpacity, View, StyleSheet } from 'react-native'
 import ChevronDownIcon from '@assets/icons/ChevronDownIcon.svg'
 import ChevronRightIcon from '@assets/icons/ChevronRightIcon.svg'

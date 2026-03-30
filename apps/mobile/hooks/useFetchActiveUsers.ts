@@ -1,13 +1,13 @@
 import { useFrappeEventListener, useFrappeGetCall, useSWRConfig } from 'frappe-react-sdk'
 import { useActiveState } from './useActiveState'
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser'
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser'
 
 /**
  * Hook to fetch active users from the server.
  * SWRKey: active_users
  */
 const useFetchActiveUsers = () => {
-    const res = useFrappeGetCall<{ message: string[] }>('raven.api.user_availability.get_active_users',
+    const res = useFrappeGetCall<{ message: string[] }>('axon.api.user_availability.get_active_users',
         undefined,
         'active_users',
         {
@@ -23,14 +23,14 @@ const useFetchActiveUsers = () => {
  * Also handles the user's active state via visibilty change and idle timer
  */
 export const useFetchActiveUsersRealtime = () => {
-    const { myProfile: currentUserInfo } = useCurrentRavenUser();
+    const { myProfile: currentUserInfo } = useCurrentAxonUser();
 
     const { mutate } = useSWRConfig()
 
     useActiveState()
 
     /** Hook to listen to user_active_state */
-    useFrappeEventListener('raven:user_active_state_updated', (data) => {
+    useFrappeEventListener('axon:user_active_state_updated', (data) => {
         if (data.user !== currentUserInfo?.name) {
             // If the user is not the current user, update the active_users list
             // No need to revalidate the data as the websocket event has emitted the new data for that user

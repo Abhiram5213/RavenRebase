@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "raven",
+  "name": "axon",
   "version": "2.6.6",
   "description": "Messaging Application",
   "workspaces": [
@@ -14,7 +14,7 @@
     "dev": "cd frontend && yarn dev",
     "build": "cd frontend && yarn build",
     "postinstall": "yarn install-web && yarn install-desk",
-    "install-desk": "cd raven && yarn install",
+    "install-desk": "cd axon && yarn install",
     "install-web": "cd frontend && yarn install"
   },
   "keywords": [],

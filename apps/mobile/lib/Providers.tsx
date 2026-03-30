@@ -1,11 +1,11 @@
 import FullPageLoader from '@components/layout/FullPageLoader'
-import { ChannelListContext, useChannelListProvider } from '@raven/lib/providers/ChannelListProvider'
-import { UserListContext, useUserListProvider } from '@raven/lib/providers/UserListProvider'
+import { ChannelListContext, useChannelListProvider } from '@axon/lib/providers/ChannelListProvider'
+import { UserListContext, useUserListProvider } from '@axon/lib/providers/UserListProvider'
 import { PropsWithChildren, Suspense, useEffect } from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { ActiveUserProvider } from './UserInactivityProvider'
 import ErrorBanner from '@components/common/ErrorBanner'
-import useFetchWorkspaces from '@raven/lib/hooks/useFetchWorkspaces'
+import useFetchWorkspaces from '@axon/lib/hooks/useFetchWorkspaces'
 import { useAtom } from 'jotai'
 import { selectedWorkspaceFamily } from '@hooks/useGetCurrentWorkspace'
 import LogOutButton from '@components/features/profile/profile-settings/LogOutButton'
@@ -13,7 +13,7 @@ import useSiteContext from '@hooks/useSiteContext'
 import { useFetchUnreadMessageCount } from '@hooks/useUnreadMessageCount'
 import { useFrappeEventListener, useSWRConfig } from 'frappe-react-sdk'
 import { useUnreadThreadsCountEventListener } from '@hooks/useUnreadThreadsCount'
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser'
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser'
 import { useActiveSocketConnection } from '@hooks/useActiveSocketConnection'
 import { useFetchActiveUsersRealtime } from '@hooks/useFetchActiveUsers'
 import useFirebasePushTokenListener from '@hooks/useFirebasePushTokenListener'
@@ -125,7 +125,7 @@ const WorkspaceProvider = ({ children }: PropsWithChildren) => {
 
     const onThreadReplyEvent = useUnreadThreadsCountEventListener()
 
-    const { myProfile } = useCurrentRavenUser()
+    const { myProfile } = useCurrentAxonUser()
 
     // Listen to realtime event for new message count
     useFrappeEventListener('thread_reply', (event) => {

@@ -2,9 +2,9 @@ import { useContext } from 'react'
 import { FrappeConfig, FrappeContext, useSWRConfig } from 'frappe-react-sdk'
 import { filesAtomFamily } from '@lib/ChatInputUtils'
 import { useAtom } from 'jotai'
-import { RavenMessage } from '@raven/types/RavenMessaging/RavenMessage'
-import { GetMessagesResponse } from '@raven/types/common/ChatStream'
-import { CustomFile } from '@raven/types/common/File'
+import { AxonMessage } from '@axon/types/AxonMessaging/AxonMessage'
+import { GetMessagesResponse } from '@axon/types/common/ChatStream'
+import { CustomFile } from '@axon/types/common/File'
 export interface FileUploadProgress {
   progress: number,
   isComplete: boolean,
@@ -17,7 +17,7 @@ export default function useFileUpload(siteID: string, channelID: string) {
   const { file } = useContext(FrappeContext) as FrappeConfig
   const [files, setFiles] = useAtom(filesAtomFamily(siteID + channelID))
 
-  const onMessageSendCompleted = (messages: RavenMessage[]) => {
+  const onMessageSendCompleted = (messages: AxonMessage[]) => {
     // Update the messages in the cache
 
     mutate({ path: `get_messages_for_channel_${channelID}` }, (data?: GetMessagesResponse) => {
@@ -84,7 +84,7 @@ export default function useFileUpload(siteID: string, channelID: string) {
         await file.uploadFile(f,
           {
             isPrivate: true,
-            doctype: 'Raven Message',
+            doctype: 'Axon Message',
             otherData: {
               channelID: channelID,
               caption: f.caption ?? '',
@@ -102,7 +102,7 @@ export default function useFileUpload(siteID: string, channelID: string) {
               })
             })
           },
-          'raven.api.upload_file.upload_file_with_message'
+          'axon.api.upload_file.upload_file_with_message'
         ).then((res) => {
           onMessageSendCompleted([res.data.message])
           setFiles((prevFiles: CustomFile[]) => {

@@ -1,13 +1,14 @@
 import DMChannelInfoModal from '@components/features/channel-settings/DMChannelInfoModal'
 import UserAvatar from '@components/layout/UserAvatar'
 import { useIsUserActive } from '@hooks/useIsUserActive'
-import { useGetUser } from '@raven/lib/hooks/useGetUser'
-import { DMChannelListItem } from '@raven/types/common/ChannelListItem'
+import { useGetUser } from '@axon/lib/hooks/useGetUser'
+import { DMChannelListItem } from '@axon/types/common/ChannelListItem'
 import { useState } from 'react'
 import { Text, View } from 'react-native'
 import { TouchableOpacity } from '@gorhom/bottom-sheet'
 import ChevronDownIcon from '@assets/icons/ChevronDownIcon.svg'
 import { useColorScheme } from '@hooks/useColorScheme'
+import { StartCallButton } from '@components/features/call/StartCallButton'
 
 const DMChannelHeader = ({ channelData }: { channelData: DMChannelListItem }) => {
 
@@ -45,6 +46,7 @@ const DMChannelHeader = ({ channelData }: { channelData: DMChannelListItem }) =>
                 </View>
 
             </TouchableOpacity>
+            <StartCallButton channelId={channelData.name} />
             <DMChannelInfoModal
                 channel={channelData}
                 isModalVisible={isModalVisible}

@@ -3,9 +3,9 @@ import { Loader } from '@/components/common/Loader'
 import PageContainer from '@/components/layout/Settings/PageContainer'
 import SettingsContentContainer from '@/components/layout/Settings/SettingsContentContainer'
 import SettingsPageHeader from '@/components/layout/Settings/SettingsPageHeader'
-import useRavenSettings from '@/hooks/fetchers/useRavenSettings'
-import { RavenSettings } from '@/types/Raven/RavenSettings'
-import { hasRavenAdminRole, isSystemManager } from '@/utils/roles'
+import useAxonSettings from '@/hooks/fetchers/useAxonSettings'
+import { AxonSettings } from '@/types/Axon/AxonSettings'
+import { hasAxonAdminRole, isSystemManager } from '@/utils/roles'
 import { Box, Button, Checkbox, Flex, Separator, Text, TextField, Select, Tabs, Callout } from '@radix-ui/themes'
 import { useFrappeGetCall, useFrappeUpdateDoc, useFrappePostCall } from 'frappe-react-sdk'
 import { useEffect, useState } from 'react'
@@ -16,27 +16,27 @@ import { Stack } from '@/components/layout/Stack'
 
 const AISettings = () => {
 
-    const isRavenAdmin = hasRavenAdminRole() || isSystemManager()
+    const isAxonAdmin = hasAxonAdminRole() || isSystemManager()
 
-    const { ravenSettings, mutate } = useRavenSettings()
+    const { axonSettings, mutate } = useAxonSettings()
 
-    const methods = useForm<RavenSettings>({
-        disabled: !isRavenAdmin
+    const methods = useForm<AxonSettings>({
+        disabled: !isAxonAdmin
     })
 
     const { handleSubmit, control, watch, reset } = methods
 
     useEffect(() => {
-        if (ravenSettings) {
-            reset(ravenSettings)
+        if (axonSettings) {
+            reset(axonSettings)
         }
-    }, [ravenSettings])
+    }, [axonSettings])
 
-    const { updateDoc, loading: updatingDoc } = useFrappeUpdateDoc<RavenSettings>()
+    const { updateDoc, loading: updatingDoc } = useFrappeUpdateDoc<AxonSettings>()
 
-    const onSubmit = (data: RavenSettings) => {
-        toast.promise(updateDoc('Raven Settings', null, {
-            ...(ravenSettings ?? {}),
+    const onSubmit = (data: AxonSettings) => {
+        toast.promise(updateDoc('Axon Settings', null, {
+            ...(axonSettings ?? {}),
             ...data
         }).then(res => {
             mutate(res, {
@@ -76,8 +76,8 @@ const AISettings = () => {
                     <SettingsContentContainer>
                         <SettingsPageHeader
                             title='AI Settings'
-                            description='Configure AI providers to use AI features in Raven.'
-                            actions={<Button type='submit' disabled={updatingDoc || !isRavenAdmin}>
+                            description='Configure AI providers to use AI features in Axon.'
+                            actions={<Button type='submit' disabled={updatingDoc || !isAxonAdmin}>
                                 {updatingDoc && <Loader className="text-white" />}
                                 {updatingDoc ? "Saving" : "Save"}
                             </Button>}
@@ -88,7 +88,7 @@ const AISettings = () => {
                                 <Flex gap="2">
                                     <Controller
                                         control={control}
-                                        defaultValue={ravenSettings?.enable_ai_integration}
+                                        defaultValue={axonSettings?.enable_ai_integration}
                                         name='enable_ai_integration'
                                         render={({ field }) => (
                                             <Checkbox
@@ -131,9 +131,9 @@ const AISettings = () => {
 }
 const OpenAISection = () => {
 
-    const { data: openaiVersion } = useFrappeGetCall<{ message: string }>('raven.api.ai_features.get_open_ai_version')
+    const { data: openaiVersion } = useFrappeGetCall<{ message: string }>('axon.api.ai_features.get_open_ai_version')
 
-    const { watch, control, register, formState: { errors } } = useFormContext<RavenSettings>()
+    const { watch, control, register, formState: { errors } } = useFormContext<AxonSettings>()
 
     const enableOpenAI = watch('enable_openai_services')
 
@@ -229,7 +229,7 @@ const OpenAISection = () => {
 
 const LocalLLMSection = () => {
 
-    const { watch, control, register, formState: { errors } } = useFormContext<RavenSettings>()
+    const { watch, control, register, formState: { errors } } = useFormContext<AxonSettings>()
 
     const enableLocalLLM = watch('enable_local_llm')
     const localLLMProvider = watch('local_llm_provider')
@@ -241,7 +241,7 @@ const LocalLLMSection = () => {
             message: string
             models?: Array<{ id: string }>
         }
-    }>('raven.api.ai_features.test_llm_configuration')
+    }>('axon.api.ai_features.test_llm_configuration')
 
     const [testResult, setTestResult] = useState<{ success: boolean, message: string } | null>(null)
 

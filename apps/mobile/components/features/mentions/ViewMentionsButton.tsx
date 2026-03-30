@@ -9,12 +9,12 @@ import { useFrappeEventListener, useFrappeGetCall } from 'frappe-react-sdk';
 
 export function ViewMentionsButton() {
 
-    const { data: mentionsCount, mutate } = useFrappeGetCall<{ message: number }>('raven.api.mentions.get_unread_mention_count', undefined, undefined, {
+    const { data: mentionsCount, mutate } = useFrappeGetCall<{ message: number }>('axon.api.mentions.get_unread_mention_count', undefined, undefined, {
         revalidateOnFocus: true,
         focusThrottleInterval: 1000 * 60 * 5,
     })
 
-    useFrappeEventListener('raven_mention', () => {
+    useFrappeEventListener('axon_mention', () => {
         mutate()
     })
 

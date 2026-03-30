@@ -1,7 +1,7 @@
 
 import { useCurrentChannelData } from '@hooks/useCurrentChannelData';
-import { Member, useFetchChannelMembers } from '@raven/lib/hooks/useFetchChannelMembers';
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser';
+import { Member, useFetchChannelMembers } from '@axon/lib/hooks/useFetchChannelMembers';
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser';
 import { useMemo } from 'react';
 
 
@@ -18,7 +18,7 @@ const useShouldJoinChannel = (channelID: string, isThread: boolean) => {
     const { channel } = useCurrentChannelData(channelID)
     const channelData = channel?.channelData
 
-    const { myProfile } = useCurrentRavenUser()
+    const { myProfile } = useCurrentAxonUser()
     const { channelMembers, isLoading } = useFetchChannelMembers(channelID)
 
     const channelMemberProfile: Member | null = useMemo(() => {

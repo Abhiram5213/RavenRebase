@@ -3,13 +3,13 @@ import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
 import { View, Pressable } from "react-native";
 import { Button } from "@components/nativewindui/Button";
 import { Text } from "@components/nativewindui/Text";
-import { ChannelListItem } from "@raven/types/common/ChannelListItem";
+import { ChannelListItem } from "@axon/types/common/ChannelListItem";
 import { useContext, useState } from "react";
 import { FrappeDoc, useFrappeDeleteDoc } from "frappe-react-sdk";
 import { toast } from "sonner-native";
 import CheckIcon from "@assets/icons/CheckIcon.svg";
 import { useColorScheme } from '@hooks/useColorScheme';
-import { ChannelListContext, ChannelListContextType } from "@raven/lib/providers/ChannelListProvider";
+import { ChannelListContext, ChannelListContextType } from "@axon/lib/providers/ChannelListProvider";
 import { useRouteToHome } from "@hooks/useRouting";
 import TrashIcon from '@assets/icons/TrashIcon.svg';
 
@@ -50,7 +50,7 @@ const DeleteChannelModal: React.FC<DeleteChannelModalProps> = ({ deleteSheetRef,
 
     const handleDeleteChannel = async () => {
         if (channelData?.name) {
-            deleteDoc('Raven Channel', channelData.name)
+            deleteDoc('Axon Channel', channelData.name)
                 .then(() => {
                     toast.success(`Channel ${channelData?.channel_name} has been deleted.`)
                     mutate()

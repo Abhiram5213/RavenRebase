@@ -1,7 +1,7 @@
-import { Message } from "@raven/types/common/Message"
+import { Message } from "@axon/types/common/Message"
 import LinkPreview from "@components/features/chat/ChatMessage/Renderers/LinkPreview"
 import * as htmlparser2 from 'htmlparser2';
-import { ALLOWED_FILE_EXTENSIONS, getFileExtension } from "@raven/lib/utils/operations";
+import { ALLOWED_FILE_EXTENSIONS, getFileExtension } from "@axon/lib/utils/operations";
 
 type MessageLinkRendererProps = {
     message: Message

@@ -21,7 +21,7 @@ const Appearance = () => {
     const userData = useUserData()
 
     const { data: chatStyle, mutate } = useFrappeGetCall<{ message: { chat_style: 'Simple' | 'Left-Right' } }>('frappe.client.get_value', {
-        doctype: 'Raven User',
+        doctype: 'Axon User',
         fieldname: JSON.stringify(['chat_style']),
         filters: {
             name: userData.name
@@ -32,7 +32,7 @@ const Appearance = () => {
 
     const setChatStyle = (style: string) => {
         call({
-            doctype: 'Raven User',
+            doctype: 'Axon User',
             name: userData.name,
             fieldname: 'chat_style',
             value: style

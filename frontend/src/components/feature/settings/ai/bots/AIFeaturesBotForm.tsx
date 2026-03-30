@@ -1,7 +1,7 @@
 import { Label, ErrorText, HelperText } from '@/components/common/Form'
 import { Stack, HStack } from '@/components/layout/Stack'
-import { RavenBot } from '@/types/RavenBot/RavenBot'
-import useRavenSettings from '@/hooks/fetchers/useRavenSettings'
+import { AxonBot } from '@/types/AxonBot/AxonBot'
+import useAxonSettings from '@/hooks/fetchers/useAxonSettings'
 import { Box, TextField, Checkbox, Text, Separator, Tooltip, Heading, Select, Slider, Code, Callout } from '@radix-ui/themes'
 import { useFrappeGetCall } from 'frappe-react-sdk'
 import { useFormContext, Controller } from 'react-hook-form'
@@ -10,7 +10,7 @@ import { BiInfoCircle } from 'react-icons/bi'
 type Props = {}
 
 const AIFeaturesBotForm = (props: Props) => {
-    const { register, control, formState: { errors }, watch } = useFormContext<RavenBot>()
+    const { register, control, formState: { errors }, watch } = useFormContext<AxonBot>()
 
     const openAIAssistantID = watch('openai_assistant_id')
     const modelProvider = watch('model_provider')
@@ -228,14 +228,14 @@ const AIFeaturesBotForm = (props: Props) => {
 }
 
 const ModelProviderSelector = () => {
-    const { control, formState: { errors }, watch } = useFormContext<RavenBot>()
-    const { ravenSettings } = useRavenSettings()
+    const { control, formState: { errors }, watch } = useFormContext<AxonBot>()
+    const { axonSettings } = useAxonSettings()
     const is_ai_bot = watch('is_ai_bot')
 
     if (!is_ai_bot) return null
 
-    const hasOpenAI = ravenSettings?.enable_openai_services
-    const hasLocalLLM = ravenSettings?.enable_local_llm
+    const hasOpenAI = axonSettings?.enable_openai_services
+    const hasLocalLLM = axonSettings?.enable_local_llm
 
     if (!hasOpenAI && !hasLocalLLM) {
         return (
@@ -278,13 +278,13 @@ const ModelProviderSelector = () => {
 }
 
 const ModelSelector = () => {
-    const { control, formState: { errors }, watch } = useFormContext<RavenBot>()
-    const { ravenSettings } = useRavenSettings()
+    const { control, formState: { errors }, watch } = useFormContext<AxonBot>()
+    const { axonSettings } = useAxonSettings()
     const is_ai_bot = watch('is_ai_bot')
     const modelProvider = watch('model_provider')
 
     // Fetch OpenAI models
-    const { data: openaiModels } = useFrappeGetCall('raven.api.ai_features.get_openai_available_models', undefined, modelProvider === 'OpenAI' || !modelProvider ? undefined : null, {
+    const { data: openaiModels } = useFrappeGetCall('axon.api.ai_features.get_openai_available_models', undefined, modelProvider === 'OpenAI' || !modelProvider ? undefined : null, {
         revalidateOnFocus: false,
         revalidateIfStale: false
     })
@@ -295,11 +295,11 @@ const ModelSelector = () => {
             success: boolean
             models?: Array<{ id: string }>
         }
-    }>('raven.api.ai_features.test_llm_configuration', {
+    }>('axon.api.ai_features.test_llm_configuration', {
         provider: 'Local LLM',
-        api_url: ravenSettings?.local_llm_api_url,
-        local_llm_provider: ravenSettings?.local_llm_provider
-    }, modelProvider === 'Local LLM' && ravenSettings?.local_llm_api_url ? undefined : null, {
+        api_url: axonSettings?.local_llm_api_url,
+        local_llm_provider: axonSettings?.local_llm_provider
+    }, modelProvider === 'Local LLM' && axonSettings?.local_llm_api_url ? undefined : null, {
         revalidateOnFocus: false,
         revalidateIfStale: false
     })
@@ -356,7 +356,7 @@ const ModelSelector = () => {
 }
 
 const ReasoningEffortSelector = () => {
-    const { control, watch } = useFormContext<RavenBot>()
+    const { control, watch } = useFormContext<AxonBot>()
     const model = watch('model')
     const is_ai_bot = watch('is_ai_bot')
 

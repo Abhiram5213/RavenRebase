@@ -20,7 +20,7 @@ const AddUserDialog = () => {
             </Dialog.Trigger>
             <Dialog.Content width={'480px'} className={DIALOG_CONTENT_CLASS}>
                 <Dialog.Title mb={'1'}>Add User</Dialog.Title>
-                <Dialog.Description size={'2'}>Invite a new user to Raven.</Dialog.Description>
+                <Dialog.Description size={'2'}>Invite a new user to Axon.</Dialog.Description>
                 <UserForm onClose={() => setOpen(false)} />
             </Dialog.Content>
         </Dialog.Root>
@@ -38,29 +38,29 @@ const UserForm = ({ onClose }: { onClose: VoidFunction }) => {
 
     const [fetching, setFetching] = useState(false)
     const [userExists, setUserExists] = useState(false)
-    const [ravenUserExists, setRavenUserExists] = useState(false)
+    const [axonUserExists, setAxonUserExists] = useState(false)
 
     const { users } = useContext(UserListContext)
 
     const { call } = useContext(FrappeContext) as FrappeConfig
 
-    const { loading, call: inviteUser, error } = useFrappePostCall('raven.api.raven_users.invite_user')
+    const { loading, call: inviteUser, error } = useFrappePostCall('axon.api.axon_users.invite_user')
 
     const onEmailBlur = () => {
         const email = getValues('email')
         if (!email) {
             setUserExists(false)
-            setRavenUserExists(false)
+            setAxonUserExists(false)
             setFetching(false)
             return
         }
 
-        // Check if Raven User exists
+        // Check if Axon User exists
         const user = users.find((user) => user.name === email)
         if (user) {
-            setRavenUserExists(true)
+            setAxonUserExists(true)
         } else {
-            setRavenUserExists(false)
+            setAxonUserExists(false)
             setFetching(true)
             // Check if user exists in Frappe
             call.get('frappe.client.get_value', {
@@ -111,7 +111,7 @@ const UserForm = ({ onClose }: { onClose: VoidFunction }) => {
                     </TextField.Root>
                 </Box>
                 {errors.email && <ErrorText>{errors.email?.message}</ErrorText>}
-                {ravenUserExists && <ErrorText>This user is already on Raven.</ErrorText>}
+                {axonUserExists && <ErrorText>This user is already on Axon.</ErrorText>}
             </Stack>
             {!userExists && <>
                 <Stack>
@@ -151,13 +151,13 @@ const UserForm = ({ onClose }: { onClose: VoidFunction }) => {
                 </Stack>
             </>}
             <Text size={'2'} color='gray'>
-                {userExists ? 'This user already exists in Frappe. Add them to Raven?' : 'An invite will be sent on their email.'}
+                {userExists ? 'This user already exists in Frappe. Add them to Axon?' : 'An invite will be sent on their email.'}
             </Text>
             <HStack justify={'end'} pt='4'>
                 <Dialog.Close>
                     <Button color='gray' variant={'soft'} disabled={loading}>Cancel</Button>
                 </Dialog.Close>
-                <Button disabled={ravenUserExists || loading} onClick={handleSubmit(onSubmit)}>
+                <Button disabled={axonUserExists || loading} onClick={handleSubmit(onSubmit)}>
                     {loading ? <Loader className="text-white" /> : null}
                     {userExists ? 'Add' : 'Send Invite'}
                 </Button>

@@ -1,9 +1,9 @@
-import { RavenAIFunctionParams } from "@/types/RavenAI/RavenAIFunctionParams"
+import { AxonAIFunctionParams } from "@/types/AxonAI/AxonAIFunctionParams"
 import { BadgeProps } from "@radix-ui/themes"
 import { ReactNode } from "react"
 import { BaseVariableType } from "./FunctionConstants"
 
-export const getTextAndColorForFieldType = (type: RavenAIFunctionParams['type'] | BaseVariableType['type']): { children: ReactNode, color: BadgeProps['color'] } => {
+export const getTextAndColorForFieldType = (type: AxonAIFunctionParams['type'] | BaseVariableType['type']): { children: ReactNode, color: BadgeProps['color'] } => {
     switch (type) {
         case 'integer':
             return { children: 'Integer', color: 'blue' }

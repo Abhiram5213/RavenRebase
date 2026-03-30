@@ -35,7 +35,7 @@ const UserMentionRenderer = ({
     const { call } = useContext(FrappeContext) as FrappeConfig
 
     const handleMentionPress = useCallback(() => {
-        call.post('raven.api.raven_channel.create_direct_message_channel', {
+        call.post('axon.api.axon_channel.create_direct_message_channel', {
             user_id: userID
         }).then((res) => {
             router.push(`../${res?.message}`, { relativeToDirectory: true })

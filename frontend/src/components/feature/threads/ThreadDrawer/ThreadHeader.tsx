@@ -85,7 +85,7 @@ const DeleteThreadButton = () => {
 
     const onDeleteThread = () => {
 
-        const promise = deleteDoc('Raven Channel', threadID)
+        const promise = deleteDoc('Axon Channel', threadID)
             .then(() => {
                 navigate('../')
                 return Promise.resolve()
@@ -114,7 +114,7 @@ const LeaveThreadButton = () => {
     const { mutate } = useSWRConfig()
     const navigate = useNavigate()
 
-    const { call } = useFrappePostCall('raven.api.raven_channel.leave_channel')
+    const { call } = useFrappePostCall('axon.api.axon_channel.leave_channel')
 
     const onLeaveThread = () => {
 
@@ -148,7 +148,7 @@ const ToggleNotificationButton = ({ channelMember }: { channelMember: Member }) 
 
     const isPushAvailable = useIsPushNotificationEnabled()
 
-    const { call } = useFrappePostCall('raven.api.notification.toggle_push_notification_for_channel')
+    const { call } = useFrappePostCall('axon.api.notification.toggle_push_notification_for_channel')
 
     const onToggle = () => {
         if (channelMember) {

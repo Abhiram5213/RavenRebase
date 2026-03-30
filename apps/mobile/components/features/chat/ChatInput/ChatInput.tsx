@@ -4,7 +4,7 @@ import SendIcon from "@assets/icons/SendIcon.svg"
 import { useColorScheme } from "@hooks/useColorScheme"
 import SendItem from "./SendItem"
 import { useAtom, useSetAtom } from 'jotai'
-import { CustomFile } from "@raven/types/common/File"
+import { CustomFile } from "@axon/types/common/File"
 import { useCallback, useState } from "react"
 import { filesAtomFamily, selectedReplyMessageAtomFamily } from "@lib/ChatInputUtils"
 import { useSendMessage } from "@hooks/useSendMessage"
@@ -15,7 +15,7 @@ import TypingIndicator from "./TypingIndicator"
 import { UserMentions } from "./mentions"
 import ReplyMessagePreview from "./ReplyMessagePreview"
 import AIEventIndicator from "./AIEventIndicator"
-import { useTyping } from "@raven/lib/hooks/useTypingIndicator"
+import { useTyping } from "@axon/lib/hooks/useTypingIndicator"
 import * as ContextMenu from 'zeego/context-menu';
 
 interface ChatInputProps {

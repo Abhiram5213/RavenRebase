@@ -74,7 +74,7 @@ const WorkspaceSwitcherGrid = () => {
 }
 
 const WorkspaceMemberCount = ({ workspace }: { workspace: string }) => {
-    const { data } = useFrappeGetCall('raven.api.workspaces.get_workspace_member_count', { workspace })
+    const { data } = useFrappeGetCall('axon.api.workspaces.get_workspace_member_count', { workspace })
 
     if (data === undefined) {
         return null
@@ -94,8 +94,8 @@ const WorkspaceMemberCount = ({ workspace }: { workspace: string }) => {
 const getLogo = (workspace: WorkspaceFields) => {
     let logo = workspace.logo || ''
 
-    if (!logo && workspace.workspace_name === 'Raven') {
-        logo = '/assets/raven/raven-logo.png'
+    if (!logo && workspace.workspace_name === 'Axon') {
+        logo = '/assets/axon/axon-logo.png'
     }
 
     return logo
@@ -138,7 +138,7 @@ const OtherWorkspaceItem = ({ workspace }: { workspace: WorkspaceFields }) => {
 
     const logo = getLogo(workspace)
 
-    const { call } = useFrappePostCall('raven.api.workspaces.join_workspace')
+    const { call } = useFrappePostCall('axon.api.workspaces.join_workspace')
 
     const { mutate } = useSWRConfig()
 

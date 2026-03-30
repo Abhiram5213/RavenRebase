@@ -18,7 +18,7 @@ export const JoinChannelBox = ({ channelData, user }: JoinChannelBoxProps) => {
     const { createDoc, error, loading } = useFrappeCreateDoc()
 
     const joinChannel = async () => {
-        return createDoc('Raven Channel Member', {
+        return createDoc('Axon Channel Member', {
             channel_id: channelData ? channelData?.name : threadID,
             user_id: user
         }).then(() => {

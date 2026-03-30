@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import Picker, { CustomEmoji, Emoji } from "./Picker";
 import { useFrappeGetCall } from "frappe-react-sdk";
-import { RavenCustomEmoji } from "@raven/types/RavenMessaging/RavenCustomEmoji";
+import { AxonCustomEmoji } from "@axon/types/AxonMessaging/AxonCustomEmoji";
 import { useMemo } from "react";
 interface EmojiPickerProps {
     onReact: (emoji: Emoji) => void;
@@ -10,9 +10,9 @@ interface EmojiPickerProps {
 
 const EmojiPicker = ({ onReact, allowCustomEmojis = true }: EmojiPickerProps) => {
 
-    const { data, mutate, error, isLoading } = useFrappeGetCall<{ message: RavenCustomEmoji[] }>(
+    const { data, mutate, error, isLoading } = useFrappeGetCall<{ message: AxonCustomEmoji[] }>(
         "frappe.client.get_list", {
-        doctype: "Raven Custom Emoji",
+        doctype: "Axon Custom Emoji",
         fields: ["name", "image", "keywords"],
         limit: 1000,
     }, allowCustomEmojis ? 'custom-emojis' : null, {

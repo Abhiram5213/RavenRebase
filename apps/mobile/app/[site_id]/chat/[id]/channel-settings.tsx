@@ -4,7 +4,7 @@ import { router, useLocalSearchParams } from "expo-router";
 import { Stack } from "expo-router";
 import { DeleteChannel } from "@components/features/channel-settings/DeleteChannelModal";
 import { useFrappeGetDoc } from "frappe-react-sdk";
-import { ChannelListItem } from "@raven/types/common/ChannelListItem";
+import { ChannelListItem } from "@axon/types/common/ChannelListItem";
 import { MembersTray } from "@components/features/channel-settings/MembersTray";
 import PushNotifications from "@components/features/channel-settings/PushNotifications";
 import { useColorScheme } from "@hooks/useColorScheme";
@@ -14,8 +14,8 @@ import ChannelBaseDetails from "@components/features/channel-settings/BaseDetail
 import LeaveChannel from "@components/features/channel-settings/LeaveChannel";
 import ArchiveChannel from "@components/features/channel-settings/ArchiveChannel";
 import HeaderBackButton from "@components/common/Buttons/HeaderBackButton";
-import useCurrentRavenUser from "@raven/lib/hooks/useCurrentRavenUser";
-import { useFetchChannelMembers } from "@raven/lib/hooks/useFetchChannelMembers";
+import useCurrentAxonUser from "@axon/lib/hooks/useCurrentAxonUser";
+import { useFetchChannelMembers } from "@axon/lib/hooks/useFetchChannelMembers";
 import { ChangeChannelType } from "@components/features/channel-settings/ChangeChannelType";
 import CommonErrorBoundary from "@components/common/CommonErrorBoundary";
 
@@ -23,8 +23,8 @@ const ChannelSettings = () => {
 
     const { id } = useLocalSearchParams()
     const { colors, isDarkColorScheme } = useColorScheme()
-    const { data: channelData } = useFrappeGetDoc<ChannelListItem>('Raven Channel', id as string)
-    const { myProfile: currentUserInfo } = useCurrentRavenUser()
+    const { data: channelData } = useFrappeGetDoc<ChannelListItem>('Axon Channel', id as string)
+    const { myProfile: currentUserInfo } = useCurrentAxonUser()
     const { channelMembers } = useFetchChannelMembers(id as string ?? "")
     const isAllowed = channelMembers[currentUserInfo?.name ?? ""]?.is_admin === 1
 

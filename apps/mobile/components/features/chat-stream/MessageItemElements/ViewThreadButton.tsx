@@ -1,5 +1,5 @@
 import { Text } from '@components/nativewindui/Text'
-import { Message } from '@raven/types/common/Message'
+import { Message } from '@axon/types/common/Message'
 import { Link } from 'expo-router'
 import { useFrappeGetCall } from 'frappe-react-sdk'
 import { Pressable } from 'react-native'
@@ -20,7 +20,7 @@ const ViewThreadButton = ({ message }: Props) => {
 
 const ThreadReplyCount = ({ message }: Props) => {
 
-    const { data } = useFrappeGetCall<{ message: number }>("raven.api.threads.get_number_of_replies", {
+    const { data } = useFrappeGetCall<{ message: number }>("axon.api.threads.get_number_of_replies", {
         thread_id: message.name
     }, ["thread_reply_count", message.name], {
         revalidateOnFocus: false,

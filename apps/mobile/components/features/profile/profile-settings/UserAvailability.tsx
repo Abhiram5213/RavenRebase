@@ -3,7 +3,7 @@ import { Text } from '@components/nativewindui/Text'
 import * as DropdownMenu from 'zeego/dropdown-menu'
 import { useFrappePostCall } from 'frappe-react-sdk'
 import { toast } from 'sonner-native'
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser'
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser'
 import CircleIcon from '@assets/icons/CircleIcon.svg'
 import { useColorScheme } from '@hooks/useColorScheme'
 
@@ -11,8 +11,8 @@ export type AvailabilityStatus = 'Available' | 'Away' | 'Do not disturb' | 'Invi
 
 const UserAvailability = () => {
 
-    const { myProfile, mutate } = useCurrentRavenUser()
-    const { call } = useFrappePostCall('raven.api.raven_users.update_raven_user')
+    const { myProfile, mutate } = useCurrentAxonUser()
+    const { call } = useFrappePostCall('axon.api.axon_users.update_axon_user')
 
     const setAvailabilityStatus = (status: AvailabilityStatus) => {
         call({

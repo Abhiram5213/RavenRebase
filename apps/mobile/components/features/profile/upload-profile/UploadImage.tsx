@@ -1,8 +1,8 @@
 import { useFrappeFileUpload, useFrappePostCall } from 'frappe-react-sdk'
 import { toast } from 'sonner-native'
 import ImagePickerButton from '@components/common/Buttons/ImagePickerButton'
-import { CustomFile } from '@raven/types/common/File'
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser'
+import { CustomFile } from '@axon/types/common/File'
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser'
 
 interface UploadImageProps {
     onSheetClose: () => void
@@ -10,9 +10,9 @@ interface UploadImageProps {
 
 const UploadImage = ({ onSheetClose }: UploadImageProps) => {
 
-    const { myProfile } = useCurrentRavenUser()
+    const { myProfile } = useCurrentAxonUser()
 
-    const { call } = useFrappePostCall('raven.api.raven_users.update_raven_user')
+    const { call } = useFrappePostCall('axon.api.axon_users.update_axon_user')
 
     const { upload } = useFrappeFileUpload()
 
@@ -37,7 +37,7 @@ const UploadImage = ({ onSheetClose }: UploadImageProps) => {
 
             try {
                 const res = await upload(file, {
-                    doctype: "Raven User",
+                    doctype: "Axon User",
                     docname: myProfile?.name,
                     fieldname: "user_image",
                     otherData: {

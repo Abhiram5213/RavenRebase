@@ -1,5 +1,5 @@
 import { Text } from '@components/nativewindui/Text'
-import { SystemMessage } from '@raven/types/common/Message'
+import { SystemMessage } from '@axon/types/common/Message'
 import { View } from 'react-native'
 
 type Props = {

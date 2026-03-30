@@ -42,7 +42,7 @@ const UnArchiveButton = ({ channelID }: { channelID: string }) => {
     const { updateDoc, loading } = useFrappeUpdateDoc()
 
     const unArchiveChannel = async () => {
-        return updateDoc('Raven Channel', channelID, {
+        return updateDoc('Axon Channel', channelID, {
             is_archived: 0
         }).then(() => {
             toast.success('Channel restored.')

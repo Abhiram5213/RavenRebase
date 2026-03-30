@@ -1,4 +1,4 @@
-import { ChannelListItem, DMChannelListItem } from '@raven/types/common/ChannelListItem';
+import { ChannelListItem, DMChannelListItem } from '@axon/types/common/ChannelListItem';
 import { useMemo } from 'react';
 
 export type UnreadChannelCountItem = { name: string, user_id?: string, unread_count: number, is_direct_message: 0 | 1 }

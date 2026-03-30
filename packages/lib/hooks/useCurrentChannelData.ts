@@ -1,4 +1,4 @@
-import { ChannelListItem, DMChannelListItem } from "@raven/types/common/ChannelListItem"
+import { ChannelListItem, DMChannelListItem } from "@axon/types/common/ChannelListItem"
 import { useContext, useMemo } from "react"
 import { ChannelListContext, ChannelListContextType } from "../providers/ChannelListProvider"
 

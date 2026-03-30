@@ -4,10 +4,10 @@ import CrossIcon from '@assets/icons/CrossIcon.svg';
 import { useColorScheme } from '@hooks/useColorScheme';
 import { Platform, Pressable, View } from 'react-native';
 import SearchInput from '@components/common/SearchInput/SearchInput';
-import useGetDirectMessageChannels from '@raven/lib/hooks/useGetDirectMessageChannels';
+import useGetDirectMessageChannels from '@axon/lib/hooks/useGetDirectMessageChannels';
 import { useContext, useState } from 'react';
-import { UserListContext } from '@raven/lib/providers/UserListProvider';
-import { useGetUser } from '@raven/lib/hooks/useGetUser';
+import { UserListContext } from '@axon/lib/providers/UserListProvider';
+import { useGetUser } from '@axon/lib/hooks/useGetUser';
 import { useFrappePostCall } from 'frappe-react-sdk';
 import { toast } from 'sonner-native';
 import UserAvatar from '@components/layout/UserAvatar';
@@ -63,7 +63,7 @@ export default function CreateDM() {
 const UserWithoutDMItem = ({ userID }: { userID: string }) => {
 
     const user = useGetUser(userID)
-    const { call, error } = useFrappePostCall<{ message: string }>('raven.api.raven_channel.create_direct_message_channel')
+    const { call, error } = useFrappePostCall<{ message: string }>('axon.api.axon_channel.create_direct_message_channel')
 
     const onSelect = () => {
         call({

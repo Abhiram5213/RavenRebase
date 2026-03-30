@@ -85,7 +85,7 @@ const UserWithoutDMItem = ({ userID }: { userID: string }) => {
     const user = useGetUser(userID)
     const navigate = useNavigate()
     const setOpen = useSetAtom(commandMenuOpenAtom)
-    const { call, loading } = useFrappePostCall<{ message: string }>('raven.api.raven_channel.create_direct_message_channel')
+    const { call, loading } = useFrappePostCall<{ message: string }>('axon.api.axon_channel.create_direct_message_channel')
 
     const onSelect = () => {
         call({

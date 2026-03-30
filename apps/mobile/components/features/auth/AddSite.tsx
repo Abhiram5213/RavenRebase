@@ -52,7 +52,7 @@ const AddSite = ({ useBottomSheet = false }: Props) => {
 
         setIsLoading(true)
 
-        fetch(`${url}/api/method/raven.api.raven_mobile.get_client_id`)
+        fetch(`${url}/api/method/axon.api.axon_mobile.get_client_id`)
             .then(res => res.json())
             .then(data => {
                 if (data.message && data.message.client_id) {
@@ -63,7 +63,7 @@ const AddSite = ({ useBottomSheet = false }: Props) => {
                     bottomSheetRef.current?.present()
                 } else {
                     // TODO: Show error message/toast
-                    Alert.alert('Error', 'Failed to fetch site information / OAuth client not set for Raven Mobile')
+                    Alert.alert('Error', 'Failed to fetch site information / OAuth client not set for Axon Mobile')
                 }
             })
             .catch(err => {
@@ -92,7 +92,7 @@ const AddSite = ({ useBottomSheet = false }: Props) => {
                         numberOfLines={1}
                         inputMode='url'
                         autoCapitalize='none'
-                        placeholder='raven.frappe.cloud'
+                        placeholder='axon.frappe.cloud'
                         placeholderTextColor={colors.grey2}
                         autoCorrect={false}
                         autoComplete='off'
@@ -105,7 +105,7 @@ const AddSite = ({ useBottomSheet = false }: Props) => {
                         numberOfLines={1}
                         inputMode='url'
                         autoCapitalize='none'
-                        placeholder='raven.frappe.cloud'
+                        placeholder='axon.frappe.cloud'
                         placeholderTextColor={colors.grey2}
                         autoCorrect={false}
                         autoComplete='off'
@@ -144,7 +144,7 @@ export const SiteAuthFlowSheet = ({ siteInformation, onDismiss }: { siteInformat
         usePKCE: true,
         scopes: ['all', 'openid'],
         codeChallengeMethod: CodeChallengeMethod.S256,
-        redirectUri: makeRedirectUri({ native: 'raven.thecommit.company:' }),
+        redirectUri: makeRedirectUri({ native: 'axon.thecommit.company:' }),
     }, discoveryWithURL)
 
     const onLoginClick = () => {
@@ -159,7 +159,7 @@ export const SiteAuthFlowSheet = ({ siteInformation, onDismiss }: { siteInformat
                         extraParams: {
                             code_verifier: request?.codeVerifier ?? '',
                         },
-                        redirectUri: makeRedirectUri({ native: 'raven.thecommit.company:' }),
+                        redirectUri: makeRedirectUri({ native: 'axon.thecommit.company:' }),
                     }, discoveryWithURL).then(data => {
                         onAccessTokenReceived(data)
                     }).catch(err => {

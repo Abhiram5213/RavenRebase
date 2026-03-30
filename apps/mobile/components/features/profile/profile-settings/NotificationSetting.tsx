@@ -33,7 +33,7 @@ const NotificationSetting = () => {
             }).then(() => {
                 messaging.getToken().then((token) => {
                     if (token) {
-                        call.post('raven.api.notification.subscribe', {
+                        call.post('axon.api.notification.subscribe', {
                             fcm_token: token,
                             environment: 'Mobile',
                             device_information: Device.deviceName
@@ -51,7 +51,7 @@ const NotificationSetting = () => {
         } else {
             messaging.getToken().then((token) => {
                 if (token) {
-                    call.post('raven.api.notification.unsubscribe', {
+                    call.post('axon.api.notification.unsubscribe', {
                         fcm_token: token
                     })
                 }

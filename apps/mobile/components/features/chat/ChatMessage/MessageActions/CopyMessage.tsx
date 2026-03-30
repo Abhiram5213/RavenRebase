@@ -1,5 +1,5 @@
 import * as Clipboard from 'expo-clipboard'
-import { Message } from '@raven/types/common/Message'
+import { Message } from '@axon/types/common/Message'
 import { toast } from 'sonner-native'
 import { useColorScheme } from '@hooks/useColorScheme'
 import CopyIcon from "@assets/icons/CopyIcon.svg"

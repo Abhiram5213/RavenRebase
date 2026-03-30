@@ -1,5 +1,5 @@
-import { useChannelList } from "@raven/lib/providers/ChannelListProvider"
-import { ChannelListItem, DMChannelListItem } from "@raven/types/common/ChannelListItem"
+import { useChannelList } from "@axon/lib/providers/ChannelListProvider"
+import { ChannelListItem, DMChannelListItem } from "@axon/types/common/ChannelListItem"
 import { useMemo } from "react"
 
 export interface CurrentChannelDMData {

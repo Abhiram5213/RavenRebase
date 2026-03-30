@@ -1,9 +1,9 @@
 import { Text } from '@components/nativewindui/Text';
 import { FrappeDoc, useFrappePostCall } from 'frappe-react-sdk';
 import { useContext } from 'react';
-import { ChannelListContext, ChannelListContextType } from '@raven/lib/providers/ChannelListProvider';
+import { ChannelListContext, ChannelListContextType } from '@axon/lib/providers/ChannelListProvider';
 import { toast } from 'sonner-native';
-import { ChannelListItem } from '@raven/types/common/ChannelListItem';
+import { ChannelListItem } from '@axon/types/common/ChannelListItem';
 import { Alert, Pressable } from 'react-native';
 import LeaveIcon from "@assets/icons/LeaveIcon.svg";
 import { useColorScheme } from '@hooks/useColorScheme';
@@ -11,7 +11,7 @@ import { useRouteToHome } from '@hooks/useRouting';
 
 const LeaveChannel = ({ channel }: { channel: FrappeDoc<ChannelListItem> | undefined }) => {
 
-    const { call, error } = useFrappePostCall("raven.api.raven_channel.leave_channel")
+    const { call, error } = useFrappePostCall("axon.api.axon_channel.leave_channel")
     const { mutate } = useContext(ChannelListContext) as ChannelListContextType
 
     const { colors } = useColorScheme()

@@ -1,8 +1,8 @@
 import { View } from 'react-native'
-import { ChannelListItem } from '@raven/types/common/ChannelListItem'
+import { ChannelListItem } from '@axon/types/common/ChannelListItem'
 import { Text } from '@components/nativewindui/Text'
-import { useGetUser } from '@raven/lib/hooks/useGetUser'
-import { formatDate } from '@raven/lib/utils/dateConversions'
+import { useGetUser } from '@axon/lib/hooks/useGetUser'
+import { formatDate } from '@axon/lib/utils/dateConversions'
 import { FrappeDoc } from 'frappe-react-sdk'
 
 const ChannelCreator = ({ channelData }: { channelData: FrappeDoc<ChannelListItem> | undefined }) => {

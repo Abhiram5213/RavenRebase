@@ -3,7 +3,7 @@ import { Loader } from '@/components/common/Loader'
 import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
 import { Stack } from '@/components/layout/Stack'
 import { useIsDesktop } from '@/hooks/useMediaQuery'
-import { RavenWorkspace } from '@/types/Raven/RavenWorkspace'
+import { AxonWorkspace } from '@/types/Axon/AxonWorkspace'
 import { __ } from '@/utils/translations'
 import { Box, Button, Checkbox, Dialog, Flex, RadioGroup, Text, TextArea, TextField } from '@radix-ui/themes'
 import { useFrappeCreateDoc, useFrappeFileUpload, useFrappeUpdateDoc, useSWRConfig } from 'frappe-react-sdk'
@@ -17,7 +17,7 @@ const AddWorkspaceForm = ({ onClose }: { onClose: (workspaceID?: string) => void
 
     const { mutate } = useSWRConfig()
 
-    const methods = useForm<RavenWorkspace>({
+    const methods = useForm<AxonWorkspace>({
         defaultValues: {
             type: "Public"
         }
@@ -27,18 +27,18 @@ const AddWorkspaceForm = ({ onClose }: { onClose: (workspaceID?: string) => void
 
     const { register, handleSubmit, control, formState: { errors } } = methods
 
-    const { createDoc, loading: creatingDoc, error } = useFrappeCreateDoc<RavenWorkspace>()
+    const { createDoc, loading: creatingDoc, error } = useFrappeCreateDoc<AxonWorkspace>()
     const { updateDoc, loading: updatingDoc } = useFrappeUpdateDoc()
 
     const { upload, loading: uploadingFile, error: fileError } = useFrappeFileUpload()
 
-    const onSubmit = (data: RavenWorkspace) => {
+    const onSubmit = (data: AxonWorkspace) => {
 
-        createDoc("Raven Workspace", data)
+        createDoc("Axon Workspace", data)
             .then(res => {
                 if (image) {
                     return upload(image, {
-                        doctype: 'Raven Workspace',
+                        doctype: 'Axon Workspace',
                         docname: res.name,
                         fieldname: 'logo',
                         otherData: {
@@ -46,7 +46,7 @@ const AddWorkspaceForm = ({ onClose }: { onClose: (workspaceID?: string) => void
                         },
                         isPrivate: false,
                     }).then((fileRes) => {
-                        return updateDoc("Raven Workspace", res.name, {
+                        return updateDoc("Axon Workspace", res.name, {
                             logo: fileRes.file_url
                         })
                     })

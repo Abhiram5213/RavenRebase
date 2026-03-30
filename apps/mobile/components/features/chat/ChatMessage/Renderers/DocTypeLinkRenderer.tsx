@@ -3,7 +3,7 @@ import { View, Pressable, Linking, Share } from 'react-native';
 import { FrappeError } from 'frappe-react-sdk';
 import * as Clipboard from "expo-clipboard"
 import { toast } from 'sonner-native';
-import { useDoctypePreview } from '@raven/lib/hooks/useDoctypePreview';
+import { useDoctypePreview } from '@axon/lib/hooks/useDoctypePreview';
 import { Text } from '@components/nativewindui/Text';
 import CopyIcon from "@assets/icons/CopyIcon.svg"
 import ShareIcon from "@assets/icons/ShareIcon.svg"
@@ -58,7 +58,7 @@ const DocTypeCard = memo(({
 
     const { previewFields, allFields } = useMemo(() => {
         if (!data) return { previewFields: [], allFields: [] }
-        const fieldsToRemove = ['preview_image', 'preview_title', 'id', 'raven_document_link'];
+        const fieldsToRemove = ['preview_image', 'preview_title', 'id', 'axon_document_link'];
 
         const allFields = Object.entries(Object.keys(data)?.reduce((acc, key) => {
             if (!fieldsToRemove.includes(key)) {
@@ -182,8 +182,8 @@ const Actions = ({ data, doctype, docname }: { data: Record<string, any>, doctyp
     const siteInfo = useSiteContext()
 
     const route = useMemo(() => {
-        if (data && data.raven_document_link) {
-            return data.raven_document_link
+        if (data && data.axon_document_link) {
+            return data.axon_document_link
         }
         const lowerCaseDoctype = doctype.toLowerCase().split(' ').join('-')
         return siteInfo?.url + `/app/${lowerCaseDoctype}/${docname}`

@@ -8,10 +8,10 @@
     "baseUrl": ".",
     "paths": {
       /** Add all packages to the paths */
-      "@raven/types/*": [
+      "@axon/types/*": [
         "../../packages/types/*"
       ],
-      "@raven/lib/*": [
+      "@axon/lib/*": [
         "../../packages/lib/*"
       ],
       "@assets/*": [

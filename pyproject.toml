@@ -1,20 +1,20 @@
 [project]
-name = "raven"
+name = "axon"
+version = "2.8.8"
 authors = [
-    { name = "The Commit Company", email = "support@thecommit.company"}
+    { name = "Your Organization", email = "support@yourcompany.com"}
 ]
 description = "Simple, open source messaging tool"
 requires-python = ">=3.10"
 readme = "README.md"
-dynamic = ["version"]
 dependencies = [
- "linkpreview~=0.9.0",
- "openai>=1.100.2",
- "blurhash-python",
- "openai-agents>=0.0.16",
- "markitdown",
- "pandas",
- "google-cloud-documentai"
+  "linkpreview~=0.9.0",
+  "openai>=1.100.2",
+  "blurhash-python",
+  "openai-agents>=0.0.16",
+  "markitdown",
+  "pandas",
+  "google-cloud-documentai",
 ]
 
 [build-system]
@@ -38,10 +38,10 @@ frappe = ">=15.0.0,<=17.0.0-dev"
 
 [tool.bench.assets]
 build_dir = "./frontend"
-out_dir = "../raven/public/raven"
-index_html_path = "../raven/www/raven.html"
+out_dir = "../axon/public/axon"
+index_html_path = "../axon/www/axon.html"
 
 [project.urls]
-Homepage = "https://www.ravenchat.ai/"
-Repository = "https://github.com/The-Commit-Company/raven.git"
-"Bug Reports" = "https://github.com/The-Commit-Company/raven/issues"
+Homepage = "https://www.yourcompany.com/"
+Repository = "https://github.com/your-org/axon.git"
+"Bug Reports" = "https://github.com/your-org/axon/issues"

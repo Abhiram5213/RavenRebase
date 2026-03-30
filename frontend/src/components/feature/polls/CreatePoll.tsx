@@ -1,7 +1,7 @@
 import { ErrorText, Label } from "@/components/common/Form"
 import { DateTimePicker } from "@/components/common/DateTimePicker"
 import { ErrorBanner, getErrorMessage } from "@/components/layout/AlertBanner/ErrorBanner"
-import { RavenPoll } from "@/types/RavenMessaging/RavenPoll"
+import { AxonPoll } from "@/types/AxonMessaging/AxonPoll"
 import { Button, Checkbox, Dialog, Flex, IconButton, TextArea, TextField, Text, Box } from "@radix-ui/themes"
 import { useFrappePostCall } from "frappe-react-sdk"
 import { Controller, FormProvider, useFieldArray, useForm } from "react-hook-form"
@@ -13,7 +13,7 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
 
     const [hasEndDate, setHasEndDate] = useState(false)
 
-    const methods = useForm<RavenPoll>({
+    const methods = useForm<AxonPoll>({
         // Initialize the form with 2 option fields by default
         defaultValues: {
             options: [{
@@ -78,9 +78,9 @@ const CreatePollContent = ({ channelID, setIsOpen }: { channelID: string, setIsO
         reset()
     }
 
-    const { call: createPoll, error } = useFrappePostCall('raven.api.raven_poll.create_poll')
+    const { call: createPoll, error } = useFrappePostCall('axon.api.axon_poll.create_poll')
 
-    const onSubmit = async (data: RavenPoll) => {
+    const onSubmit = async (data: AxonPoll) => {
         // If hasEndDate is false, clear the end_date field
         if (!hasEndDate) {
             data.end_date = undefined

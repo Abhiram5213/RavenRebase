@@ -1,11 +1,11 @@
 import { Pressable, View, ViewProps } from "react-native";
 import { Text } from '@components/nativewindui/Text';
 import { Image } from "expo-image";
-import { getFileName } from "@raven/lib/utils/operations";
-import { useGetUser } from "@raven/lib/hooks/useGetUser";
+import { getFileName } from "@axon/lib/utils/operations";
+import { useGetUser } from "@axon/lib/hooks/useGetUser";
 import useFileURL from "@hooks/useFileURL";
 import BarChart from '@assets/icons/BarChart.svg';
-import { formatDateAndTime } from "@raven/lib/utils/dateConversions";
+import { formatDateAndTime } from "@axon/lib/utils/dateConversions";
 import { useColorScheme } from "@hooks/useColorScheme";
 import UniversalFileIcon from "@components/common/UniversalFileIcon";
 import { useMemo } from "react";

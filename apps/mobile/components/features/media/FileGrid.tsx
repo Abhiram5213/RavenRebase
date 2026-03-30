@@ -11,10 +11,10 @@ import ErrorBanner from '@components/common/ErrorBanner';
 import { useCallback, useContext, useMemo } from 'react';
 import { Text } from '@components/nativewindui/Text';
 import { Divider } from '@components/layout/Divider';
-import { formatBytes, getFileName } from '@raven/lib/utils/operations';
+import { formatBytes, getFileName } from '@axon/lib/utils/operations';
 import UniversalFileIcon from '@components/common/UniversalFileIcon';
 import DotIcon from "@assets/icons/DotIcon.svg"
-import { formatDate } from '@raven/lib/utils/dateConversions';
+import { formatDate } from '@axon/lib/utils/dateConversions';
 import { LegendList } from '@legendapp/list';
 
 const PAGE_SIZE = 12
@@ -37,7 +37,7 @@ const FileGrid = ({ searchQuery }: { searchQuery: string }) => {
             }
         },
         async (params) => {
-            const response = await call.get("raven.api.raven_message.get_all_files_shared_in_channel", params)
+            const response = await call.get("axon.api.axon_message.get_all_files_shared_in_channel", params)
             return response.message;
         },
         {

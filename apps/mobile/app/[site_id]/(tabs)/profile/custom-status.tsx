@@ -8,7 +8,7 @@ import { Button } from '@components/nativewindui/Button';
 import { Form, FormItem, FormSection } from '@components/nativewindui/Form';
 import { Text } from '@components/nativewindui/Text';
 import { TextField } from '@components/nativewindui/TextField';
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser';
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser';
 import { toast } from 'sonner-native';
 import { useColorScheme } from '@hooks/useColorScheme';
 import { ActivityIndicator } from '@components/nativewindui/ActivityIndicator';
@@ -17,12 +17,12 @@ import CommonErrorBoundary from '@components/common/CommonErrorBoundary';
 
 export default function CustomStatusScreen() {
 
-    const { myProfile, mutate } = useCurrentRavenUser()
+    const { myProfile, mutate } = useCurrentAxonUser()
 
     const insets = useSafeAreaInsets()
     const [customStatus, setCustomStatus] = useState(myProfile?.custom_status ?? '')
 
-    const { call, loading } = useFrappePostCall('raven.api.raven_users.update_raven_user')
+    const { call, loading } = useFrappePostCall('axon.api.axon_users.update_axon_user')
 
     const handleCustomStatusUpdate = async () => {
         call({

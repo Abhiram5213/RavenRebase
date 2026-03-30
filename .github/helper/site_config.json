@@ -1,8 +1,8 @@
 {
     "db_host": "127.0.0.1",
     "db_port": 3306,
-    "db_name": "test_raven",
-    "db_password": "test_raven",
+    "db_name": "test_axon",
+    "db_password": "test_axon",
     "allow_tests": true,
     "db_type": "mariadb",
     "auto_email_id": "test@example.com",
@@ -12,7 +12,7 @@
     "admin_password": "admin",
     "root_login": "root",
     "root_password": "123",
-    "host_name": "http://raven.test:8000",
+    "host_name": "http://axon.test:8000",
     "monitor": 1,
     "server_script_enabled": true,
     "mute_emails": true

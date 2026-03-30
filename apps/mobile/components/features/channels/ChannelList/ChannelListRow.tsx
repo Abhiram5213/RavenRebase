@@ -4,14 +4,14 @@ import * as Clipboard from 'expo-clipboard';
 import { ChannelIcon } from './ChannelIcon';
 import { Text } from '@components/nativewindui/Text';
 import { useColorScheme } from '@hooks/useColorScheme';
-import { ChannelListItem } from '@raven/types/common/ChannelListItem';
+import { ChannelListItem } from '@axon/types/common/ChannelListItem';
 import { Link } from 'expo-router';
-import { ChannelListContext, ChannelListContextType } from '@raven/lib/providers/ChannelListProvider';
+import { ChannelListContext, ChannelListContextType } from '@axon/lib/providers/ChannelListProvider';
 import { FrappeConfig, FrappeContext, useFrappePostCall } from 'frappe-react-sdk';
 import { useContext, useMemo } from 'react';
 import { toast } from 'sonner-native';
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser';
-import { RavenUser } from '@raven/types/Raven/RavenUser';
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser';
+import { AxonUser } from '@axon/types/Axon/AxonUser';
 import useSiteContext from '@hooks/useSiteContext';
 
 export function ChannelListRow({ channel }: { channel: ChannelListItem }) {
@@ -30,7 +30,7 @@ export function ChannelListRow({ channel }: { channel: ChannelListItem }) {
     const handleCopyLink = async () => {
         try {
             const workspace = channel.workspace ?? 'channels'
-            const link = `${siteID}/raven/${encodeURIComponent(workspace)}/${encodeURIComponent(channel.name)}`
+            const link = `${siteID}/axon/${encodeURIComponent(workspace)}/${encodeURIComponent(channel.name)}`
             await Clipboard.setStringAsync(link)
             toast.success('Channel link copied to clipboard!')
         } catch (error) {
@@ -181,7 +181,7 @@ export function ChannelListRow({ channel }: { channel: ChannelListItem }) {
 
 const useLeaveChannel = (channel: ChannelListItem) => {
 
-    const { call, error } = useFrappePostCall("raven.api.raven_channel.leave_channel")
+    const { call, error } = useFrappePostCall("axon.api.axon_channel.leave_channel")
     const { mutate } = useContext(ChannelListContext) as ChannelListContextType
 
     const onLeaveChannel = async () => {
@@ -202,7 +202,7 @@ const useLeaveChannel = (channel: ChannelListItem) => {
 
 const useMoveToStarred = (channel: ChannelListItem) => {
 
-    const { myProfile, mutate } = useCurrentRavenUser()
+    const { myProfile, mutate } = useCurrentAxonUser()
 
     const isStarred = useMemo(() => {
         if (myProfile) {
@@ -215,9 +215,9 @@ const useMoveToStarred = (channel: ChannelListItem) => {
     const { call } = useContext(FrappeContext) as FrappeConfig
 
     const onMoveToStarred = async () => {
-        call.post('raven.api.raven_channel.toggle_pinned_channel', {
+        call.post('axon.api.axon_channel.toggle_pinned_channel', {
             channel_id: channel.name
-        }).then((res: { message: RavenUser }) => {
+        }).then((res: { message: AxonUser }) => {
             toast.success(`${channel.channel_name} ${isStarred ? 'removed from favorites' : 'added to favorites'}`)
             if (res.message) {
                 mutate({ message: res.message }, { revalidate: false })

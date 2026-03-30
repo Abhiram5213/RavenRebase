@@ -1,13 +1,13 @@
 import { Pressable, View } from 'react-native'
 import SmilePlus from "@assets/icons/SmilePlus.svg"
 import { Text } from '@components/nativewindui/Text'
-import { Message } from '@raven/types/common/Message'
+import { Message } from '@axon/types/common/Message'
 import { useColorScheme } from '@hooks/useColorScheme'
 import { Sheet, useSheetRef } from '@components/nativewindui/Sheet'
 import { BottomSheetView } from '@gorhom/bottom-sheet'
 import EmojiPicker from '@components/common/EmojiPicker/EmojiPicker'
 import { toast } from 'sonner-native'
-import useReactToMessage from '@raven/lib/hooks/useReactToMessage'
+import useReactToMessage from '@axon/lib/hooks/useReactToMessage'
 import { Emoji } from '@components/common/EmojiPicker/Picker'
 
 interface MessageReactionsProps {

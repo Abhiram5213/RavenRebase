@@ -1,7 +1,7 @@
 import AddFileIcon from "@assets/icons/AddFileIcon.svg"
 import { useColorScheme } from "@hooks/useColorScheme"
 import * as DocumentPicker from 'expo-document-picker'
-import { CustomFile } from "@raven/types/common/File"
+import { CustomFile } from "@axon/types/common/File"
 import { Text } from '@components/nativewindui/Text'
 import { Pressable } from "react-native"
 import { toast } from "sonner-native"

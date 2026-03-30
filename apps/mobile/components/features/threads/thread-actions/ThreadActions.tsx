@@ -1,12 +1,12 @@
-import { useFetchChannelMembers } from '@raven/lib/hooks/useFetchChannelMembers';
+import { useFetchChannelMembers } from '@axon/lib/hooks/useFetchChannelMembers';
 import { useMemo } from 'react';
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser';
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser';
 import ActionsDropdownMenu from './ActionsDropdownMenu';
 
 const ThreadActions = ({ threadID }: { threadID: string }) => {
 
     const { channelMembers } = useFetchChannelMembers(threadID)
-    const { myProfile: user } = useCurrentRavenUser()
+    const { myProfile: user } = useCurrentAxonUser()
 
     const channelMember = useMemo(() => {
         if (user && channelMembers) {

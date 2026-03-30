@@ -1,5 +1,5 @@
-import { Message } from '@raven/types/common/Message'
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser'
+import { Message } from '@axon/types/common/Message'
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser'
 import { useColorScheme } from '@hooks/useColorScheme'
 import BookmarkIcon from "@assets/icons/BookmarkIcon.svg"
 import BookmarkFilledIcon from "@assets/icons/BookmarkFilledIcon.svg"
@@ -13,7 +13,7 @@ interface SaveMessageProps {
 
 const SaveMessage = ({ message, onClose }: SaveMessageProps) => {
 
-    const { myProfile } = useCurrentRavenUser()
+    const { myProfile } = useCurrentAxonUser()
     const { save, isSaved } = useSaveMessage(message, myProfile?.name)
     const { colors } = useColorScheme()
 

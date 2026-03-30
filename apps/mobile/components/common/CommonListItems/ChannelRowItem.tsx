@@ -2,7 +2,7 @@ import { useColorScheme } from '@hooks/useColorScheme';
 import { Pressable, View } from 'react-native';
 import { Text } from '@components/nativewindui/Text';
 import { ChannelIcon } from '@components/features/channels/ChannelList/ChannelIcon';
-import { ChannelListItem } from '@raven/types/common/ChannelListItem';
+import { ChannelListItem } from '@axon/types/common/ChannelListItem';
 
 interface ChannelRowItemProps {
     channel: ChannelListItem

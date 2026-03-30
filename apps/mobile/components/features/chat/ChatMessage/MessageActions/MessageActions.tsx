@@ -1,7 +1,7 @@
-import { FileMessage, Message } from '@raven/types/common/Message'
+import { FileMessage, Message } from '@axon/types/common/Message'
 import { View } from 'react-native'
 import QuickReactions from './QuickReactions'
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser'
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser'
 import DeleteMessage from './DeleteMessage'
 import ReplyToMessage from './ReplyToMessage'
 import ForwardMessage from './ForwardMessage'
@@ -24,7 +24,7 @@ interface MessageActionsProps {
 
 const MessageActions = ({ message, onClose, quickReactionEmojis, isThread = false }: MessageActionsProps) => {
 
-    const { myProfile } = useCurrentRavenUser()
+    const { myProfile } = useCurrentAxonUser()
     const isOwner = myProfile?.name === message?.owner && !message?.is_bot_message
 
     return (

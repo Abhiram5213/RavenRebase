@@ -1,8 +1,8 @@
 import { Pressable, View } from 'react-native';
 import { Text } from '@components/nativewindui/Text';
-import { useGetUser } from '@raven/lib/hooks/useGetUser';
+import { useGetUser } from '@axon/lib/hooks/useGetUser';
 import UserAvatar from '@components/layout/UserAvatar';
-import { DMChannelListItem } from '@raven/types/common/ChannelListItem';
+import { DMChannelListItem } from '@axon/types/common/ChannelListItem';
 
 interface DMRowItemProps {
     dmChannel: DMChannelListItem

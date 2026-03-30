@@ -1,8 +1,8 @@
-import useCurrentRavenUser from "@raven/lib/hooks/useCurrentRavenUser"
+import useCurrentAxonUser from "@axon/lib/hooks/useCurrentAxonUser"
 import { useMemo, useState } from "react"
 import { View, TouchableOpacity, StyleSheet } from "react-native"
 import { useColorScheme } from "@hooks/useColorScheme"
-import { ChannelListItem } from "@raven/types/common/ChannelListItem"
+import { ChannelListItem } from "@axon/types/common/ChannelListItem"
 import { ChannelListRow } from "../ChannelList/ChannelListRow"
 import ChevronDownIcon from '@assets/icons/ChevronDownIcon.svg'
 import ChevronRightIcon from '@assets/icons/ChevronRightIcon.svg'
@@ -11,7 +11,7 @@ import { Divider } from "@components/layout/Divider"
 
 const PinnedChannelsList = ({ channels }: { channels: ChannelListItem[] }) => {
 
-    const { myProfile } = useCurrentRavenUser()
+    const { myProfile } = useCurrentAxonUser()
 
     // Filter channels that are pinned from the list of read channels
     const pinnedChannels = useMemo(() => {

@@ -1,9 +1,9 @@
 import UniversalFileIcon from "@components/common/UniversalFileIcon"
-import { CustomFile } from "@raven/types/common/File"
+import { CustomFile } from "@axon/types/common/File"
 import { View, Text, ActivityIndicator, Pressable, useWindowDimensions } from "react-native"
 import CrossIcon from "@assets/icons/CrossIcon.svg"
 import { useColorScheme } from "@hooks/useColorScheme"
-import { getFileExtension, isImageFile } from "@raven/lib/utils/operations"
+import { getFileExtension, isImageFile } from "@axon/lib/utils/operations"
 import { Image } from "expo-image"
 import { COLORS } from "@theme/colors"
 

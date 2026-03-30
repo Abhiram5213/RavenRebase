@@ -4,7 +4,7 @@ import { BottomSheetScrollView, BottomSheetView } from '@gorhom/bottom-sheet';
 import { Sheet, useSheetRef } from '@components/nativewindui/Sheet';
 import { Text } from '@components/nativewindui/Text';
 import { Poll } from '../chat/ChatMessage/Renderers/PollMessage';
-import { useGetUser } from '@raven/lib/hooks/useGetUser';
+import { useGetUser } from '@axon/lib/hooks/useGetUser';
 import UserAvatar from '@components/layout/UserAvatar';
 import { Divider } from '@components/layout/Divider';
 import ErrorBanner from '@components/common/ErrorBanner';
@@ -54,7 +54,7 @@ interface ViewPollVotesModalContentProps {
 }
 const ViewPollVotesModalContent = ({ poll }: ViewPollVotesModalContentProps) => {
 
-    const { data, error } = useFrappeGetCall<{ message: PollVotesResponse }>('raven.api.raven_poll.get_all_votes', {
+    const { data, error } = useFrappeGetCall<{ message: PollVotesResponse }>('axon.api.axon_poll.get_all_votes', {
         'poll_id': poll?.poll?.name,
     }, `poll_votes_${poll?.poll?.name}`, {
         revalidateOnFocus: false,

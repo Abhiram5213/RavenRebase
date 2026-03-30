@@ -2,7 +2,7 @@ import { useState } from "react"
 import { WebViewSourceUri } from "react-native-webview/lib/WebViewTypes"
 import * as FileSystem from 'expo-file-system'
 import * as IntentLauncher from 'expo-intent-launcher'
-import { getFileMimeType } from "@raven/lib/utils/operations"
+import { getFileMimeType } from "@axon/lib/utils/operations"
 
 export const useOpenFileOnAndroid = () => {
 

@@ -2,7 +2,7 @@ import { View } from 'react-native';
 import { Stack } from 'expo-router';
 import { useColorScheme } from '@hooks/useColorScheme';
 import { useState } from 'react';
-import { useDebounce } from '@raven/lib/hooks/useDebounce';
+import { useDebounce } from '@axon/lib/hooks/useDebounce';
 import SearchInput from '@components/common/SearchInput/SearchInput';
 import MediaTabs from './MediaTabs';
 import HeaderBackButton from '@components/common/Buttons/HeaderBackButton';

@@ -1,12 +1,13 @@
 import { ChannelIcon } from '@components/features/channels/ChannelList/ChannelIcon'
 import { useColorScheme } from '@hooks/useColorScheme'
-import { ChannelListItem } from '@raven/types/common/ChannelListItem'
+import { ChannelListItem } from '@axon/types/common/ChannelListItem'
 import { useState } from 'react'
 import { View } from 'react-native'
 import { Text } from '@components/nativewindui/Text'
 import ChannelInfoModal from '@components/features/channel-settings/ChannelInfoModal'
 import { TouchableOpacity } from '@gorhom/bottom-sheet'
 import ChevronDownIcon from '@assets/icons/ChevronDownIcon.svg'
+import { StartCallButton } from '@components/features/call/StartCallButton'
 
 const ChannelHeader = ({ channelData }: { channelData: ChannelListItem }) => {
 
@@ -30,6 +31,7 @@ const ChannelHeader = ({ channelData }: { channelData: ChannelListItem }) => {
                     <ChevronDownIcon height={22} width={22} fill={colors.icon} />
                 </View>
             </TouchableOpacity>
+            <StartCallButton channelId={channelData.name} />
             <ChannelInfoModal
                 channel={channelData}
                 isModalVisible={isModalVisible}

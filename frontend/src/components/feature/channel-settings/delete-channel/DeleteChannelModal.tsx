@@ -36,7 +36,7 @@ export const DeleteChannelModal = ({ onClose, onCloseParent, isDrawer, channelDa
 
     const onSubmit = () => {
         if (channelData?.name) {
-            deleteDoc('Raven Channel', channelData.name)
+            deleteDoc('Axon Channel', channelData.name)
                 .then(() => {
                     // Mutate the channel members cache
                     mutate(["channel_members", channelData.name], undefined, { revalidate: false })

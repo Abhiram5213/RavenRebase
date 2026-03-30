@@ -1,9 +1,9 @@
 {
-  "name": "@raven/lib",
+  "name": "@axon/lib",
   "version": "0.0.0",
   "main": "index.js",
   "devDependencies": {
-    "@raven/types": "*"
+    "@axon/types": "*"
   },
   "peerDependencies": {
     "frappe-react-sdk": "*",

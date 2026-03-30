@@ -1,8 +1,8 @@
 import { FrappeConfig, FrappeContext, useSWRConfig } from 'frappe-react-sdk'
 import { useCallback, useContext } from 'react'
-import useCurrentRavenUser from './useCurrentRavenUser'
-import { Message } from '@raven/types/common/Message'
-import { GetMessagesResponse, ReactionObject } from '@raven/types/common/ChatStream'
+import useCurrentAxonUser from './useCurrentAxonUser'
+import { Message } from '@axon/types/common/Message'
+import { GetMessagesResponse, ReactionObject } from '@axon/types/common/ChatStream'
 
 /**
  * This hook is used to post a reaction to a message optimistically
@@ -16,7 +16,7 @@ const useReactToMessage = () => {
 
     const { mutate } = useSWRConfig()
 
-    const { myProfile: user } = useCurrentRavenUser()
+    const { myProfile: user } = useCurrentAxonUser()
 
     const postReaction = useCallback((message: Message, emoji: string, is_custom: boolean = false, emoji_name?: string) => {
         if (!user) return Promise.resolve()
@@ -84,7 +84,7 @@ const useReactToMessage = () => {
         return mutate({ path: `get_messages_for_channel_${message.channel_id}` }, async (data?: GetMessagesResponse) => {
 
             // Make the request
-            return call.post('raven.api.reactions.react', {
+            return call.post('axon.api.reactions.react', {
                 message_id: message.name,
                 reaction: emoji,
                 is_custom,

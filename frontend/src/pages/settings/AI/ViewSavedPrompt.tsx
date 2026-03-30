@@ -7,7 +7,7 @@ import PageContainer from "@/components/layout/Settings/PageContainer"
 import SettingsContentContainer from "@/components/layout/Settings/SettingsContentContainer"
 import SettingsPageHeader from "@/components/layout/Settings/SettingsPageHeader"
 import { HStack } from "@/components/layout/Stack"
-import { RavenBotAIPrompt } from "@/types/RavenAI/RavenBotAIPrompt"
+import { AxonBotAIPrompt } from "@/types/AxonAI/AxonBotAIPrompt"
 import { isEmpty } from "@/utils/validations"
 import { Button } from "@radix-ui/themes"
 import { SWRResponse, useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk"
@@ -22,7 +22,7 @@ const ViewSavedPrompt = (props: Props) => {
 
     const { ID } = useParams<{ ID: string }>()
 
-    const { data, isLoading, error, mutate } = useFrappeGetDoc<RavenBotAIPrompt>("Raven Bot AI Prompt", ID)
+    const { data, isLoading, error, mutate } = useFrappeGetDoc<AxonBotAIPrompt>("Axon Bot AI Prompt", ID)
 
     return (
         <PageContainer>
@@ -33,11 +33,11 @@ const ViewSavedPrompt = (props: Props) => {
     )
 }
 
-const ViewSavedPromptContent = ({ data, mutate }: { data: RavenBotAIPrompt, mutate: SWRResponse['mutate'] }) => {
+const ViewSavedPromptContent = ({ data, mutate }: { data: AxonBotAIPrompt, mutate: SWRResponse['mutate'] }) => {
 
-    const { updateDoc, loading, error } = useFrappeUpdateDoc<RavenBotAIPrompt>()
+    const { updateDoc, loading, error } = useFrappeUpdateDoc<AxonBotAIPrompt>()
 
-    const methods = useForm<RavenBotAIPrompt>({
+    const methods = useForm<AxonBotAIPrompt>({
         disabled: loading,
         defaultValues: data
     })
@@ -47,8 +47,8 @@ const ViewSavedPromptContent = ({ data, mutate }: { data: RavenBotAIPrompt, muta
     const isDirty = !isEmpty(dirtyFields)
 
 
-    const onSubmit = (data: RavenBotAIPrompt) => {
-        updateDoc("Raven Bot AI Prompt", data.name, data)
+    const onSubmit = (data: AxonBotAIPrompt) => {
+        updateDoc("Axon Bot AI Prompt", data.name, data)
             .then((doc) => {
                 toast.success("Saved")
                 methods.reset(doc)
@@ -76,7 +76,7 @@ const ViewSavedPromptContent = ({ data, mutate }: { data: RavenBotAIPrompt, muta
                     title={data.name}
                     headerBadges={isDirty ? [{ label: "Not Saved", color: "red" }] : undefined}
                     actions={<HStack>
-                        <CommonSettingsMenu doctype="Raven Bot AI Prompt" docname={data.name} label={"Saved Prompt/Command"} />
+                        <CommonSettingsMenu doctype="Axon Bot AI Prompt" docname={data.name} label={"Saved Prompt/Command"} />
                         <Button type='submit' disabled={loading}>
                             {loading && <Loader className="text-white" />}
                             {loading ? "Saving" : "Save"}

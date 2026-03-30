@@ -1,4 +1,4 @@
-import { UserFields } from "@raven/types/common/UserFields";
+import { UserFields } from "@axon/types/common/UserFields";
 import { useFrappeDocTypeEventListener, useFrappeGetCall, useSWRConfig } from "frappe-react-sdk";
 import { PropsWithChildren, createContext, useEffect, useMemo, useState } from "react";
 
@@ -20,7 +20,7 @@ export type UserListProviderProps = PropsWithChildren & {
  */
 export const useUserListProvider = () => {
     const { mutate: globalMutate } = useSWRConfig()
-    const { data, mutate, ...rest } = useFrappeGetCall<{ message: UserFields[] }>('raven.api.raven_users.get_list', undefined, 'raven.api.raven_users.get_list', {
+    const { data, mutate, ...rest } = useFrappeGetCall<{ message: UserFields[] }>('axon.api.axon_users.get_list', undefined, 'axon.api.axon_users.get_list', {
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
     })
@@ -44,7 +44,7 @@ export const useUserListProvider = () => {
      * If a bulk import happens, this gets called multiple times potentially causing the server to go down.
      * Instead, throttle this - wait for all events to subside
      */
-    useFrappeDocTypeEventListener('Raven User', () => {
+    useFrappeDocTypeEventListener('Axon User', () => {
         setNewUpdatesAvailable(true)
     })
 

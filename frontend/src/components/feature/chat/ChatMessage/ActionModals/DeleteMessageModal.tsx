@@ -18,7 +18,7 @@ export const DeleteMessageModal = ({ onClose, message }: DeleteMessageModalProps
     const navigate = useNavigate()
 
     const onSubmit = async () => {
-        return deleteDoc('Raven Message', message.name).then(() => {
+        return deleteDoc('Axon Message', message.name).then(() => {
             toast('Message deleted', {
                 duration: 800
             })

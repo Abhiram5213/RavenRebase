@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { useFrappeGetCall, useFrappePostCall } from 'frappe-react-sdk'
-import { Message } from '@raven/types/common/Message'
+import { Message } from '@axon/types/common/Message'
 import { Poll } from '../Renderers/PollMessage'
 import { toast } from 'sonner-native'
 import ArrowBackRetractIcon from "@assets/icons/ArrowBackRetractIcon.svg"
@@ -35,14 +35,14 @@ const useRetractVote = (message: Message) => {
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const { data: poll_data } = useFrappeGetCall<{ message: Poll }>('raven.api.raven_poll.get_poll', {
+    const { data: poll_data } = useFrappeGetCall<{ message: Poll }>('axon.api.axon_poll.get_poll', {
         'message_id': message?.name,
     }, `poll_data_${message?.poll_id}`, {
         revalidateOnFocus: false,
         revalidateOnReconnect: false
     })
 
-    const { call } = useFrappePostCall('raven.api.raven_poll.retract_vote')
+    const { call } = useFrappePostCall('axon.api.axon_poll.retract_vote')
 
     const retractVote = useCallback(async (onSuccess: () => void) => {
         setIsLoading(true)

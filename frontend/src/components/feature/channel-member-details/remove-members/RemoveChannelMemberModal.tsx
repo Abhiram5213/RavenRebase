@@ -25,7 +25,7 @@ export const RemoveChannelMemberModal = ({ onClose, member }: RemoveChannelMembe
     const channelData = channel?.channelData
 
     const onSubmit = async () => {
-        return deleteDoc('Raven Channel Member', member?.channel_member_name).then(() => {
+        return deleteDoc('Axon Channel Member', member?.channel_member_name).then(() => {
             toast.success(`Removed ${member?.full_name} from ${channelData?.channel_name}`)
             onClose()
             mutate(["channel_members", channelID])

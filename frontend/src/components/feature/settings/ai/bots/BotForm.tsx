@@ -5,7 +5,7 @@ import { BiBot, BiCode, BiFile } from 'react-icons/bi'
 import GeneralBotForm from './GeneralBotForm'
 import BotFunctionsForm from './BotFunctionsForm'
 import { useFormContext } from 'react-hook-form'
-import { RavenBot } from '@/types/RavenBot/RavenBot'
+import { AxonBot } from '@/types/AxonBot/AxonBot'
 import BotDocs from './BotDocs'
 import BotFileSources from './BotFileSources'
 import AIFeaturesBotForm from './AIFeaturesBotForm'
@@ -18,7 +18,7 @@ const ICON_PROPS = {
 
 const BotForm = ({ isEdit }: { isEdit: boolean }) => {
 
-    const { watch } = useFormContext<RavenBot>()
+    const { watch } = useFormContext<AxonBot>()
     const isAiBot = watch('is_ai_bot') ? true : false
     return (
         <Tabs.Root defaultValue='general'>

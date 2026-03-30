@@ -49,7 +49,7 @@ const AttachFileToDocumentModal = ({ onClose, message }: AttachFileToDocumentMod
                 doctype: 'File',
                 filters: {
                     file_url: fileURL,
-                    attached_to_doctype: "Raven Message",
+                    attached_to_doctype: "Axon Message",
                     attached_to_name: message.name,
                     attached_to_field: "file"
                 },

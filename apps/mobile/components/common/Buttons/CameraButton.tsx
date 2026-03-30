@@ -1,6 +1,6 @@
 import { useColorScheme } from "@hooks/useColorScheme"
 import CameraIcon from "@assets/icons/CameraIcon.svg"
-import { CustomFile } from "@raven/types/common/File"
+import { CustomFile } from "@axon/types/common/File"
 import * as ImagePicker from 'expo-image-picker'
 import { ActionButtonLarge } from "./ActionButtonLarge"
 import { toast } from "sonner-native"

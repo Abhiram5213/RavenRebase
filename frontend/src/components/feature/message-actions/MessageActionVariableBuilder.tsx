@@ -1,8 +1,8 @@
 import { HStack } from '@/components/layout/Stack'
 import { Stack } from '@/components/layout/Stack'
 import useDoctypeMeta from '@/hooks/useDoctypeMeta'
-import { RavenMessageAction } from '@/types/RavenIntegrations/RavenMessageAction'
-import { RavenMessageActionFields } from '@/types/RavenIntegrations/RavenMessageActionFields'
+import { AxonMessageAction } from '@/types/AxonIntegrations/AxonMessageAction'
+import { AxonMessageActionFields } from '@/types/AxonIntegrations/AxonMessageActionFields'
 import { Badge, BadgeProps, Box, Button, Checkbox, Code, Dialog, IconButton, Select, Table, Text, TextArea, TextField, Tooltip, VisuallyHidden } from '@radix-ui/themes'
 import { useState } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
@@ -19,20 +19,20 @@ import { DIALOG_CONTENT_CLASS } from '@/utils/layout/dialog'
 type Props = {}
 
 const MessageActionVariableBuilder = (props: Props) => {
-    const { control, watch } = useFormContext<RavenMessageAction>()
+    const { control, watch } = useFormContext<AxonMessageAction>()
 
     const { fields, append, remove, update } = useFieldArray({
         control,
         name: 'fields'
     })
 
-    const addField = (data: Partial<RavenMessageActionFields>) => {
+    const addField = (data: Partial<AxonMessageActionFields>) => {
         // @ts-expect-error
         append(data)
     }
 
-    const onEdit = (index: number, data: Partial<RavenMessageActionFields>) => {
-        update(index, data as RavenMessageActionFields)
+    const onEdit = (index: number, data: Partial<AxonMessageActionFields>) => {
+        update(index, data as AxonMessageActionFields)
     }
 
     const action = watch('action')
@@ -94,7 +94,7 @@ const MessageActionVariableBuilder = (props: Props) => {
 
 export default MessageActionVariableBuilder
 
-export const getColorForFieldType = (type: RavenMessageActionFields['type']): BadgeProps['color'] => {
+export const getColorForFieldType = (type: AxonMessageActionFields['type']): BadgeProps['color'] => {
     switch (type) {
         case 'Select': return 'blue'
         case 'Number': return 'purple'
@@ -109,7 +109,7 @@ export const getColorForFieldType = (type: RavenMessageActionFields['type']): Ba
     }
 }
 
-const getType = (fieldtype: DocField['fieldtype']): RavenMessageActionFields['type'] => {
+const getType = (fieldtype: DocField['fieldtype']): AxonMessageActionFields['type'] => {
     switch (fieldtype) {
         case 'Select': return 'Select'
         case 'Autocomplete': return 'Link'
@@ -138,9 +138,9 @@ const getOptionForData = (option?: string) => {
     return ''
 }
 
-const ImportDoctypeVariables = ({ append }: { append: (data: Partial<RavenMessageActionFields>) => void }) => {
+const ImportDoctypeVariables = ({ append }: { append: (data: Partial<AxonMessageActionFields>) => void }) => {
 
-    const { watch, getValues } = useFormContext<RavenMessageAction>()
+    const { watch, getValues } = useFormContext<AxonMessageAction>()
 
     const doctype = watch('document_type')
 
@@ -175,11 +175,11 @@ const ImportDoctypeVariables = ({ append }: { append: (data: Partial<RavenMessag
     return <Button variant='outline' type='button' className='not-cal' onClick={importFields}>Import fields from {doctype}</Button>
 }
 
-const AddFieldDialog = ({ onAdd, doctype }: { onAdd: (data: Partial<RavenMessageActionFields>) => void, doctype?: string }) => {
+const AddFieldDialog = ({ onAdd, doctype }: { onAdd: (data: Partial<AxonMessageActionFields>) => void, doctype?: string }) => {
 
     const [open, setOpen] = useState(false)
 
-    const onAddField = (data: Partial<RavenMessageActionFields>) => {
+    const onAddField = (data: Partial<AxonMessageActionFields>) => {
         onAdd(data)
         setOpen(false)
     }
@@ -199,11 +199,11 @@ const AddFieldDialog = ({ onAdd, doctype }: { onAdd: (data: Partial<RavenMessage
     </Dialog.Root>
 }
 
-const EditFieldDialog = ({ onEdit, field, doctype }: { onEdit: (data: Partial<RavenMessageActionFields>) => void, field: RavenMessageActionFields, doctype?: string }) => {
+const EditFieldDialog = ({ onEdit, field, doctype }: { onEdit: (data: Partial<AxonMessageActionFields>) => void, field: AxonMessageActionFields, doctype?: string }) => {
 
     const [open, setOpen] = useState(false)
 
-    const onEditField = (data: Partial<RavenMessageActionFields>) => {
+    const onEditField = (data: Partial<AxonMessageActionFields>) => {
         onEdit(data)
         setOpen(false)
     }
@@ -229,9 +229,9 @@ const EditFieldDialog = ({ onEdit, field, doctype }: { onEdit: (data: Partial<Ra
     </Dialog.Root>
 }
 
-const FieldForm = ({ doctype, field, onAdd }: { doctype?: string, field?: RavenMessageActionFields, onAdd: (data: Partial<RavenMessageActionFields>) => void }) => {
+const FieldForm = ({ doctype, field, onAdd }: { doctype?: string, field?: AxonMessageActionFields, onAdd: (data: Partial<AxonMessageActionFields>) => void }) => {
 
-    const methods = useForm<RavenMessageActionFields>({
+    const methods = useForm<AxonMessageActionFields>({
         defaultValues: field
     })
 
@@ -241,7 +241,7 @@ const FieldForm = ({ doctype, field, onAdd }: { doctype?: string, field?: RavenM
     const type = watch('type')
     const default_value_type = watch('default_value_type')
 
-    const onSubmit = (data: Partial<RavenMessageActionFields>) => {
+    const onSubmit = (data: Partial<AxonMessageActionFields>) => {
         onAdd(data)
     }
 

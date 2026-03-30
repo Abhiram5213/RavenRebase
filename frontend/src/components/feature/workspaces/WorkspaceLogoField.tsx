@@ -6,13 +6,13 @@ import { BiSolidTrash } from "react-icons/bi"
 import { UserAvatar, getInitials } from "@/components/common/UserAvatar"
 import { __ } from "@/utils/translations"
 import { useController, useFormContext } from "react-hook-form"
-import { RavenWorkspace } from "@/types/Raven/RavenWorkspace"
+import { AxonWorkspace } from "@/types/Axon/AxonWorkspace"
 import { UploadImageModal } from "../userSettings/UploadImage/UploadImageModal"
 import { HStack } from "@/components/layout/Stack"
 
 export const WorkspaceLogoField = () => {
 
-    const { control, watch } = useFormContext<RavenWorkspace>()
+    const { control, watch } = useFormContext<AxonWorkspace>()
 
     const name = watch('name')
 
@@ -59,7 +59,7 @@ export const UploadImage = ({ open, setOpen, uploadImage, workspaceID }: { open:
                 </Dialog.Trigger>
             </Tooltip>
             <Dialog.Content className={DIALOG_CONTENT_CLASS}>
-                <UploadImageModal isPrivate={false} uploadImage={uploadImage} doctype={"Raven Workspace"} docname={workspaceID} fieldname={"logo"} />
+                <UploadImageModal isPrivate={false} uploadImage={uploadImage} doctype={"Axon Workspace"} docname={workspaceID} fieldname={"logo"} />
             </Dialog.Content>
         </Dialog.Root>
     )

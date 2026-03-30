@@ -1,6 +1,6 @@
-import useTypingIndicator from '@raven/lib/hooks/useTypingIndicator'
-import { useGetUserRecords } from '@raven/lib/hooks/useGetUserRecords'
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser'
+import useTypingIndicator from '@axon/lib/hooks/useTypingIndicator'
+import { useGetUserRecords } from '@axon/lib/hooks/useGetUserRecords'
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser'
 import { View } from 'react-native'
 import { Text } from '@components/nativewindui/Text'
 import Animated, {
@@ -22,7 +22,7 @@ type Props = {
 const TypingIndicator = ({ channel }: Props) => {
     const typingUsers = useTypingIndicator(channel)
     const userRecords = useGetUserRecords()
-    const { myProfile: currentUser } = useCurrentRavenUser()
+    const { myProfile: currentUser } = useCurrentAxonUser()
 
     const typingString = useMemo(() => {
 

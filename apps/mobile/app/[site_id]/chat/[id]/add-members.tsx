@@ -2,16 +2,16 @@ import { Link, router, Stack, useLocalSearchParams } from 'expo-router';
 import CrossIcon from '@assets/icons/CrossIcon.svg';
 import { useColorScheme } from '@hooks/useColorScheme';
 import { useCallback, useMemo, useState } from 'react';
-import { Member, useFetchChannelMembers } from '@raven/lib/hooks/useFetchChannelMembers';
-import { useUserListProvider } from '@raven/lib/providers/UserListProvider';
-import { useDebounce } from '@raven/lib/hooks/useDebounce';
-import { UserFields } from '@raven/types/common/UserFields';
+import { Member, useFetchChannelMembers } from '@axon/lib/hooks/useFetchChannelMembers';
+import { useUserListProvider } from '@axon/lib/providers/UserListProvider';
+import { useDebounce } from '@axon/lib/hooks/useDebounce';
+import { UserFields } from '@axon/types/common/UserFields';
 import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFrappeCreateDoc, useSWRConfig } from 'frappe-react-sdk';
 import { useCurrentChannelData } from '@hooks/useCurrentChannelData';
-import { useFetchWorkspaceMembers } from '@raven/lib/hooks/useFetchWorkspaceMembers';
+import { useFetchWorkspaceMembers } from '@axon/lib/hooks/useFetchWorkspaceMembers';
 import { Text } from '@components/nativewindui/Text';
 import { Button } from '@components/nativewindui/Button';
 import { ActivityIndicator } from '@components/nativewindui/ActivityIndicator';
@@ -79,7 +79,7 @@ export default function AddNewChannelMembers() {
     const submit = () => {
         if (selectedMembers && selectedMembers.length > 0) {
             const promises = selectedMembers.map(async (member: Member) => {
-                return createDoc("Raven Channel Member", {
+                return createDoc("Axon Channel Member", {
                     channel_id: channelId,
                     user_id: member.name,
                 })

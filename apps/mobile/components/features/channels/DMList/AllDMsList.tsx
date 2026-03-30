@@ -1,6 +1,6 @@
 import { useColorScheme } from "@hooks/useColorScheme"
 import useUnreadMessageCount from "@hooks/useUnreadMessageCount"
-import { ChannelListContext, ChannelListContextType } from "@raven/lib/providers/ChannelListProvider"
+import { ChannelListContext, ChannelListContextType } from "@axon/lib/providers/ChannelListProvider"
 import { useContext, useMemo, useState } from "react"
 import { View, ActivityIndicator } from "react-native"
 import DMRow from "./DMRow"
@@ -8,7 +8,7 @@ import ChatOutlineIcon from "@assets/icons/ChatOutlineIcon.svg"
 import ErrorBanner from "@components/common/ErrorBanner"
 import { Divider } from "@components/layout/Divider"
 import SearchInput from "@components/common/SearchInput/SearchInput"
-import { useDebounce } from "@raven/lib/hooks/useDebounce"
+import { useDebounce } from "@axon/lib/hooks/useDebounce"
 import { Text } from "@components/nativewindui/Text"
 import { LegendList } from "@legendapp/list"
 
@@ -83,7 +83,7 @@ const DMListEmptyState = ({ searchQuery }: { searchQuery?: string }) => {
                 </Text>
             </View>
             <Text className="text-sm text-foreground/60">
-                {searchQuery ? 'Try searching for a different user name, or invite this userto Raven' : `Start a new conversation with someone to see it here`}
+                {searchQuery ? 'Try searching for a different user name, or invite this userto Axon' : `Start a new conversation with someone to see it here`}
             </Text>
         </View>
     )

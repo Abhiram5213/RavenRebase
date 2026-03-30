@@ -32,7 +32,7 @@ try {
         if (payload.data.creation) {
             notificationOptions["timestamp"] = payload.data.creation
         }
-        let url = `${payload.data.base_url}/raven/channel/${payload.data.channel_id}`
+        let url = `${payload.data.base_url}/axon/channel/${payload.data.channel_id}`
 
         if (payload.data.message_url) {
             url = payload.data.message_url

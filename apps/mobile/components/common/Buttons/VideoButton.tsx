@@ -1,5 +1,5 @@
 import { useColorScheme } from "@hooks/useColorScheme"
-import { CustomFile } from "@raven/types/common/File"
+import { CustomFile } from "@axon/types/common/File"
 import * as ImagePicker from 'expo-image-picker'
 import VideoCameraIcon from "@assets/icons/VideoCameraIcon.svg"
 import { ActionButtonLarge } from "./ActionButtonLarge"

@@ -1,9 +1,9 @@
 import { View } from 'react-native';
 import { useMemo } from 'react';
 import { useFrappePostCall, useSWRConfig } from 'frappe-react-sdk'
-import useIsPushNotificationEnabled from '@raven/lib/hooks/useIsPushNotificationEnabled'
-import { useFetchChannelMembers } from '@raven/lib/hooks/useFetchChannelMembers'
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser'
+import useIsPushNotificationEnabled from '@axon/lib/hooks/useIsPushNotificationEnabled'
+import { useFetchChannelMembers } from '@axon/lib/hooks/useFetchChannelMembers'
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser'
 import { Toggle } from '@components/nativewindui/Toggle'
 import { Text } from '@components/nativewindui/Text';
 import { toast } from 'sonner-native';
@@ -20,11 +20,11 @@ const PushNotifications = ({ channelID }: PushNotifications) => {
 
     const isPushAvailable = useIsPushNotificationEnabled()
 
-    const { call } = useFrappePostCall('raven.api.notification.toggle_push_notification_for_channel')
+    const { call } = useFrappePostCall('axon.api.notification.toggle_push_notification_for_channel')
 
     const { channelMembers } = useFetchChannelMembers(channelID ?? "")
 
-    const { myProfile: currentUserInfo } = useCurrentRavenUser()
+    const { myProfile: currentUserInfo } = useCurrentAxonUser()
 
     const { channelMember, isAdmin } = useMemo(() => {
         const channelMember = channelMembers[currentUserInfo?.name ?? ""]

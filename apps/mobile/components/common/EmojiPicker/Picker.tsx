@@ -5,7 +5,7 @@ import { Image } from 'expo-image';
 import useFileURL from '@hooks/useFileURL';
 import Categories from './Categories';
 import { emojis as EMOJIS, categories as EMOJI_CATEGORIES } from "./emojis.json";
-import { useDebounce } from '@raven/lib/hooks/useDebounce';
+import { useDebounce } from '@axon/lib/hooks/useDebounce';
 import { BottomSheetFlashList } from '@gorhom/bottom-sheet';
 
 const DEFAULT_X_PADDING = 6;

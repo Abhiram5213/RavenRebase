@@ -1,5 +1,5 @@
 import { useColorScheme } from '@hooks/useColorScheme'
-import { Message } from '@raven/types/common/Message'
+import { Message } from '@axon/types/common/Message'
 import { router } from 'expo-router'
 import ForwardIcon from "@assets/icons/ForwardIcon.svg"
 import { ActionButtonLarge } from '@components/common/Buttons/ActionButtonLarge'

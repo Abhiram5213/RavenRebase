@@ -1,7 +1,7 @@
 import { Image } from "expo-image";
 import { useState } from "react";
 import { View } from "react-native";
-import { useDebounce } from "@raven/lib/hooks/useDebounce";
+import { useDebounce } from "@axon/lib/hooks/useDebounce";
 import GIFSearchResults from "./GIFSearchResults";
 import GIFFeaturedResults from "./GIFFeaturedResults";
 import SearchInput from "../SearchInput/SearchInput";

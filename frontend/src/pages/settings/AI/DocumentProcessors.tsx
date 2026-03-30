@@ -3,23 +3,23 @@ import PageContainer from '@/components/layout/Settings/PageContainer'
 import SettingsContentContainer from '@/components/layout/Settings/SettingsContentContainer'
 import SettingsPageHeader from '@/components/layout/Settings/SettingsPageHeader'
 import { Stack } from '@/components/layout/Stack'
-import { hasRavenAdminRole, isSystemManager } from '@/utils/roles'
+import { hasAxonAdminRole, isSystemManager } from '@/utils/roles'
 import { Button, Card, Text, Badge, Callout, Flex, Skeleton, RadioCards, IconButton, AlertDialog } from '@radix-ui/themes'
 import { BiErrorCircle, BiCheck, BiPlus, BiTrash } from 'react-icons/bi'
 import { useFrappeGetCall, useFrappePostCall } from 'frappe-react-sdk'
 import { useState } from 'react'
 import { ProcessorTypesResponse, ExistingProcessorsResponse, ExistingProcessor } from '@/components/feature/settings/ai/bots/BotDocumentProcessorsForm'
 import { toast } from 'sonner'
-import useRavenSettings from '@/hooks/fetchers/useRavenSettings'
+import useAxonSettings from '@/hooks/fetchers/useAxonSettings'
 import GoogleAPINotEnabledCallout from '@/components/feature/settings/ai/GoogleAPINotEnabled'
 
 const DocumentProcessors = () => {
-    const isRavenAdmin = hasRavenAdminRole() || isSystemManager()
+    const isAxonAdmin = hasAxonAdminRole() || isSystemManager()
     const [selectedProcessorType, setSelectedProcessorType] = useState<string>('')
 
     // Fetch existing processors - already created processors present in the Google Project
     const { data: existingProcessors, isLoading: loadingExisting, error: existingError, mutate: refetchProcessors } = useFrappeGetCall<ExistingProcessorsResponse>(
-        'raven.ai.google_ai.get_list_of_processors',
+        'axon.ai.google_ai.get_list_of_processors',
         undefined,
         undefined,
         {
@@ -28,13 +28,13 @@ const DocumentProcessors = () => {
     )
 
     // Create processor
-    const { call: createProcessor, loading } = useFrappePostCall('raven.ai.google_ai.create_document_processor')
+    const { call: createProcessor, loading } = useFrappePostCall('axon.ai.google_ai.create_document_processor')
 
     // Delete processor
-    const { call: deleteProcessor, loading: deletingProcessor } = useFrappePostCall('raven.ai.google_ai.delete_document_processor')
+    const { call: deleteProcessor, loading: deletingProcessor } = useFrappePostCall('axon.ai.google_ai.delete_document_processor')
 
     const handleCreateProcessor = () => {
-        if (!selectedProcessorType || !isRavenAdmin) return
+        if (!selectedProcessorType || !isAxonAdmin) return
 
         createProcessor({ processor_type_key: selectedProcessorType }).then(() => {
             refetchProcessors()
@@ -63,7 +63,7 @@ const DocumentProcessors = () => {
         })
     }
 
-    if (!isRavenAdmin) {
+    if (!isAxonAdmin) {
         return (
             <PageContainer>
                 <SettingsContentContainer>
@@ -73,7 +73,7 @@ const DocumentProcessors = () => {
                     />
                     <Callout.Root color="amber">
                         <Callout.Icon><BiErrorCircle /></Callout.Icon>
-                        <Callout.Text>You need Raven Admin permissions to manage document processors.</Callout.Text>
+                        <Callout.Text>You need Axon Admin permissions to manage document processors.</Callout.Text>
                     </Callout.Root>
                 </SettingsContentContainer>
             </PageContainer>
@@ -81,9 +81,9 @@ const DocumentProcessors = () => {
     }
 
     // if AI is not enabled then do not show the ExistingProcessorsList or ProcessorTypeSelector
-    const { ravenSettings } = useRavenSettings()
-    const isAIEnabled = ravenSettings?.enable_ai_integration === 1
-    const hasGoogleApis = ravenSettings?.enable_google_apis === 1
+    const { axonSettings } = useAxonSettings()
+    const isAIEnabled = axonSettings?.enable_ai_integration === 1
+    const hasGoogleApis = axonSettings?.enable_google_apis === 1
 
     return (
         <PageContainer>
@@ -265,7 +265,7 @@ const ProcessorTypeSelector = ({
 }) => {
     // Fetch available processor types - processor types that can be created in the Google Project
     const { data: processorTypes, isLoading: loadingTypes, error: typesError } = useFrappeGetCall<ProcessorTypesResponse>(
-        'raven.ai.google_ai.get_available_processor_types'
+        'axon.ai.google_ai.get_available_processor_types'
     )
 
     if (loadingTypes) {

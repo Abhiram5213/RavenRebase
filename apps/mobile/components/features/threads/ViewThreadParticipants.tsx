@@ -1,6 +1,6 @@
 import { View } from 'react-native'
 import { Text } from '@components/nativewindui/Text'
-import { useGetUser } from '@raven/lib/hooks/useGetUser'
+import { useGetUser } from '@axon/lib/hooks/useGetUser'
 import UserAvatar from '@components/layout/UserAvatar'
 
 interface ViewThreadParticipantsProps {

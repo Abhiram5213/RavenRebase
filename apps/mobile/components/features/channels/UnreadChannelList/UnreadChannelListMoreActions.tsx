@@ -1,4 +1,4 @@
-import { UnreadCountData } from "@raven/lib/hooks/useGetChannelUnreadCounts"
+import { UnreadCountData } from "@axon/lib/hooks/useGetChannelUnreadCounts"
 import ThreeDotsVerticalIcon from '@assets/icons/ThreeDotsVerticalIcon.svg'
 import { useColorScheme } from "@hooks/useColorScheme"
 import { Button } from '@components/nativewindui/Button'
@@ -11,7 +11,7 @@ const UnreadChannelListMoreActions = ({ channelIDs }: { channelIDs: string[] }) 
     const { colors } = useColorScheme()
 
     const { mutate } = useSWRConfig()
-    const { call } = useFrappePostCall('raven.api.raven_channel.mark_all_messages_as_read')
+    const { call } = useFrappePostCall('axon.api.axon_channel.mark_all_messages_as_read')
 
     const handleMarkAllAsRead = () => {
         call({

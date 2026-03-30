@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { FrappeContext, FrappeConfig } from "frappe-react-sdk";
 import { useActiveUser } from "@lib/UserInactivityProvider";
-import { useBoolean } from "@raven/lib/hooks/useBoolean";
+import { useBoolean } from "@axon/lib/hooks/useBoolean";
 
 export type PresenceType = "active" | "idle";
 
@@ -25,7 +25,7 @@ export const useActiveState = () => {
     if (now - lastRefreshedOn > 1000 * 60 * 5 || !lastRefreshedOn) {
       lastRefreshedRef.current = now;
       return call
-        .get("raven.api.user_availability.refresh_user_active_state", {
+        .get("axon.api.user_availability.refresh_user_active_state", {
           deactivate,
         }).then(() => {
           lastRefreshedRef.current = now;
@@ -60,7 +60,7 @@ export const useActiveState = () => {
 
     return () => {
       call
-        .get("raven.api.user_availability.refresh_user_active_state", {
+        .get("axon.api.user_availability.refresh_user_active_state", {
           deactivate: true,
         })
     }

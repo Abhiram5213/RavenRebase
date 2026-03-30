@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "257310726313",
-    "project_id": "raven-c2659",
-    "storage_bucket": "raven-c2659.firebasestorage.app"
+    "project_id": "axon-c2659",
+    "storage_bucket": "axon-c2659.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:257310726313:android:f0ee0638ffdfd773a631b8",
         "android_client_info": {
-          "package_name": "raven.thecommit.company"
+          "package_name": "axon.thecommit.company"
         }
       },
       "oauth_client": [],

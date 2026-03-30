@@ -1,7 +1,7 @@
 import { ErrorText, HelperText, Label } from '@/components/common/Form'
 import LinkFormField from '@/components/common/LinkField/LinkFormField'
 import { HStack, Stack } from '@/components/layout/Stack'
-import { RavenMessageAction } from '@/types/RavenIntegrations/RavenMessageAction'
+import { AxonMessageAction } from '@/types/AxonIntegrations/AxonMessageAction'
 import { Box, Button, Checkbox, Dialog, Grid, Link, ScrollArea, Select, Text, TextArea, TextField } from '@radix-ui/themes'
 import { Tabs } from '@radix-ui/themes'
 import { ChangeEvent } from 'react'
@@ -41,7 +41,7 @@ export default MessageActionForm
 
 
 const GeneralTab = () => {
-    const { register, control, formState: { errors }, setValue, watch } = useFormContext<RavenMessageAction>()
+    const { register, control, formState: { errors }, setValue, watch } = useFormContext<AxonMessageAction>()
 
     const action = useWatch({ control, name: 'action' })
 
@@ -229,7 +229,7 @@ const GeneralTab = () => {
 }
 
 const ViewDocsButton = () => {
-    const { control } = useFormContext<RavenMessageAction>()
+    const { control } = useFormContext<AxonMessageAction>()
 
     const action = useWatch({ control, name: 'action' })
 
@@ -251,7 +251,7 @@ const ViewDocsButton = () => {
     </Dialog.Root>
 }
 
-const EXAMPLES: Record<RavenMessageAction['action'], string> = {
+const EXAMPLES: Record<AxonMessageAction['action'], string> = {
     "Server Script": `# Server Scripts would get the values in "frappe.form_dict"
 {
     "message_id": "123",

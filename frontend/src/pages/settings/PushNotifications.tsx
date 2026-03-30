@@ -8,8 +8,8 @@ import PageContainer from '@/components/layout/Settings/PageContainer'
 import SettingsContentContainer from '@/components/layout/Settings/SettingsContentContainer'
 import SettingsPageHeader from '@/components/layout/Settings/SettingsPageHeader'
 import { Stack } from '@/components/layout/Stack'
-import useRavenSettings from '@/hooks/fetchers/useRavenSettings'
-import { RavenSettings } from '@/types/Raven/RavenSettings'
+import useAxonSettings from '@/hooks/fetchers/useAxonSettings'
+import { AxonSettings } from '@/types/Axon/AxonSettings'
 import { isSystemManager } from '@/utils/roles'
 import { __ } from '@/utils/translations'
 import { Box, Button, Link, Select, Strong, Text, TextField } from '@radix-ui/themes'
@@ -21,29 +21,29 @@ import { toast } from 'sonner'
 
 const PushNotifications = () => {
 
-    const isRavenAdmin = isSystemManager()
+    const isAxonAdmin = isSystemManager()
 
-    const { ravenSettings, mutate, error } = useRavenSettings()
+    const { axonSettings, mutate, error } = useAxonSettings()
 
     const { call } = useContext(FrappeContext) as FrappeConfig
 
-    const methods = useForm<RavenSettings>({
-        disabled: !isRavenAdmin
+    const methods = useForm<AxonSettings>({
+        disabled: !isAxonAdmin
     })
 
     const { handleSubmit, control, watch, reset, register, formState: { errors }, setValue } = methods
 
     useEffect(() => {
-        if (ravenSettings) {
-            reset(ravenSettings)
+        if (axonSettings) {
+            reset(axonSettings)
         }
-    }, [ravenSettings])
+    }, [axonSettings])
 
-    const { updateDoc, loading: updatingDoc } = useFrappeUpdateDoc<RavenSettings>()
+    const { updateDoc, loading: updatingDoc } = useFrappeUpdateDoc<AxonSettings>()
 
-    const onSubmit = (data: RavenSettings) => {
-        toast.promise(updateDoc('Raven Settings', null, {
-            ...(ravenSettings ?? {}),
+    const onSubmit = (data: AxonSettings) => {
+        toast.promise(updateDoc('Axon Settings', null, {
+            ...(axonSettings ?? {}),
             ...data
         }).then(res => {
             mutate(res, {
@@ -71,7 +71,7 @@ const PushNotifications = () => {
         return () => document.removeEventListener('keydown', down)
     }, [])
 
-    const isRavenCloud = watch('push_notification_service') === "Raven"
+    const isAxonCloud = watch('push_notification_service') === "Axon"
 
     return (
         <PageContainer>
@@ -81,12 +81,12 @@ const PushNotifications = () => {
                         <SettingsPageHeader
                             title={__('Push Notifications')}
                             description={__("Configure the push notification service here.")}
-                            actions={<Button type='submit' disabled={updatingDoc || !isRavenAdmin}>
+                            actions={<Button type='submit' disabled={updatingDoc || !isAxonAdmin}>
                                 {updatingDoc && <Loader className="text-white" />}
                                 {updatingDoc ? "Saving" : "Save"}
                             </Button>}
                         />
-                        {!isRavenAdmin && <CustomCallout
+                        {!isAxonAdmin && <CustomCallout
                             iconChildren={<FiAlertTriangle />}
                             rootProps={{ color: 'blue', variant: 'surface' }}
                             textChildren={__("You need to be a System Manager to manage the push notification service.")} >
@@ -98,7 +98,7 @@ const PushNotifications = () => {
                             <br />
                             <ol className='list-decimal list-inside'>
                                 <li>
-                                    <Strong>Raven Cloud</Strong> - recommended for all users, including those on Frappe Cloud. For self-hosted instances, this is the only option.
+                                    <Strong>Axon Cloud</Strong> - recommended for all users, including those on Frappe Cloud. For self-hosted instances, this is the only option.
                                 </li>
                                 <li>
                                     <Strong>Frappe Cloud</Strong> - alternative option available only for Frappe Cloud users.
@@ -110,12 +110,12 @@ const PushNotifications = () => {
                             <Label isRequired htmlFor='push_notification_service'>{__("Push Notification Service")}</Label>
                             <Controller
                                 control={control}
-                                defaultValue={ravenSettings?.push_notification_service}
+                                defaultValue={axonSettings?.push_notification_service}
                                 name='push_notification_service'
                                 rules={{
                                     required: "Please select a push notification service",
                                     onChange: (e) => {
-                                        setValue('push_notification_server_url', 'https://cloud.ravenchat.ai')
+                                        setValue('push_notification_server_url', 'https://cloud.axonchat.ai')
                                     }
                                 }}
                                 render={({ field }) => (
@@ -126,8 +126,8 @@ const PushNotifications = () => {
                                         onValueChange={field.onChange}>
                                         <Select.Trigger className='w-full' />
                                         <Select.Content>
-                                            <Select.Item value='Raven'>
-                                                {__("Raven Cloud")}
+                                            <Select.Item value='Axon'>
+                                                {__("Axon Cloud")}
                                             </Select.Item>
                                             <Select.Item value='Frappe Cloud'>
                                                 {__("Frappe Cloud")}
@@ -136,13 +136,13 @@ const PushNotifications = () => {
                                     </Select.Root>
                                 )}
                             />
-                            <HelperText>We recommend using Raven Cloud for push notifications.</HelperText>
+                            <HelperText>We recommend using Axon Cloud for push notifications.</HelperText>
                         </Box>
 
-                        {isRavenCloud ?
+                        {isAxonCloud ?
                             <Stack gap='3'>
                                 <Text size='2'>
-                                    To get started with Raven Cloud, you need to first <Link href="https://cloud.ravenchat.ai" target='_blank'>create an account <FiExternalLink /></Link> and get your API Key and API Secret.
+                                    To get started with Axon Cloud, you need to first <Link href="https://cloud.axonchat.ai" target='_blank'>create an account <FiExternalLink /></Link> and get your API Key and API Secret.
                                 </Text>
                                 <Box>
                                     <Label htmlFor='push_notification_server_url' isRequired>Push Notification Server URL</Label>
@@ -153,9 +153,9 @@ const PushNotifications = () => {
                                         id='push_notification_server_url'
                                         autoComplete='off'
                                         required
-                                        placeholder='https://push.raven.chat'
+                                        placeholder='https://push.axon.chat'
                                         {...register('push_notification_server_url', {
-                                            required: isRavenCloud ? "Please add your Push Notification Server URL" : false,
+                                            required: isAxonCloud ? "Please add your Push Notification Server URL" : false,
                                             maxLength: {
                                                 value: 300,
                                                 message: "URL cannot be more than 300 characters."
@@ -165,9 +165,9 @@ const PushNotifications = () => {
                                     />
                                     {errors?.push_notification_server_url && <ErrorText>{errors.push_notification_server_url?.message}</ErrorText>}
                                     <HelperText size='2'>
-                                        You can keep this as "https://cloud.ravenchat.ai" if you are using the default Raven Cloud instance.
+                                        You can keep this as "https://cloud.axonchat.ai" if you are using the default Axon Cloud instance.
                                         <br />
-                                        Only change this if you are using a custom Raven Cloud instance.
+                                        Only change this if you are using a custom Axon Cloud instance.
                                     </HelperText>
                                 </Box>
 
@@ -199,7 +199,7 @@ const PushNotifications = () => {
                                         autoComplete='off'
                                         placeholder='••••••••••••••••••••••••••••••••'
                                         {...register('push_notification_api_secret', {
-                                            required: isRavenCloud ? "Please add your Push Notification API Secret" : false,
+                                            required: isAxonCloud ? "Please add your Push Notification API Secret" : false,
                                         })}
                                         aria-invalid={errors.push_notification_api_secret ? 'true' : 'false'}
                                     />
@@ -211,13 +211,13 @@ const PushNotifications = () => {
 
 
                         <div className='flex gap-2'>
-                            {isRavenCloud && ravenSettings?.push_notification_service === "Raven" && ravenSettings?.push_notification_server_url &&
-                                <RegisterSiteButton mutate={mutate} ravenSettings={ravenSettings} />}
+                            {isAxonCloud && axonSettings?.push_notification_service === "Axon" && axonSettings?.push_notification_server_url &&
+                                <RegisterSiteButton mutate={mutate} axonSettings={axonSettings} />}
 
-                            {isRavenCloud && ravenSettings?.push_notification_service === "Raven"
-                                && ravenSettings?.push_notification_server_url && ravenSettings?.vapid_public_key && <SyncDataButton />}
+                            {isAxonCloud && axonSettings?.push_notification_service === "Axon"
+                                && axonSettings?.push_notification_server_url && axonSettings?.vapid_public_key && <SyncDataButton />}
 
-                            {!isRavenCloud && <Button
+                            {!isAxonCloud && <Button
                                 asChild
                                 color='gray'
                                 variant='outline'
@@ -241,15 +241,15 @@ const PushNotifications = () => {
     )
 }
 
-const RegisterSiteButton = ({ mutate, ravenSettings }: { mutate: VoidFunction, ravenSettings: RavenSettings }) => {
+const RegisterSiteButton = ({ mutate, axonSettings }: { mutate: VoidFunction, axonSettings: AxonSettings }) => {
 
-    const { call, loading } = useFrappePostCall('raven.api.notification.register_site_on_raven_cloud')
+    const { call, loading } = useFrappePostCall('axon.api.notification.register_site_on_axon_cloud')
 
     const registerSite = () => {
         toast.promise(call({}).then(() => mutate()), {
-            loading: 'Registering site on Raven Cloud...',
-            success: 'Site registered on Raven Cloud. You can now send push notifications.',
-            error: (error) => 'Failed to register site on Raven Cloud. ' + (getErrorMessage(error))
+            loading: 'Registering site on Axon Cloud...',
+            success: 'Site registered on Axon Cloud. You can now send push notifications.',
+            error: (error) => 'Failed to register site on Axon Cloud. ' + (getErrorMessage(error))
         })
     }
 
@@ -258,18 +258,18 @@ const RegisterSiteButton = ({ mutate, ravenSettings }: { mutate: VoidFunction, r
         disabled={loading}
         variant='soft'
         type='button'
-        className='not-cal'>{ravenSettings.vapid_public_key ? "Re-Register Site on Raven Cloud" : "Register Site on Raven Cloud"}</Button>
+        className='not-cal'>{axonSettings.vapid_public_key ? "Re-Register Site on Axon Cloud" : "Register Site on Axon Cloud"}</Button>
 
 }
 
 const SyncDataButton = () => {
-    const { call, loading } = useFrappePostCall('raven.api.notification.sync_user_tokens_to_raven_cloud')
+    const { call, loading } = useFrappePostCall('axon.api.notification.sync_user_tokens_to_axon_cloud')
 
     const syncData = () => {
         toast.promise(call({}), {
-            loading: 'Syncing data to Raven Cloud...',
-            success: 'Data synced to Raven Cloud.',
-            error: (error) => 'Failed to sync data to Raven Cloud. ' + (getErrorMessage(error))
+            loading: 'Syncing data to Axon Cloud...',
+            success: 'Data synced to Axon Cloud.',
+            error: (error) => 'Failed to sync data to Axon Cloud. ' + (getErrorMessage(error))
         })
     }
 
@@ -279,7 +279,7 @@ const SyncDataButton = () => {
         variant='soft'
         type='button'
         className='not-cal'>
-        {loading ? "Syncing Data to Raven Cloud..." : "Sync Data to Raven Cloud"}
+        {loading ? "Syncing Data to Axon Cloud..." : "Sync Data to Axon Cloud"}
     </Button>
 }
 

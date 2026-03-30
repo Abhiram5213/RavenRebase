@@ -1,6 +1,6 @@
 import { TouchableOpacity, View } from 'react-native'
 import { useState } from 'react'
-import { useDebounce } from '@raven/lib/hooks/useDebounce'
+import { useDebounce } from '@axon/lib/hooks/useDebounce'
 import { useColorScheme } from '@hooks/useColorScheme'
 import ThreadsList from './ThreadsList'
 import ChannelFilter from './thread-filters/ChannelFilter'

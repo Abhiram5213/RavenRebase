@@ -11,7 +11,7 @@ import useFetchChannelMembers from "@/hooks/fetchers/useFetchChannelMembers"
 import useFetchActiveUsers from "@/hooks/fetchers/useFetchActiveUsers"
 import { useIsDesktop } from "@/hooks/useMediaQuery"
 import { Drawer, DrawerContent } from "@/components/layout/Drawer"
-import { hasRavenAdminRole } from "@/utils/roles"
+import { hasAxonAdminRole } from "@/utils/roles"
 
 interface ViewChannelDetailsModalContentProps {
     open: boolean,
@@ -68,7 +68,7 @@ const ViewChannelDetailsModalContent = ({ setOpen, channelData }: ViewChannelDet
         if (channelMembers[currentUser]?.is_admin == 1) {
             return true
         }
-        if (channelMembers[currentUser] && hasRavenAdminRole()) {
+        if (channelMembers[currentUser] && hasAxonAdminRole()) {
             return true
         }
         return false

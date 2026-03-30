@@ -8,7 +8,7 @@ import { Button } from '@components/nativewindui/Button';
 import { Form, FormItem, FormSection } from '@components/nativewindui/Form';
 import { Text } from '@components/nativewindui/Text';
 import { TextField } from '@components/nativewindui/TextField';
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser';
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser';
 import { useColorScheme } from '@hooks/useColorScheme';
 import { ActivityIndicator } from '@components/nativewindui/ActivityIndicator';
 import { toast } from 'sonner-native';
@@ -17,7 +17,7 @@ import CommonErrorBoundary from '@components/common/CommonErrorBoundary';
 
 export default function FullNameScreen() {
 
-    const { myProfile, mutate } = useCurrentRavenUser()
+    const { myProfile, mutate } = useCurrentAxonUser()
 
     const insets = useSafeAreaInsets()
     const [fullName, setFullName] = useState(myProfile?.full_name ?? '')
@@ -25,7 +25,7 @@ export default function FullNameScreen() {
     const { updateDoc, loading } = useFrappeUpdateDoc()
 
     const handleFullNameUpdate = async () => {
-        return updateDoc("Raven User", myProfile?.name ?? '', {
+        return updateDoc("Axon User", myProfile?.name ?? '', {
             full_name: fullName,
         }).then(() => {
             toast.success("User name updated")

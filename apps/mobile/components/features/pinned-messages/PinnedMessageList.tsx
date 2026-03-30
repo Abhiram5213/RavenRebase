@@ -1,6 +1,6 @@
 import { useColorScheme } from "@hooks/useColorScheme"
 import { LegendList } from "@legendapp/list"
-import { Message } from "@raven/types/common/Message"
+import { Message } from "@axon/types/common/Message"
 import { useLocalSearchParams } from "expo-router"
 import { useFrappeGetCall } from "frappe-react-sdk"
 import { View } from "react-native"
@@ -12,7 +12,7 @@ const PinnedMessageList = () => {
 
     const { id } = useLocalSearchParams()
     const { colors } = useColorScheme()
-    const { data, error } = useFrappeGetCall<{ message: Message[] }>("raven.api.raven_message.get_pinned_messages", { 'channel_id': id }, undefined, {
+    const { data, error } = useFrappeGetCall<{ message: Message[] }>("axon.api.axon_message.get_pinned_messages", { 'channel_id': id }, undefined, {
         revalidateOnFocus: false
     })
 

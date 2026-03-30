@@ -22,14 +22,14 @@ import AppUpdateProvider from './utils/AppUpdateProvider'
 //   "frappe.model.workflow.get_transitions",
 //   "frappe.desk.reportview.get_count",
 //   "frappe.core.doctype.server_script.server_script.enabled",
-//   "raven.api.message_actions.get_action_defaults",
-//   "raven.api.document_link.get_preview_data"
+//   "axon.api.message_actions.get_action_defaults",
+//   "axon.api.document_link.get_preview_data"
 // ]
 
 const CACHE_KEYS = [
-  "raven.api.login.get_context",
+  "axon.api.login.get_context",
   "workspaces_list",
-  "raven.api.raven_users.get_list",
+  "axon.api.axon_users.get_list",
   "channel_list",
 ]
 
@@ -39,8 +39,8 @@ let lastWorkspace = ""
 let lastChannel = ""
 
 try {
-  lastWorkspace = JSON.parse(localStorage.getItem('ravenLastWorkspace') ?? '""') ?? ''
-  lastChannel = JSON.parse(localStorage.getItem('ravenLastChannel') ?? '""') ?? ''
+  lastWorkspace = JSON.parse(localStorage.getItem('axonLastWorkspace') ?? '""') ?? ''
+  lastChannel = JSON.parse(localStorage.getItem('axonLastChannel') ?? '""') ?? ''
 }
 catch {
 

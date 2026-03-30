@@ -44,7 +44,7 @@ export const UserProvider: FC<PropsWithChildren> = ({ children }) => {
             .then(() => {
                 //Clear cache on logout
                 return mutate((key) => {
-                    if (key === 'raven.api.login.get_context') {
+                    if (key === 'axon.api.login.get_context') {
                         return false
                     }
                     return true

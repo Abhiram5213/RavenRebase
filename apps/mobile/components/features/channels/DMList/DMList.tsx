@@ -1,11 +1,11 @@
-import { DMChannelListItem } from '@raven/types/common/ChannelListItem';
+import { DMChannelListItem } from '@axon/types/common/ChannelListItem';
 import { useState } from 'react';
 import { View, Pressable, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text } from '@components/nativewindui/Text';
 import { useColorScheme } from '@hooks/useColorScheme';
 import ChevronDownIcon from '@assets/icons/ChevronDownIcon.svg';
 import ChevronRightIcon from '@assets/icons/ChevronRightIcon.svg';
-import { useGetUser } from '@raven/lib/hooks/useGetUser';
+import { useGetUser } from '@axon/lib/hooks/useGetUser';
 import UserAvatar from '@components/layout/UserAvatar';
 import { Link } from 'expo-router';
 import { useIsUserActive } from '@hooks/useIsUserActive';

@@ -1,4 +1,4 @@
-import { Message } from "@raven/types/common/Message"
+import { Message } from "@axon/types/common/Message"
 import { FrappeContext, FrappeConfig } from "frappe-react-sdk"
 import { useContext, useState, useCallback } from "react"
 import { toast } from "sonner-native"
@@ -15,7 +15,7 @@ const useSaveMessage = (message: Message, user?: string, saved = true) => {
 
         setIsLoading(true)
 
-        call.post('raven.api.raven_message.save_message', {
+        call.post('axon.api.axon_message.save_message', {
             message_id: message?.name,
             add: isSaved ? 'No' : 'Yes'
         }).then((response) => {

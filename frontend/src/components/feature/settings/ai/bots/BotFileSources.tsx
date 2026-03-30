@@ -1,6 +1,6 @@
 import { Label } from '@/components/common/Form'
 import { HStack, Stack } from '@/components/layout/Stack'
-import { RavenBot } from '@/types/RavenBot/RavenBot'
+import { AxonBot } from '@/types/AxonBot/AxonBot'
 import { Badge, Button, Checkbox, Dialog, IconButton, Link as RadixLink, Table, Text } from '@radix-ui/themes'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import FileSourceUploadDialog from '../file-sources/FileSourceUploadDialog'
@@ -14,7 +14,7 @@ type Props = {}
 
 const BotFileSources = (props: Props) => {
 
-    const { control } = useFormContext<RavenBot>()
+    const { control } = useFormContext<AxonBot>()
 
     const { fields, append, remove } = useFieldArray({
         control,
@@ -80,7 +80,7 @@ const BotFileSources = (props: Props) => {
 const FileSourceRow = ({ fileID, onDelete }: { fileID: string, onDelete: () => void }) => {
 
     const { data } = useFrappeGetCall('frappe.client.get_value', {
-        doctype: "Raven AI File Source",
+        doctype: "Axon AI File Source",
         filters: fileID,
         fieldname: JSON.stringify(["file_name", "file_type", "file"])
     }, undefined, {
@@ -125,7 +125,7 @@ const SelectExistingFiles = ({ append, existingFiles }: { append: (id: string) =
         setSelectedFiles([])
     }
 
-    const { data, isLoading, error } = useFrappeGetDocList('Raven AI File Source', {
+    const { data, isLoading, error } = useFrappeGetDocList('Axon AI File Source', {
         fields: ["name", "file_name", "file_type", "file"]
     }, undefined, {
         revalidateOnFocus: false

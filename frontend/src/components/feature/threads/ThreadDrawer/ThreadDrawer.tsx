@@ -11,7 +11,7 @@ import useThreadPageActive from '@/hooks/useThreadPageActive'
 const ThreadDrawer = () => {
 
     const { threadID } = useParams()
-    const { data, error, isLoading } = useFrappeGetDoc<Message>('Raven Message', threadID, threadID, {
+    const { data, error, isLoading } = useFrappeGetDoc<Message>('Axon Message', threadID, threadID, {
         revalidateOnFocus: false,
         shouldRetryOnError: false,
         keepPreviousData: false

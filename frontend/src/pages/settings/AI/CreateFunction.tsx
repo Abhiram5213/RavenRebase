@@ -4,7 +4,7 @@ import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
 import PageContainer from '@/components/layout/Settings/PageContainer'
 import SettingsContentContainer from '@/components/layout/Settings/SettingsContentContainer'
 import SettingsPageHeader from '@/components/layout/Settings/SettingsPageHeader'
-import { RavenAIFunction } from '@/types/RavenAI/RavenAIFunction'
+import { AxonAIFunction } from '@/types/AxonAI/AxonAIFunction'
 import { Button } from '@radix-ui/themes'
 import { useFrappeCreateDoc } from 'frappe-react-sdk'
 import { useEffect } from 'react'
@@ -13,9 +13,9 @@ import { useNavigate } from 'react-router-dom'
 
 const CreateFunction = () => {
 
-    const { createDoc, loading, error } = useFrappeCreateDoc<RavenAIFunction>()
+    const { createDoc, loading, error } = useFrappeCreateDoc<AxonAIFunction>()
 
-    const methods = useForm<RavenAIFunction>({
+    const methods = useForm<AxonAIFunction>({
         disabled: loading,
         defaultValues: {
             params: {
@@ -28,8 +28,8 @@ const CreateFunction = () => {
     const navigate = useNavigate()
 
 
-    const onSubmit = (data: RavenAIFunction) => {
-        createDoc("Raven AI Function", data)
+    const onSubmit = (data: AxonAIFunction) => {
+        createDoc("Axon AI Function", data)
             .then((doc) => {
                 navigate(`../${doc.name}`)
             })

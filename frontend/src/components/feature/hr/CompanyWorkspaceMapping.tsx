@@ -1,5 +1,5 @@
 import { Box, Button, IconButton, Select, Text, VisuallyHidden } from '@radix-ui/themes'
-import { RavenSettings } from '@/types/Raven/RavenSettings'
+import { AxonSettings } from '@/types/Axon/AxonSettings'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { __ } from '@/utils/translations'
 import LinkFormField from '@/components/common/LinkField/LinkFormField'
@@ -12,7 +12,7 @@ type Props = {}
 
 const CompanyWorkspaceMapping = (props: Props) => {
 
-    const { control, formState: { errors, disabled } } = useFormContext<RavenSettings>()
+    const { control, formState: { errors, disabled } } = useFormContext<AxonSettings>()
 
     const { fields, append, remove } = useFieldArray({
         control,
@@ -20,7 +20,7 @@ const CompanyWorkspaceMapping = (props: Props) => {
     })
 
     // @ts-ignore
-    const addRow = () => append({ company: '', raven_workspace: '' })
+    const addRow = () => append({ company: '', axon_workspace: '' })
 
     return (
         <Stack>
@@ -65,9 +65,9 @@ const CompanyWorkspaceMapping = (props: Props) => {
                                     <Label>Workspace in Row {index + 1}</Label>
                                 </VisuallyHidden>
                                 <WorkspaceDropdown
-                                    name={`company_workspace_mapping.${index}.raven_workspace`}
+                                    name={`company_workspace_mapping.${index}.axon_workspace`}
                                 />
-                                <ErrorText>{errors.company_workspace_mapping?.[index]?.raven_workspace?.message}</ErrorText>
+                                <ErrorText>{errors.company_workspace_mapping?.[index]?.axon_workspace?.message}</ErrorText>
                             </Stack>
                         </Box>
 
@@ -90,9 +90,9 @@ const CompanyWorkspaceMapping = (props: Props) => {
     )
 }
 
-const WorkspaceDropdown = ({ name }: { name: `company_workspace_mapping.${number}.raven_workspace` }) => {
+const WorkspaceDropdown = ({ name }: { name: `company_workspace_mapping.${number}.axon_workspace` }) => {
 
-    const { control } = useFormContext<RavenSettings>()
+    const { control } = useFormContext<AxonSettings>()
 
     const { data: workspaces } = useFetchWorkspaces()
 

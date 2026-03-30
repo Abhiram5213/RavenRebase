@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import useFetchActiveUsers from './useFetchActiveUsers';
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser';
-import { useGetUser } from '@raven/lib/hooks/useGetUser';
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser';
+import { useGetUser } from '@axon/lib/hooks/useGetUser';
 
 export const useIsUserActive = (userID?: string): boolean => {
 
-    const { myProfile: currentUserInfo } = useCurrentRavenUser()
+    const { myProfile: currentUserInfo } = useCurrentAxonUser()
     const { data } = useFetchActiveUsers()
 
     const user = useGetUser(userID)

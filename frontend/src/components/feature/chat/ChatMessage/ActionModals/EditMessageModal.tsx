@@ -25,12 +25,12 @@ export const EditMessageModal = ({ onClose, message }: EditMessageModalProps) =>
 
         // If the edited message is empty, delete the message
         if (html.trim() === '' && message.is_thread === 0 && message.message_type === "Text") {
-            return deleteDoc('Raven Message', message.name).then((d) => {
+            return deleteDoc('Axon Message', message.name).then((d) => {
                 onClose(true)
                 toast.success("Message deleted")
             })
         }
-        return updateDoc('Raven Message', message.name,
+        return updateDoc('Axon Message', message.name,
             { text: html, json }).then((d) => {
                 onClose(true)
                 toast.info("Message updated")

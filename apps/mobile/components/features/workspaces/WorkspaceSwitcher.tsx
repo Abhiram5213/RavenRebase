@@ -3,7 +3,7 @@ import { Text } from '@components/nativewindui/Text'
 import { BottomSheetScrollView, BottomSheetView } from '@gorhom/bottom-sheet'
 import { Pressable, TouchableOpacity, View } from 'react-native'
 import UserAvatar from '@components/layout/UserAvatar'
-import useFetchWorkspaces, { WorkspaceFields } from '@raven/lib/hooks/useFetchWorkspaces';
+import useFetchWorkspaces, { WorkspaceFields } from '@axon/lib/hooks/useFetchWorkspaces';
 import { useCallback, useMemo } from 'react';
 import { Divider } from '@components/layout/Divider';
 import CheckFilledIcon from '@assets/icons/CheckFilledIcon.svg';
@@ -12,7 +12,7 @@ import ChevronDownIcon from '@assets/icons/ChevronDownIcon.svg'
 import { COLORS } from '@theme/colors'
 import useSiteContext from '@hooks/useSiteContext'
 import SiteSwitcher from '../auth/SiteSwitcher'
-import { getSiteNameFromUrl } from '@raven/lib/utils/operations'
+import { getSiteNameFromUrl } from '@axon/lib/utils/operations'
 import ServerIcon from '@assets/icons/ServerIcon.svg'
 import AddSite from '../auth/AddSite'
 
@@ -209,8 +209,8 @@ const getLogo = (workspace: WorkspaceFields) => {
 
     let logo = workspace?.logo || undefined
 
-    if (!logo && workspace?.workspace_name === 'Raven') {
-        logo = '/assets/raven/raven-logo.png'
+    if (!logo && workspace?.workspace_name === 'Axon') {
+        logo = '/assets/axon/axon-logo.png'
     }
 
     return logo

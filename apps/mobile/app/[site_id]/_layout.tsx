@@ -1,5 +1,5 @@
 import { router, Stack, useLocalSearchParams } from "expo-router";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback, useContext } from "react";
 import { SiteInformation } from "../../types/SiteInformation";
 import { revokeAsync, TokenResponse } from "expo-auth-session";
 import FullPageLoader from "@components/layout/FullPageLoader";
@@ -12,6 +12,12 @@ import { toast } from "sonner-native";
 import { SiteContext } from "@hooks/useSiteContext";
 import { AppState } from "react-native";
 import OfflineBanner from "@components/features/auth/OfflineBanner";
+import { CallScreen } from "@components/features/call/CallScreen";
+import { IncomingCallBanner } from "@components/features/call/IncomingCallBanner";
+import { useCallEvents } from "@hooks/call/useCallEvents";
+import { useAtomValue } from "jotai";
+import { activeCallAtom, callExpandedAtom } from "@utils/callAtoms";
+import { FrappeConfig, FrappeContext } from "frappe-react-sdk";
 
 export default function SiteLayout() {
 
@@ -247,7 +253,7 @@ export default function SiteLayout() {
         // This is not a priority, so we can do it on the background
         if (!siteInfo || !site_id || siteInfoRefreshedRef.current) return
 
-        fetch(`${siteInfo.url}/api/method/raven.api.raven_mobile.get_client_id`)
+        fetch(`${siteInfo.url}/api/method/axon.api.axon_mobile.get_client_id`)
             .then(res => res.json())
             .then(data => {
                 if (data.message && data.message.client_id) {
@@ -275,30 +281,60 @@ export default function SiteLayout() {
                 <FrappeNativeProvider siteInfo={siteInfo} getAccessToken={getToken}>
                     <Providers>
                         <BottomSheetModalProvider>
-                            <Stack initialRouteName="(tabs)">
-                                <Stack.Screen
-                                    name="chat/[id]/create-poll"
-                                    options={{
-                                        presentation: 'modal',
-                                    }}
-                                />
-                                <Stack.Screen
-                                    name="thread/[id]/create-poll"
-                                    options={{
-                                        presentation: 'modal',
-                                    }}
-                                />
-                                <Stack.Screen
-                                    name="chat/[id]/pinned-messages"
-                                    options={{
-                                        presentation: 'modal',
-                                    }}
-                                />
-                            </Stack>
+                            <SiteLayoutWithCall>
+                                <Stack initialRouteName="(tabs)">
+                                    <Stack.Screen
+                                        name="chat/[id]/create-poll"
+                                        options={{
+                                            presentation: 'modal',
+                                        }}
+                                    />
+                                    <Stack.Screen
+                                        name="thread/[id]/create-poll"
+                                        options={{
+                                            presentation: 'modal',
+                                        }}
+                                    />
+                                    <Stack.Screen
+                                        name="chat/[id]/pinned-messages"
+                                        options={{
+                                            presentation: 'modal',
+                                        }}
+                                    />
+                                    <Stack.Screen
+                                        name="call/incoming"
+                                        options={{
+                                            presentation: 'fullScreenModal',
+                                            headerShown: false,
+                                        }}
+                                    />
+                                </Stack>
+                            </SiteLayoutWithCall>
                         </BottomSheetModalProvider>
                     </Providers>
                 </FrappeNativeProvider>
             </SiteContext.Provider>
         }
     </>
+}
+
+/** Inner component that mounts call UI after Frappe context is available */
+const SiteLayoutWithCall = ({ children }: { children: React.ReactNode }) => {
+    const { currentUser } = useContext(FrappeContext) as FrappeConfig
+    const activeCall = useAtomValue(activeCallAtom)
+    const callExpanded = useAtomValue(callExpandedAtom)
+
+    useCallEvents(currentUser ?? "")
+
+    return (
+        <>
+            {children}
+            {/* Floating incoming call banner */}
+            <IncomingCallBanner />
+            {/* Full-screen call overlay when expanded */}
+            {activeCall && callExpanded && (
+                <CallScreen />
+            )}
+        </>
+    )
 }

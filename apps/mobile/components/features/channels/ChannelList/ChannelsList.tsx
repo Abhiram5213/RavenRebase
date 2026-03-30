@@ -1,5 +1,5 @@
 import { Divider } from '@components/layout/Divider';
-import { ChannelListItem } from '@raven/types/common/ChannelListItem';
+import { ChannelListItem } from '@axon/types/common/ChannelListItem';
 import { useMemo, useState } from 'react';
 import { View, TouchableOpacity, Pressable, StyleSheet } from 'react-native';
 import { Text } from '@components/nativewindui/Text';
@@ -9,11 +9,11 @@ import { useColorScheme } from '@hooks/useColorScheme';
 import { router } from 'expo-router';
 import PlusIcon from '@assets/icons/PlusIcon.svg';
 import { ChannelListRow } from './ChannelListRow';
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser';
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser';
 
 const ChannelsList = ({ channels }: { channels: ChannelListItem[] }) => {
 
-    const { myProfile } = useCurrentRavenUser()
+    const { myProfile } = useCurrentAxonUser()
     const pinnedChannelIDs = myProfile?.pinned_channels?.map(pin => pin.channel_id)
 
     const filteredChannels = useMemo(() => {

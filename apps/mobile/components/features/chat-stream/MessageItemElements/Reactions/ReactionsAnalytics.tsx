@@ -6,7 +6,7 @@ import { BottomSheetFlashList, BottomSheetModal, BottomSheetView } from '@gorhom
 import { Text } from '@components/nativewindui/Text'
 import { useColorScheme } from '@hooks/useColorScheme'
 import UserAvatar from '@components/layout/UserAvatar'
-import { useGetUser } from '@raven/lib/hooks/useGetUser'
+import { useGetUser } from '@axon/lib/hooks/useGetUser'
 import { Divider } from '@components/layout/Divider'
 import { Sheet } from '@components/nativewindui/Sheet'
 import { ReactionObject } from './MessageReactions'

@@ -7,7 +7,7 @@ import PageContainer from "@/components/layout/Settings/PageContainer"
 import SettingsContentContainer from "@/components/layout/Settings/SettingsContentContainer"
 import SettingsPageHeader from "@/components/layout/Settings/SettingsPageHeader"
 import { HStack } from "@/components/layout/Stack"
-import { RavenDocumentNotification } from "@/types/RavenIntegrations/RavenDocumentNotification"
+import { AxonDocumentNotification } from "@/types/AxonIntegrations/AxonDocumentNotification"
 import { isEmpty } from "@/utils/validations"
 import { Button } from "@radix-ui/themes"
 import { useFrappeGetDoc, useFrappeUpdateDoc, SWRResponse } from "frappe-react-sdk"
@@ -22,7 +22,7 @@ const ViewDocumentNotification = (props: Props) => {
 
     const { ID } = useParams<{ ID: string }>()
 
-    const { data, isLoading, error, mutate } = useFrappeGetDoc<RavenDocumentNotification>("Raven Document Notification", ID)
+    const { data, isLoading, error, mutate } = useFrappeGetDoc<AxonDocumentNotification>("Axon Document Notification", ID)
 
     return (
         <PageContainer>
@@ -33,11 +33,11 @@ const ViewDocumentNotification = (props: Props) => {
     )
 }
 
-const ViewDocumentNotificationContent = ({ data, mutate }: { data: RavenDocumentNotification, mutate: SWRResponse['mutate'] }) => {
+const ViewDocumentNotificationContent = ({ data, mutate }: { data: AxonDocumentNotification, mutate: SWRResponse['mutate'] }) => {
 
-    const { updateDoc, loading, error } = useFrappeUpdateDoc<RavenDocumentNotification>()
+    const { updateDoc, loading, error } = useFrappeUpdateDoc<AxonDocumentNotification>()
 
-    const methods = useForm<RavenDocumentNotification>({
+    const methods = useForm<AxonDocumentNotification>({
         disabled: loading,
         defaultValues: data
     })
@@ -47,8 +47,8 @@ const ViewDocumentNotificationContent = ({ data, mutate }: { data: RavenDocument
     const isDirty = !isEmpty(dirtyFields)
 
 
-    const onSubmit = (data: RavenDocumentNotification) => {
-        updateDoc("Raven Document Notification", data.name, data)
+    const onSubmit = (data: AxonDocumentNotification) => {
+        updateDoc("Axon Document Notification", data.name, data)
             .then((doc) => {
                 toast.success("Saved")
                 methods.reset(doc)
@@ -78,7 +78,7 @@ const ViewDocumentNotificationContent = ({ data, mutate }: { data: RavenDocument
                     title={data.name}
                     headerBadges={isDirty ? [{ label: "Not Saved", color: "red" }] : undefined}
                     actions={<HStack>
-                        <CommonSettingsMenu doctype="Raven Document Notification" docname={data.name} label={"Document Notification"} />
+                        <CommonSettingsMenu doctype="Axon Document Notification" docname={data.name} label={"Document Notification"} />
                         <Button type='submit' disabled={loading}>
                             {loading && <Loader className="text-white" />}
                             {loading ? "Saving" : "Save"}

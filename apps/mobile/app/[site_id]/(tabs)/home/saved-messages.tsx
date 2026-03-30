@@ -5,7 +5,7 @@ import { Platform, View } from 'react-native';
 import { Text } from '@components/nativewindui/Text';
 import BookMarkIcon from '@assets/icons/BookmarkIcon.svg';
 import { useFrappeGetCall } from 'frappe-react-sdk';
-import { Message } from '@raven/types/common/Message';
+import { Message } from '@axon/types/common/Message';
 import { ActivityIndicator } from '@components/nativewindui/ActivityIndicator';
 import SavedMessageItem from '@components/features/saved-messages/SavedMessageItem';
 import ChevronLeftIcon from '@assets/icons/ChevronLeftIcon.svg';
@@ -40,7 +40,7 @@ const SavedMessagesContent = () => {
 
     const { colors } = useColorScheme()
 
-    const { data, isLoading, error } = useFrappeGetCall<{ message: (Message & { workspace?: string })[] }>("raven.api.raven_message.get_saved_messages", undefined, undefined, {
+    const { data, isLoading, error } = useFrappeGetCall<{ message: (Message & { workspace?: string })[] }>("axon.api.axon_message.get_saved_messages", undefined, undefined, {
         revalidateOnFocus: false
     })
 

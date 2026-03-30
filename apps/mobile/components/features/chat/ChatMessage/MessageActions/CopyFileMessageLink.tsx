@@ -1,5 +1,5 @@
 import { useColorScheme } from '@hooks/useColorScheme'
-import { FileMessage } from '@raven/types/common/Message'
+import { FileMessage } from '@axon/types/common/Message'
 import PaperClipIcon from "@assets/icons/PaperClipIcon.svg"
 import { toast } from 'sonner-native'
 import * as Clipboard from 'expo-clipboard'

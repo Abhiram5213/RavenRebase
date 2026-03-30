@@ -1,12 +1,12 @@
 import { TouchableOpacity, View } from 'react-native'
 import { Text } from '@components/nativewindui/Text'
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser'
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser'
 import { useColorScheme } from '@hooks/useColorScheme'
 import UserIcon from '@assets/icons/UserIcon.svg'
 import { router } from 'expo-router'
 
 const UserFullName = () => {
-    const { myProfile } = useCurrentRavenUser()
+    const { myProfile } = useCurrentAxonUser()
     const { colors } = useColorScheme()
 
     const handleGoToFullNameUpdate = () => {

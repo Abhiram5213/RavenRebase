@@ -10,7 +10,7 @@ import CrossIcon from '@assets/icons/CrossIcon.svg';
 import { ChannelIcon } from '../channels/ChannelList/ChannelIcon';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useEffect } from 'react';
-import { ChannelListItem } from '@raven/types/common/ChannelListItem';
+import { ChannelListItem } from '@axon/types/common/ChannelListItem';
 import PinOutlineIcon from '@assets/icons/PinOutlineIcon.svg';
 import ActionButton from '@components/common/Buttons/ActionButton';
 

@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser'
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser'
 import { Sheet, useSheetRef } from '@components/nativewindui/Sheet'
 import { BottomSheetView } from '@gorhom/bottom-sheet'
 import SmilePlus from "@assets/icons/SmilePlus.svg"
@@ -12,8 +12,8 @@ import { Image } from 'expo-image'
 import clsx from 'clsx'
 import { ImpactFeedbackStyle } from 'expo-haptics'
 import { impactAsync } from 'expo-haptics'
-import useReactToMessage from '@raven/lib/hooks/useReactToMessage'
-import { Message } from '@raven/types/common/Message'
+import useReactToMessage from '@axon/lib/hooks/useReactToMessage'
+import { Message } from '@axon/types/common/Message'
 import { Gesture, GestureDetector, LongPressGesture } from 'react-native-gesture-handler'
 import { runOnJS } from 'react-native-reanimated'
 import { Emoji } from '@components/common/EmojiPicker/Picker'
@@ -39,7 +39,7 @@ export default function MessageReactions({ message, longPressGesture }: MessageR
 
     const message_reactions = message.message_reactions
 
-    const { myProfile: currentUser } = useCurrentRavenUser()
+    const { myProfile: currentUser } = useCurrentAxonUser()
 
     const reactToMessage = useReactToMessage()
 

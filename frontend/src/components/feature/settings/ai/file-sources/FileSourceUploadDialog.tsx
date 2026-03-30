@@ -3,7 +3,7 @@ import { CustomFile } from '@/components/feature/file-upload/FileDrop'
 import { FileUploadBox } from '@/components/feature/userSettings/UploadImage/FileUploadBox'
 import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
 import { HStack, Stack } from '@/components/layout/Stack'
-import { RavenAIFileSource } from '@/types/RavenAI/RavenAIFileSource'
+import { AxonAIFileSource } from '@/types/AxonAI/AxonAIFileSource'
 import { Box, ButtonProps, Dialog, Spinner, TextField } from '@radix-ui/themes'
 import { Button } from '@radix-ui/themes'
 import { useFrappeCreateDoc, useFrappeFileUpload } from 'frappe-react-sdk'
@@ -43,25 +43,25 @@ const FileSourceUploadDialog = ({ onUpload, buttonProps }: Props) => {
 
 const FileSourceUploadForm = ({ onClose }: { onClose: (id: string) => void }) => {
 
-    const { register, handleSubmit, formState: { errors }, setValue } = useForm<RavenAIFileSource>()
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm<AxonAIFileSource>()
 
     const [file, setFile] = useState<CustomFile | undefined>()
 
     const { upload, loading: uploadLoading, error: uploadError } = useFrappeFileUpload()
-    const { createDoc, loading: createLoading, error: createError } = useFrappeCreateDoc<RavenAIFileSource>()
+    const { createDoc, loading: createLoading, error: createError } = useFrappeCreateDoc<AxonAIFileSource>()
 
-    const onSubmit = (data: RavenAIFileSource) => {
+    const onSubmit = (data: AxonAIFileSource) => {
         // Upload the file first then create the document
 
         if (!file) return
 
-        const id = "new-raven-ai-file-source-" + Date.now()
+        const id = "new-axon-ai-file-source-" + Date.now()
         upload(file, {
-            doctype: "Raven AI File Source",
+            doctype: "Axon AI File Source",
             docname: id,
             fieldname: "file",
             isPrivate: true
-        }).then(res => createDoc("Raven AI File Source", {
+        }).then(res => createDoc("Axon AI File Source", {
             ...data,
             file: res.file_url,
         })).then((doc) => {

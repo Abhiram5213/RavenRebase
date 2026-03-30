@@ -4,7 +4,7 @@ import { lazy, Suspense, useContext, useEffect } from 'react'
 import { Sidebar } from '../components/layout/Sidebar/Sidebar'
 import { ChannelListProvider } from '../utils/channel/ChannelListProvider'
 import { UserListProvider } from '@/utils/users/UserListProvider'
-import { hasRavenUserRole } from '@/utils/roles'
+import { hasAxonUserRole } from '@/utils/roles'
 import { FullPageLoader } from '@/components/layout/Loaders/FullPageLoader'
 import CommandMenu from '@/components/feature/CommandMenu/CommandMenu'
 import { useFetchActiveUsersRealtime } from '@/hooks/fetchers/useFetchActiveUsers'
@@ -16,22 +16,25 @@ import { useFrappeEventListener, useSWRConfig } from 'frappe-react-sdk'
 import { useUnreadThreadsCountEventListener } from '@/hooks/useUnreadThreadsCount'
 import { UserContext } from '@/utils/auth/UserProvider'
 import AIThreadAutoOpen from '@/components/feature/ai/AIThreadAutoOpen'
+import { IncomingCallBanner } from '@/components/feature/call/IncomingCallBanner'
+import { useSetAtom } from 'jotai'
+import { activeCallAtom, callUIModeAtom, incomingCallAtom } from '@/utils/call/callAtoms'
 
-const AddRavenUsersPage = lazy(() => import('@/pages/AddRavenUsersPage'))
+const AddAxonUsersPage = lazy(() => import('@/pages/AddAxonUsersPage'))
 
 export const MainPage = () => {
 
-    const isRavenUser = hasRavenUserRole()
+    const isAxonUser = hasAxonUserRole()
 
-    if (isRavenUser) {
+    if (isAxonUser) {
         return (
             <MainPageContent />
         )
     } else {
-        // If the user does not have the Raven User role, then show an error message if the user cannot add more people.
-        // Else, show the page to add people to Raven
+        // If the user does not have the Axon User role, then show an error message if the user cannot add more people.
+        // Else, show the page to add people to Axon
         return <Suspense fallback={<FullPageLoader />}>
-            <AddRavenUsersPage />
+            <AddAxonUsersPage />
         </Suspense>
     }
 
@@ -40,6 +43,10 @@ export const MainPage = () => {
 const MainPageContent = () => {
 
     const { currentUser } = useContext(UserContext)
+
+    const setIncomingCall = useSetAtom(incomingCallAtom)
+    const setActiveCall = useSetAtom(activeCallAtom)
+    const setCallUIMode = useSetAtom(callUIModeAtom)
 
     useFetchActiveUsersRealtime()
 
@@ -60,6 +67,30 @@ const MainPageContent = () => {
 
     useFrappeEventListener('channel_members_updated', (payload) => {
         mutate(["channel_members", payload.channel_id])
+    })
+
+    // Call signalling listeners
+    useFrappeEventListener('axon:call_initiated', (event) => {
+        // If someone else initiated the call, show incoming banner
+        if (event.initiated_by !== currentUser) {
+            setIncomingCall({
+                call_id: event.call_id,
+                channel_id: event.channel_id,
+                initiated_by: event.initiated_by,
+                livekit_room_name: event.livekit_room_name,
+            })
+        }
+    })
+
+    useFrappeEventListener('axon:call_ended', (event) => {
+        setIncomingCall(prev => prev?.call_id === event.call_id ? null : prev)
+        setActiveCall(prev => {
+            if (prev?.call_id === event.call_id) {
+                setCallUIMode("hidden")
+                return null
+            }
+            return prev
+        })
     })
 
     const onThreadReplyEvent = useUnreadThreadsCountEventListener()
@@ -113,6 +144,7 @@ const MainPageContent = () => {
             <CommandMenu />
             <MessageActionController />
             <AIThreadAutoOpen />
+            <IncomingCallBanner />
         </ChannelListProvider>
     </UserListProvider>
 }

@@ -6,10 +6,10 @@ import { ChannelIcon } from "@/utils/layout/channelIcon"
 import { ContextMenu, DropdownMenu, Flex, IconButton, Text } from "@radix-ui/themes"
 import { useParams, useSearchParams } from "react-router-dom"
 import { useStickyState } from "@/hooks/useStickyState"
-import useCurrentRavenUser from "@/hooks/useCurrentRavenUser"
+import useCurrentAxonUser from "@/hooks/useCurrentAxonUser"
 import { RiPushpinLine, RiUnpinLine } from "react-icons/ri"
 import { FrappeConfig, FrappeContext } from "frappe-react-sdk"
-import { RavenUser } from "@/types/Raven/RavenUser"
+import { AxonUser } from "@/types/Axon/AxonUser"
 import { __ } from "@/utils/translations"
 import { ChannelWithUnreadCount } from "@/components/layout/Sidebar/useGetChannelUnreadCounts"
 import { useAtom } from "jotai"
@@ -27,7 +27,7 @@ export const ChannelList = ({ channels }: ChannelListProps) => {
 
     const toggle = () => setShowData(d => !d)
 
-    const { myProfile } = useCurrentRavenUser()
+    const { myProfile } = useCurrentAxonUser()
 
     const pinnedChannelIDs = myProfile?.pinned_channels?.map(pin => pin.channel_id)
 
@@ -123,7 +123,7 @@ export const ChannelItemElement = ({ channel }: { channel: ChannelWithUnreadCoun
 
 const PinButton = ({ channelID }: { channelID: string }) => {
 
-    const { myProfile, mutate } = useCurrentRavenUser()
+    const { myProfile, mutate } = useCurrentAxonUser()
 
     const isPinned = useMemo(() => {
         if (myProfile) {
@@ -136,9 +136,9 @@ const PinButton = ({ channelID }: { channelID: string }) => {
     const { call } = useContext(FrappeContext) as FrappeConfig
 
     const onClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
-        call.post('raven.api.raven_channel.toggle_pinned_channel', {
+        call.post('axon.api.axon_channel.toggle_pinned_channel', {
             channel_id: channelID
-        }).then((res: { message: RavenUser }) => {
+        }).then((res: { message: AxonUser }) => {
             if (res.message) {
                 mutate({ message: res.message }, { revalidate: false })
             }

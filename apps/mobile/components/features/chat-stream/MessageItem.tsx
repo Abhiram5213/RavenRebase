@@ -1,12 +1,12 @@
 import { Pressable, View } from 'react-native'
 import { Text } from '@components/nativewindui/Text';
-import { useGetUser } from '@raven/lib/hooks/useGetUser'
+import { useGetUser } from '@axon/lib/hooks/useGetUser'
 import clsx from 'clsx'
 import MessageReactions from './MessageItemElements/Reactions/MessageReactions'
 import ShareForward from '@assets/icons/ShareForward.svg'
 import { useMemo, memo, useCallback } from 'react';
 import PinIcon from '@assets/icons/PinIcon.svg'
-import { FileMessage, ImageMessage, PollMessage, TextMessage } from '@raven/types/common/Message'
+import { FileMessage, ImageMessage, PollMessage, TextMessage } from '@axon/types/common/Message'
 import MessageAvatar from '@components/features/chat-stream/MessageItemElements/MessageAvatar'
 import MessageHeader from '@components/features/chat-stream/MessageItemElements/MessageHeader'
 import FileMessageRenderer from '@components/features/chat/ChatMessage/Renderers/FileMessageRenderer'
@@ -17,7 +17,7 @@ import ReplyMessageBox from '@components/features/chat/ChatMessage/Renderers/Rep
 import { ImageMessageRenderer } from '@components/features/chat/ChatMessage/Renderers/ImageMessage';
 import MessageTextRenderer from './MessageItemElements/MessageTextRenderer';
 import { impactAsync, ImpactFeedbackStyle } from 'expo-haptics';
-import useReactToMessage from '@raven/lib/hooks/useReactToMessage';
+import useReactToMessage from '@axon/lib/hooks/useReactToMessage';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { doubleTapMessageEmojiAtom } from '@lib/preferences';
 import { messageActionsSelectedMessageAtom } from '@lib/ChatInputUtils';

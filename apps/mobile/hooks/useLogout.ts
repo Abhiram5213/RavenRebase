@@ -25,7 +25,7 @@ export const useLogout = () => {
         try {
             messaging.getToken().then((token) => {
                 if (token) {
-                    call.post('raven.api.notification.unsubscribe', {
+                    call.post('axon.api.notification.unsubscribe', {
                         fcm_token: token
                     })
                 }

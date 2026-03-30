@@ -8,7 +8,7 @@ import PageContainer from "@/components/layout/Settings/PageContainer"
 import SettingsContentContainer from "@/components/layout/Settings/SettingsContentContainer"
 import SettingsPageHeader from "@/components/layout/Settings/SettingsPageHeader"
 import { HStack } from "@/components/layout/Stack"
-import { RavenWorkspace } from "@/types/Raven/RavenWorkspace"
+import { AxonWorkspace } from "@/types/Axon/AxonWorkspace"
 import { isEmpty } from "@/utils/validations"
 import { Box, Button, Tabs } from "@radix-ui/themes"
 import { useFrappeGetDoc, useFrappeUpdateDoc, SWRResponse, useSWRConfig } from "frappe-react-sdk"
@@ -26,7 +26,7 @@ const ViewWorkspace = () => {
 
     const { ID } = useParams<{ ID: string }>()
 
-    const { data, isLoading, error, mutate } = useFrappeGetDoc<RavenWorkspace>("Raven Workspace", ID)
+    const { data, isLoading, error, mutate } = useFrappeGetDoc<AxonWorkspace>("Axon Workspace", ID)
 
     return (
         <PageContainer>
@@ -37,11 +37,11 @@ const ViewWorkspace = () => {
     )
 }
 
-const ViewWorkspaceContent = ({ data, mutate }: { data: RavenWorkspace, mutate: SWRResponse['mutate'] }) => {
+const ViewWorkspaceContent = ({ data, mutate }: { data: AxonWorkspace, mutate: SWRResponse['mutate'] }) => {
 
-    const { updateDoc, loading, error } = useFrappeUpdateDoc<RavenWorkspace>()
+    const { updateDoc, loading, error } = useFrappeUpdateDoc<AxonWorkspace>()
 
-    const methods = useForm<RavenWorkspace>({
+    const methods = useForm<AxonWorkspace>({
         defaultValues: data
     })
 
@@ -52,8 +52,8 @@ const ViewWorkspaceContent = ({ data, mutate }: { data: RavenWorkspace, mutate: 
     const { mutate: globalMutate } = useSWRConfig()
 
 
-    const onSubmit = (data: RavenWorkspace) => {
-        updateDoc("Raven Workspace", data.name, data)
+    const onSubmit = (data: AxonWorkspace) => {
+        updateDoc("Axon Workspace", data.name, data)
             .then((doc) => {
                 toast.success("Saved")
                 methods.reset(doc)

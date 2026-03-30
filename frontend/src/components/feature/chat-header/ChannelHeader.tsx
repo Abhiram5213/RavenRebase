@@ -10,6 +10,7 @@ import { Link } from "react-router-dom"
 import { ViewPinnedMessagesButton } from "../pinned-messages/ViewPinnedMessagesButton"
 import { useAtomValue } from "jotai"
 import { lastWorkspaceAtom } from "@/utils/lastVisitedAtoms"
+import { StartCallButton } from "../call/StartCallButton"
 
 interface ChannelHeaderProps {
     channelData: ChannelListItem
@@ -43,6 +44,7 @@ export const ChannelHeader = ({ channelData }: ChannelHeaderProps) => {
             </Flex>
 
             <Flex gap='2' align='center' className="animate-fadein">
+                <StartCallButton channelId={channelData.name} />
                 <ViewChannelMemberAvatars channelData={channelData} />
                 <ChannelHeaderMenu channelData={channelData} />
             </Flex>

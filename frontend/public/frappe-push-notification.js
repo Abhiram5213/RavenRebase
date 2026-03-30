@@ -88,7 +88,7 @@ class FrappePushNotification {
             return this.webConfig
         }
         try {
-            if (window.frappe?.boot.push_notification_service === "Raven") {
+            if (window.frappe?.boot.push_notification_service === "Axon") {
                 this.webConfig = JSON.parse(window.frappe?.boot.firebase_client_config)
                 return this.webConfig
             }
@@ -114,7 +114,7 @@ class FrappePushNotification {
             return this.vapidPublicKey
         }
         try {
-            if (window.frappe?.boot.push_notification_service === "Raven") {
+            if (window.frappe?.boot.push_notification_service === "Axon") {
                 this.vapidPublicKey = window.frappe?.boot.vapid_public_key
                 return this.vapidPublicKey
             }
@@ -253,7 +253,7 @@ class FrappePushNotification {
     async registerTokenHandler(token) {
         try {
             let response = await fetch(
-                "/api/method/raven.api.notification.subscribe",
+                "/api/method/axon.api.notification.subscribe",
                 {
                     method: "POST",
                     body: JSON.stringify({
@@ -283,7 +283,7 @@ class FrappePushNotification {
     async unregisterTokenHandler(token) {
         try {
             let response = await fetch(
-                "/api/method/raven.api.notification.unsubscribe",
+                "/api/method/axon.api.notification.unsubscribe",
                 {
                     method: "POST",
                     body: JSON.stringify({

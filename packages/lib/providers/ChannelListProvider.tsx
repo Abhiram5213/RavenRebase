@@ -2,7 +2,7 @@ import { FrappeError, useFrappeGetCall, SWRConfiguration, useFrappeEventListener
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { KeyedMutator } from 'swr'
 import { useSWRConfig } from 'frappe-react-sdk'
-import { ChannelList } from '@raven/types/common/ChannelListItem'
+import { ChannelList } from '@axon/types/common/ChannelListItem'
 
 export interface ChannelListContextType extends ChannelList {
     mutate: KeyedMutator<{ message: ChannelList }>,
@@ -31,7 +31,7 @@ export const useChannelList = (): ChannelListContextType => {
 export const useChannelListProvider = (swrConfig?: SWRConfiguration): ChannelListContextType => {
 
     const { mutate: globalMutate } = useSWRConfig()
-    const { data, mutate, ...rest } = useFrappeGetCall<{ message: ChannelList }>("raven.api.raven_channel.get_all_channels", {
+    const { data, mutate, ...rest } = useFrappeGetCall<{ message: ChannelList }>("axon.api.axon_channel.get_all_channels", {
         hide_archived: false
     }, `channel_list`, {
         revalidateOnFocus: true,

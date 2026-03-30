@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import MessageAvatar from '../chat-stream/MessageItemElements/MessageAvatar';
-import { useGetUser } from '@raven/lib/hooks/useGetUser';
+import { useGetUser } from '@axon/lib/hooks/useGetUser';
 import MessageHeader from '../chat-stream/MessageItemElements/MessageHeader';
 import { ImageMessageView } from '../chat/ChatMessage/Renderers/ImageMessage';
 import { PollMessageBlock } from '../chat/ChatMessage/Renderers/PollMessage';
@@ -11,7 +11,7 @@ import { MessageLinkRenderer } from '../chat-stream/MessageItemElements/MessageL
 import PinIcon from '@assets/icons/PinIcon.svg'
 import ShareForward from '@assets/icons/ShareForward.svg'
 import ReplyMessageBox from '../chat/ChatMessage/Renderers/ReplyMessageBox';
-import { Message } from '@raven/types/common/Message';
+import { Message } from '@axon/types/common/Message';
 import { View } from 'react-native';
 import { Text } from '@components/nativewindui/Text';
 

@@ -2,13 +2,13 @@ import { View, Text, Alert, Pressable } from 'react-native';
 import { useFrappeDeleteDoc, useFrappeGetCall, useFrappeUpdateDoc, useSWRConfig } from 'frappe-react-sdk';
 import { useLocalSearchParams } from 'expo-router';
 import Reanimated, { SharedValue, useAnimatedStyle } from 'react-native-reanimated';
-import { Member, useFetchChannelMembers } from '@raven/lib/hooks/useFetchChannelMembers';
+import { Member, useFetchChannelMembers } from '@axon/lib/hooks/useFetchChannelMembers';
 import UserAvatar from '@components/layout/UserAvatar';
 import { Button } from '@components/nativewindui/Button';
 import ReanimatedSwipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 import TrashIcon from "@assets/icons/TrashIcon.svg"
 import CrownIcon from "@assets/icons/CrownIcon.svg"
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser';
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useCurrentChannelData } from '@hooks/useCurrentChannelData';
 import { toast } from 'sonner-native';
@@ -18,7 +18,7 @@ import { COLORS } from '@theme/colors';
 const ChannelMemberRow = ({ member }: { member: Member }) => {
 
     const { id: channelId } = useLocalSearchParams()
-    const { myProfile: currentUserInfo } = useCurrentRavenUser()
+    const { myProfile: currentUserInfo } = useCurrentAxonUser()
     const { channelMembers, mutate: updateMembers } = useFetchChannelMembers(channelId as string ?? "")
     const { updateDoc, loading: updatingMember, reset } = useFrappeUpdateDoc()
     const { channel } = useCurrentChannelData(channelId as string ?? "")
@@ -26,7 +26,7 @@ const ChannelMemberRow = ({ member }: { member: Member }) => {
     const isBot = member.type === "Bot"
 
     const { data: memberInfo } = useFrappeGetCall<{ message: { name: string } }>("frappe.client.get_value", {
-        doctype: "Raven Channel Member",
+        doctype: "Axon Channel Member",
         filters: JSON.stringify({ channel_id: channelId, user_id: member?.name }),
         fieldname: JSON.stringify(["name"]),
     }, undefined, {
@@ -38,7 +38,7 @@ const ChannelMemberRow = ({ member }: { member: Member }) => {
             toast.error("Bots cannot be made admins")
             return
         }
-        return updateDoc("Raven Channel Member", memberInfo?.message.name ?? "", {
+        return updateDoc("Axon Channel Member", memberInfo?.message.name ?? "", {
             is_admin: admin,
         }).then(() => {
             updateMembers()
@@ -67,7 +67,7 @@ const ChannelMemberRow = ({ member }: { member: Member }) => {
 
 
         const deleteMember = async () => {
-            return deleteDoc('Raven Channel Member', member?.channel_member_name).then(() => {
+            return deleteDoc('Axon Channel Member', member?.channel_member_name).then(() => {
                 toast.success(`Removed ${member.full_name} from the channel`)
                 mutate(["channel_members", channelId])
             })

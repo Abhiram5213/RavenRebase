@@ -1,19 +1,19 @@
 import { Text } from '@components/nativewindui/Text'
 import useFileURL from '@hooks/useFileURL'
 import { cn } from '@lib/cn'
-import { RavenUser } from '@raven/types/Raven/RavenUser'
+import { AxonUser } from '@axon/types/Axon/AxonUser'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { TextProps, View, ViewProps } from 'react-native'
 import { Image, ImageSource, ImageProps } from 'expo-image'
 import BotIcon from '@assets/icons/BotIcon.svg'
-import { getHashOfString, getInitials, normalizeHash } from '@raven/lib/utils/utils'
+import { getHashOfString, getInitials, normalizeHash } from '@axon/lib/utils/utils'
 import { useColorScheme } from '@hooks/useColorScheme'
 
 type Props = {
     alt: string,
     src?: string,
     isActive?: boolean,
-    availabilityStatus?: RavenUser['availability_status'],
+    availabilityStatus?: AxonUser['availability_status'],
     isBot?: boolean,
     imageProps?: ImageProps
     fallbackProps?: ViewProps

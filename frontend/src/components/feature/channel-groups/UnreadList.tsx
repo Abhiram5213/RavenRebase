@@ -101,7 +101,7 @@ const UnreadSectionActions = ({ channelIDs }: { channelIDs: string[] }) => {
 
     const { mutate } = useSWRConfig()
 
-    const { call } = useFrappePostCall('raven.api.raven_channel.mark_all_messages_as_read')
+    const { call } = useFrappePostCall('axon.api.axon_channel.mark_all_messages_as_read')
     const handleMarkAllAsRead = () => {
         call({
             channel_ids: channelIDs

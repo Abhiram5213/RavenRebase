@@ -7,7 +7,7 @@ import PageContainer from "@/components/layout/Settings/PageContainer"
 import SettingsContentContainer from "@/components/layout/Settings/SettingsContentContainer"
 import SettingsPageHeader from "@/components/layout/Settings/SettingsPageHeader"
 import { HStack } from "@/components/layout/Stack"
-import { RavenAIFunction } from "@/types/RavenAI/RavenAIFunction"
+import { AxonAIFunction } from "@/types/AxonAI/AxonAIFunction"
 import { isEmpty } from "@/utils/validations"
 import { Button } from "@radix-ui/themes"
 import { SWRResponse, useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk"
@@ -22,7 +22,7 @@ const ViewFunction = (props: Props) => {
 
     const { ID } = useParams<{ ID: string }>()
 
-    const { data, isLoading, error, mutate } = useFrappeGetDoc<RavenAIFunction>("Raven AI Function", ID)
+    const { data, isLoading, error, mutate } = useFrappeGetDoc<AxonAIFunction>("Axon AI Function", ID)
 
     return (
         <PageContainer>
@@ -33,11 +33,11 @@ const ViewFunction = (props: Props) => {
     )
 }
 
-const ViewFunctionContent = ({ data, mutate }: { data: RavenAIFunction, mutate: SWRResponse['mutate'] }) => {
+const ViewFunctionContent = ({ data, mutate }: { data: AxonAIFunction, mutate: SWRResponse['mutate'] }) => {
 
-    const { updateDoc, loading, error } = useFrappeUpdateDoc<RavenAIFunction>()
+    const { updateDoc, loading, error } = useFrappeUpdateDoc<AxonAIFunction>()
 
-    const methods = useForm<RavenAIFunction>({
+    const methods = useForm<AxonAIFunction>({
         disabled: loading,
         defaultValues: data
     })
@@ -45,8 +45,8 @@ const ViewFunctionContent = ({ data, mutate }: { data: RavenAIFunction, mutate: 
     const { formState: { dirtyFields } } = methods
 
     const isDirty = !isEmpty(dirtyFields)
-    const onSubmit = (data: RavenAIFunction) => {
-        updateDoc("Raven AI Function", data.name, data)
+    const onSubmit = (data: AxonAIFunction) => {
+        updateDoc("Axon AI Function", data.name, data)
             .then((doc) => {
                 toast.success("Saved")
                 methods.reset(doc)
@@ -74,7 +74,7 @@ const ViewFunctionContent = ({ data, mutate }: { data: RavenAIFunction, mutate: 
                     title={data.name}
                     headerBadges={isDirty ? [{ label: "Not Saved", color: "red" }] : undefined}
                     actions={<HStack>
-                        <CommonSettingsMenu doctype="Raven AI Function" docname={data.name} label={"Function"} />
+                        <CommonSettingsMenu doctype="Axon AI Function" docname={data.name} label={"Function"} />
                         <Button type='submit' disabled={loading}>
                             {loading && <Loader className="text-white" />}
                             {loading ? "Saving" : "Save"}

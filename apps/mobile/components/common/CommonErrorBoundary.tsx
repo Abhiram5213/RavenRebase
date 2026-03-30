@@ -27,7 +27,7 @@ export function CommonErrorBoundary({ error, retry }: ErrorBoundaryProps) {
                 </TouchableOpacity>
 
                 <View className='flex gap-2 items-center'>
-                    <Link href="https://github.com/The-Commit-Company/raven/issues" target='_blank' className='bg-card-background rounded-lg px-4 py-2'>
+                    <Link href="https://github.com/The-Commit-Company/axon/issues" target='_blank' className='bg-card-background rounded-lg px-4 py-2'>
                         <Text className='text-foreground text-sm font-medium'>Report Issue on GitHub</Text>
                     </Link>
                     <TouchableOpacity onPress={onCopy} className='bg-card-background rounded-lg px-4 py-2'>

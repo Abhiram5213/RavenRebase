@@ -1,13 +1,13 @@
 import UserAvatar from "@components/layout/UserAvatar"
 import { useColorScheme } from "@hooks/useColorScheme"
 import { useIsUserActive } from "@hooks/useIsUserActive"
-import useCurrentRavenUser from "@raven/lib/hooks/useCurrentRavenUser"
-import { useGetUser } from "@raven/lib/hooks/useGetUser"
+import useCurrentAxonUser from "@axon/lib/hooks/useCurrentAxonUser"
+import { useGetUser } from "@axon/lib/hooks/useGetUser"
 import { Link } from "expo-router"
 import { useMemo } from "react"
 import { Pressable, View } from "react-native"
 import { Text } from "@components/nativewindui/Text"
-import { DMChannelWithUnreadCount } from "@raven/lib/hooks/useGetChannelUnreadCounts"
+import { DMChannelWithUnreadCount } from "@axon/lib/hooks/useGetChannelUnreadCounts"
 import dayjs from "dayjs"
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
@@ -22,7 +22,7 @@ dayjs.extend(relativeTime)
 
 const DMRow = ({ dm }: { dm: DMChannelWithUnreadCount }) => {
 
-    const { myProfile } = useCurrentRavenUser()
+    const { myProfile } = useCurrentAxonUser()
     const user = useGetUser(dm.peer_user_id)
     const isActive = useIsUserActive(dm.peer_user_id)
 

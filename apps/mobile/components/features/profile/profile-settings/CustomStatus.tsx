@@ -2,13 +2,13 @@ import { TouchableOpacity, View } from 'react-native'
 import { Text } from '@components/nativewindui/Text'
 import SmileIcon from '@assets/icons/SmileIcon.svg'
 import { useColorScheme } from '@hooks/useColorScheme'
-import useCurrentRavenUser from '@raven/lib/hooks/useCurrentRavenUser'
+import useCurrentAxonUser from '@axon/lib/hooks/useCurrentAxonUser'
 import { router } from 'expo-router'
 
 const CustomStatus = () => {
 
     const { colors } = useColorScheme()
-    const { myProfile } = useCurrentRavenUser()
+    const { myProfile } = useCurrentAxonUser()
 
     const handleGoToCustomStatus = () => {
         router.push('./custom-status', {

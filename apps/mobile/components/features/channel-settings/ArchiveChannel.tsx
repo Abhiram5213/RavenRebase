@@ -1,5 +1,5 @@
-import { ChannelListContext, ChannelListContextType } from '@raven/lib/providers/ChannelListProvider'
-import { ChannelListItem } from '@raven/types/common/ChannelListItem'
+import { ChannelListContext, ChannelListContextType } from '@axon/lib/providers/ChannelListProvider'
+import { ChannelListItem } from '@axon/types/common/ChannelListItem'
 import { FrappeDoc, useFrappeUpdateDoc } from 'frappe-react-sdk'
 import { useContext } from 'react'
 import { Alert, Pressable } from 'react-native'
@@ -19,7 +19,7 @@ const ArchiveChannel = ({ channel }: { channel: FrappeDoc<ChannelListItem> | und
     const goToHome = useRouteToHome()
 
     const onArchiveChannel = () => {
-        updateDoc('Raven Channel', channel?.name ?? '', {
+        updateDoc('Axon Channel', channel?.name ?? '', {
             is_archived: 1
         }).then(() => {
             toast.success(`Channel archived.`)

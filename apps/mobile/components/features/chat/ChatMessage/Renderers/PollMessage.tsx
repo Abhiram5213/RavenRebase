@@ -5,10 +5,10 @@ import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-na
 import { Checkbox } from '@components/nativewindui/Checkbox';
 import ViewPollVotes from '@components/features/polls/ViewPollVotes';
 import { Text } from '@components/nativewindui/Text';
-import { RavenPoll } from '@raven/types/RavenMessaging/RavenPoll';
-import { RavenPollOption } from '@raven/types/RavenMessaging/RavenPollOption';
+import { AxonPoll } from '@axon/types/AxonMessaging/AxonPoll';
+import { AxonPollOption } from '@axon/types/AxonMessaging/AxonPollOption';
 import { useColorScheme } from "@hooks/useColorScheme"
-import { PollMessage } from '@raven/types/common/Message';
+import { PollMessage } from '@axon/types/common/Message';
 import { toast } from 'sonner-native';
 import { Button } from '@components/nativewindui/Button';
 import ErrorBanner from '@components/common/ErrorBanner';
@@ -18,14 +18,14 @@ type PollMessageBlockProps = {
 }
 
 export interface Poll {
-    'poll': RavenPoll,
+    'poll': AxonPoll,
     'current_user_votes': { 'option': string }[]
 }
 
 export const PollMessageBlock = ({ message, ...props }: PollMessageBlockProps) => {
 
     const { data, error, mutate } = useFrappeGetCall<{ message: Poll }>(
-        'raven.api.raven_poll.get_poll',
+        'axon.api.axon_poll.get_poll',
         {
             message_id: message.name,
         },
@@ -36,7 +36,7 @@ export const PollMessageBlock = ({ message, ...props }: PollMessageBlockProps) =
         }
     );
 
-    useFrappeDocumentEventListener('Raven Poll', message.poll_id, () => {
+    useFrappeDocumentEventListener('Axon Poll', message.poll_id, () => {
         mutate();
     });
 
@@ -77,7 +77,7 @@ const PollMessageBox = ({ data, messageID }: { data: Poll; messageID: string }) 
     )
 }
 
-const PollOption = ({ data, option, showVoteNumber }: { data: Poll; option: RavenPollOption; showVoteNumber: boolean }) => {
+const PollOption = ({ data, option, showVoteNumber }: { data: Poll; option: AxonPollOption; showVoteNumber: boolean }) => {
 
     const width = useSharedValue(0)
 
@@ -144,10 +144,10 @@ const PollResults = ({ data }: { data: Poll }) => {
 
 const SingleChoicePoll = ({ data, messageID }: { data: Poll; messageID: string }) => {
 
-    const { call } = useFrappePostCall('raven.api.raven_poll.add_vote')
+    const { call } = useFrappePostCall('axon.api.axon_poll.add_vote')
     const [selectedOption, setSelectedOption] = useState<string | null>(null)
 
-    const onVoteSubmit = async (option: RavenPollOption) => {
+    const onVoteSubmit = async (option: AxonPollOption) => {
         return call({
             'message_id': messageID,
             'option_id': option.name
@@ -158,7 +158,7 @@ const SingleChoicePoll = ({ data, messageID }: { data: Poll; messageID: string }
         })
     }
 
-    const handleOptionSelect = (option: RavenPollOption) => {
+    const handleOptionSelect = (option: AxonPollOption) => {
         if (!data.poll.is_disabled) {
             setSelectedOption(option.name)
             onVoteSubmit(option) // Automatically submit the vote when an option is selected
@@ -189,7 +189,7 @@ const SingleChoicePoll = ({ data, messageID }: { data: Poll; messageID: string }
 const MultiChoicePoll = ({ data, messageID }: { data: Poll; messageID: string }) => {
 
     const [selectedOptions, setSelectedOptions] = useState<string[]>([])
-    const { call } = useFrappePostCall('raven.api.raven_poll.add_vote')
+    const { call } = useFrappePostCall('axon.api.axon_poll.add_vote')
 
     const handleCheckboxChange = (name: string, value: boolean | string) => {
         if (value) {

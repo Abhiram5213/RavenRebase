@@ -8,7 +8,7 @@ import { BiSearch, BiCircle, BiSolidCrown } from "react-icons/bi"
 import { UserAvatar } from "@/components/common/UserAvatar"
 import { UserActionsMenu } from "./UserActions/UserActionsMenu"
 import { ChannelMembers } from "@/hooks/fetchers/useFetchChannelMembers"
-import { hasRavenAdminRole } from "@/utils/roles"
+import { hasAxonAdminRole } from "@/utils/roles"
 
 interface MemberDetailsProps {
     channelData: ChannelListItem,
@@ -87,8 +87,8 @@ const MemberList = ({ channelData, channelMembers, activeUsers, updateMembers, i
     }, [input, channelMembers])
 
     const isCurrentUserAdmin = useMemo(() => {
-        // Check if thr current user is a member + (admin or Raven Admin)
-        if (channelMembers[currentUser] && (channelMembers[currentUser].is_admin == 1 || hasRavenAdminRole())) {
+        // Check if thr current user is a member + (admin or Axon Admin)
+        if (channelMembers[currentUser] && (channelMembers[currentUser].is_admin == 1 || hasAxonAdminRole())) {
             return true
         }
         return false

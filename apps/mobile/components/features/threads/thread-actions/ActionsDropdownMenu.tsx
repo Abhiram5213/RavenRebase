@@ -1,7 +1,7 @@
 import { TouchableOpacity } from 'react-native'
 import ThreeHorizontalDots from '@assets/icons/ThreeHorizontalDots.svg'
 import * as DropdownMenu from 'zeego/dropdown-menu'
-import { Member } from '@raven/lib/hooks/useFetchChannelMembers';
+import { Member } from '@axon/lib/hooks/useFetchChannelMembers';
 import { Alert } from 'react-native'
 import { useFrappeDeleteDoc, useFrappePostCall, useSWRConfig } from 'frappe-react-sdk';
 import { toast } from 'sonner-native';
@@ -105,7 +105,7 @@ const ActionsDropdownMenu = ({ threadID, channelMember }: { threadID: string, ch
 const useToggleThreadNotifications = (threadID: string, channelMember: Member) => {
 
     const { mutate } = useSWRConfig()
-    const { call, error } = useFrappePostCall('raven.api.notification.toggle_push_notification_for_channel')
+    const { call, error } = useFrappePostCall('axon.api.notification.toggle_push_notification_for_channel')
 
     const onToggle = async () => {
         return call({
@@ -141,7 +141,7 @@ const useToggleThreadNotifications = (threadID: string, channelMember: Member) =
 
 const useLeaveThread = (threadID: string) => {
 
-    const { call, error } = useFrappePostCall('raven.api.raven_channel.leave_channel')
+    const { call, error } = useFrappePostCall('axon.api.axon_channel.leave_channel')
     const { mutate } = useSWRConfig()
 
     const onLeaveThread = async () => {
@@ -166,7 +166,7 @@ const useDeleteThread = (threadID: string) => {
     const { deleteDoc, error } = useFrappeDeleteDoc()
 
     const onDeleteThread = async () => {
-        return deleteDoc('Raven Channel', threadID)
+        return deleteDoc('Axon Channel', threadID)
             .then(() => {
                 toast.success(`Thread has been deleted.`)
                 router.back()

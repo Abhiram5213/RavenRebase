@@ -1,4 +1,4 @@
-import { Message } from '@raven/types/common/Message'
+import { Message } from '@axon/types/common/Message'
 import { useColorScheme } from '@hooks/useColorScheme'
 import { useFrappePostCall } from "frappe-react-sdk"
 import { toast } from "sonner-native"
@@ -39,7 +39,7 @@ export default CreateThread
 
 const useCreateThread = (message: Message) => {
 
-    const { call, loading } = useFrappePostCall<{ message: { channel_id: string, thread_id: string } }>("raven.api.threads.create_thread")
+    const { call, loading } = useFrappePostCall<{ message: { channel_id: string, thread_id: string } }>("axon.api.threads.create_thread")
 
     const handleCreateThread = () => {
         return call({ message_id: message?.name })

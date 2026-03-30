@@ -1,4 +1,4 @@
-import { ChannelListItem } from '@raven/types/common/ChannelListItem'
+import { ChannelListItem } from '@axon/types/common/ChannelListItem'
 import { FrappeDoc } from 'frappe-react-sdk'
 import { View } from 'react-native'
 import { Text } from '@components/nativewindui/Text'

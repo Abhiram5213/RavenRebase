@@ -4,7 +4,7 @@ import { ErrorBanner } from '@/components/layout/AlertBanner/ErrorBanner'
 import PageContainer from '@/components/layout/Settings/PageContainer'
 import SettingsContentContainer from '@/components/layout/Settings/SettingsContentContainer'
 import SettingsPageHeader from '@/components/layout/Settings/SettingsPageHeader'
-import { RavenBot } from '@/types/RavenBot/RavenBot'
+import { AxonBot } from '@/types/AxonBot/AxonBot'
 import { Button } from '@radix-ui/themes'
 import { useFrappeCreateDoc } from 'frappe-react-sdk'
 import { useEffect } from 'react'
@@ -13,9 +13,9 @@ import { useNavigate } from 'react-router-dom'
 
 const CreateBot = () => {
 
-    const { createDoc, loading, error } = useFrappeCreateDoc<RavenBot>()
+    const { createDoc, loading, error } = useFrappeCreateDoc<AxonBot>()
 
-    const methods = useForm<RavenBot>({
+    const methods = useForm<AxonBot>({
         disabled: loading,
         defaultValues: {
             is_ai_bot: 0,
@@ -27,8 +27,8 @@ const CreateBot = () => {
     const navigate = useNavigate()
 
 
-    const onSubmit = (data: RavenBot) => {
-        createDoc("Raven Bot", data)
+    const onSubmit = (data: AxonBot) => {
+        createDoc("Axon Bot", data)
             .then((doc) => {
                 navigate(`../${doc.name}`)
             })

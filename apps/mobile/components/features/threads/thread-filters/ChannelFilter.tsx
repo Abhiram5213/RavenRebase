@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { Text } from '@components/nativewindui/Text';
 import * as DropdownMenu from 'zeego/dropdown-menu';
-import useGetChannels from '@raven/lib/hooks/useGetChannels';
+import useGetChannels from '@axon/lib/hooks/useGetChannels';
 import HashIcon from '@assets/icons/HashIcon.svg';
 import { useColorScheme } from '@hooks/useColorScheme';
 
