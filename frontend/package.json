@@ -1,17 +1,21 @@
 {
-  "name": "raven-web",
+  "name": "axon-web",
   "private": true,
   "license": "AGPL-3.0-only",
   "version": "2.6.6",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/assets/raven/raven/ && yarn copy-html-entry",
+    "build": "vite build --base=/assets/axon/axon/ && yarn copy-html-entry",
     "preview": "vite preview",
-    "copy-html-entry": "cp ../raven/public/raven/index.html ../raven/www/raven.html"
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "copy-html-entry": "cp ../axon/public/axon/index.html ../axon/www/axon.html"
   },
   "dependencies": {
     "@emoji-mart/react": "^1.1.1",
+    "@livekit/components-react": "^2.9.20",
+    "@livekit/components-styles": "^1.2.0",
     "@radix-ui/themes": "^3.2.0",
     "@tiptap/extension-code-block-lowlight": "^2.12.0",
     "@tiptap/extension-highlight": "^2.12.0",
@@ -47,6 +51,7 @@
     "html-react-parser": "^5.1.8",
     "jotai": "^2.10.3",
     "js-cookie": "^3.0.5",
+    "livekit-client": "^2.18.0",
     "lowlight": "^3.1.0",
     "react": "^18.3.1",
     "react-blurhash": "^0.3.0",
