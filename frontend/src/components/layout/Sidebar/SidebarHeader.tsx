@@ -9,6 +9,7 @@ import { HStack } from '../Stack'
 import { getKeyboardMetaKeyString } from '@/utils/layout/keyboardKey'
 import { useIsDesktop } from '@/hooks/useMediaQuery'
 import MentionsButton from './MentionsButton'
+import AppLauncher from '../../feature/hub/AppLauncher'
 
 export const SidebarHeader = () => {
 
@@ -21,10 +22,14 @@ export const SidebarHeader = () => {
                     justify='between'
                     px='2'
                     align='center'
+                    gap='2'
                     pt='2'
                 >
                     <CommandMenuButton />
-                    <MentionsButton />
+                    <Flex align='center' gap='2'>
+                        <MentionsButton />
+                        <AppLauncher />
+                    </Flex>
                 </Flex>
             </header>
         )
@@ -40,6 +45,7 @@ export const SidebarHeader = () => {
                 height='48px'>
                 <Text as='span' size='6' className='cal-sans pl-1'>axon</Text>
                 <Flex align='center' gap='4' className='pr-1 sm:pr-0'>
+                    <AppLauncher />
                     <MentionsButton />
                     <SearchButton />
                     <ColorModeToggleButton />

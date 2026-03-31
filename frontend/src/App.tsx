@@ -148,6 +148,9 @@ const router = createBrowserRouter(
             <Route path="push-notifications" lazy={() => import('./pages/settings/PushNotifications')} />
             <Route path="help" lazy={() => import('./pages/settings/HelpAndSupport')} />
           </Route>
+          <Route path="hub/:appName" element={<MainPage />}>
+            <Route index lazy={() => import('./pages/hub/SatelliteView')} />
+          </Route>
           <Route path=":workspaceID" element={<MainPage />}>
             <Route index element={<MobileTabsPage />} />
             <Route path="threads" lazy={() => import('./components/feature/threads/Threads')}>

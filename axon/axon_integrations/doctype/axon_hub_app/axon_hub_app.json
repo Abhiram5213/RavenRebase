@@ -1,0 +1,101 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "field:app_name",
+ "creation": "2026-03-31 02:15:00.000000",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sb_basic",
+  "app_name",
+  "category",
+  "cb_basic",
+  "is_satellite",
+  "enabled",
+  "sb_connection",
+  "url",
+  "icon"
+ ],
+ "fields": [
+  {
+   "fieldname": "sb_basic",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
+  },
+  {
+   "fieldname": "app_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "App Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Communication\nManagement\nKnowledge\nDevelopment\nFinance\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb_basic",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_satellite",
+   "fieldtype": "Check",
+   "label": "Is Satellite?"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "sb_connection",
+   "fieldtype": "Section Break",
+   "label": "Connection Settings"
+  },
+  {
+   "fieldname": "url",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "URL",
+   "reqd": 1
+  },
+  {
+   "fieldname": "icon",
+   "fieldtype": "Attach Image",
+   "label": "Icon"
+  }
+ ],
+ "modified": "2026-03-31 02:15:00.000000",
+ "modified_by": "Administrator",
+ "module": "Axon Integrations",
+ "name": "Axon Hub App",
+ "naming_rule": "Set by user",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
