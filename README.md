@@ -48,6 +48,7 @@ It's built using [Frappe Framework](https://frappeframework.com) and offers deep
 6. **Agents, AI and more:** With Axon AI, automate tasks, extract data from files and images, and execute complex, multistep processes with just a message to an agent. Build your own agents without writing a single line of code to streamline your workflows.​
 7. **Supports Dark Mode and Mobile**: Axon allows users to customize the app's appearance as well as offers a mobile app.
 8. **Authentication and Security**: Supports all popular OAuth providers, custom OAuth providers, Login with email link, 2FA on Email/SMS/Auth App and LDAP.
+9. **Axon Hub (Contextual Intelligence)**: Transform Axon into a central hub. Embed satellite apps (Plane, Paperless) via Iframe Shells and ingest their data into a "Knowledge Lake" (Knowledge Entry) tied to specific Projects.
 
 <hr>
 

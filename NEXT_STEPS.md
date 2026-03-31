@@ -110,6 +110,35 @@ Modified:
 
 ---
 
+## [NEW] Axon Hub Integration
+
+### Phase 1 — Hub Core ✅ COMPLETE
+- Hub App Registry and Project Mapping DocTypes.
+- Sidebar App Launcher and Iframe Satellite Shell.
+- Frontend routing for `/hub/:appName`.
+
+### Phase 2 — Contextual Intelligence ✅ COMPLETE
+- `Axon Hub Knowledge Entry` (Knowledge Lake) implementation.
+- `hub_project` field in `Axon Channel`.
+- `ingest_knowledge` Inbound API for satellite data ingestion.
+- Frontend `ProjectSelector` in Channel Header.
+
+### Phase 3 — Identity & Gateway (Infrastructure)
+- Configure Caddy to strip `X-Frame-Options` for trusted satellite domains.
+- Implement Authentik OIDC for seamless Hub-wide authentication.
+
+### Phase 4 — Meeting Intelligence
+- Integrate Jitsi recording/transcription services.
+- Auto-ingest meeting transcripts into `Axon Hub Knowledge Entry`.
+- AI-summarization of meetings with project-level tagging.
+
+### Phase 5 — Actionable AI Layer
+- Implement AI Agents that use the "Knowledge Lake" (Knowledge Entry table) as RAG context.
+- Automated task creation across satellite apps (e.g., mention "create task in Plane" in Axon chat).
+- Centralized search across all Hub satellite data.
+
+---
+
 ## Completed
 
 | Item | Detail |
