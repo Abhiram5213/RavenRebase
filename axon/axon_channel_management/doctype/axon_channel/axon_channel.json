@@ -15,6 +15,7 @@
   "linked_doctype",
   "linked_document",
   "workspace",
+  "hub_project",
   "section_break_evg4",
   "is_direct_message",
   "is_thread",
@@ -200,6 +201,12 @@
    "label": "Workspace",
    "options": "Axon Workspace",
    "search_index": 1
+  },
+  {
+   "fieldname": "hub_project",
+   "fieldtype": "Link",
+   "label": "Hub Project",
+   "options": "Axon Hub Project"
   },
   {
    "default": "0",

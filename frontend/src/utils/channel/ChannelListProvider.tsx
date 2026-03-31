@@ -13,7 +13,7 @@ export type UnreadCountData = UnreadChannelCountItem[]
 
 export type ChannelListItem = Pick<AxonChannel, 'name' | 'channel_name' | 'type' |
     'channel_description' | 'is_direct_message' | 'is_self_message' |
-    'is_archived' | 'creation' | 'owner' | 'last_message_details' | 'last_message_timestamp' | 'workspace' | 'pinned_messages_string'> & { member_id: string }
+    'is_archived' | 'creation' | 'owner' | 'last_message_details' | 'last_message_timestamp' | 'workspace' | 'pinned_messages_string' | 'hub_project'> & { member_id: string }
 
 export interface DMChannelListItem extends ChannelListItem {
     peer_user_id: string,

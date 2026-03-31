@@ -1,0 +1,117 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "hash",
+ "creation": "2026-03-31 02:28:00.000000",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "entry_type",
+  "column_break_basic",
+  "source_app",
+  "hub_project",
+  "sb_content",
+  "content_raw",
+  "sb_meta",
+  "deep_link",
+  "metadata"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "entry_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Entry Type",
+   "options": "Document\nTask\nMessage\nMeeting\nNote\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_basic",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "source_app",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Source App",
+   "options": "Axon Hub App",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hub_project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Hub Project",
+   "options": "Axon Hub Project"
+  },
+  {
+   "fieldname": "sb_content",
+   "fieldtype": "Section Break",
+   "label": "Content"
+  },
+  {
+   "fieldname": "content_raw",
+   "fieldtype": "Long Text",
+   "label": "Raw Content"
+  },
+  {
+   "fieldname": "sb_meta",
+   "fieldtype": "Section Break",
+   "label": "Metadata & Source"
+  },
+  {
+   "fieldname": "deep_link",
+   "fieldtype": "Data",
+   "label": "Deep Link"
+  },
+  {
+   "fieldname": "metadata",
+   "fieldtype": "JSON",
+   "label": "Metadata"
+  }
+ ],
+ "modified": "2026-03-31 02:28:00.000000",
+ "modified_by": "Administrator",
+ "module": "Axon Integrations",
+ "name": "Axon Hub Knowledge Entry",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Axon User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

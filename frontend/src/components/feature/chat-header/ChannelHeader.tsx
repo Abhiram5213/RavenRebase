@@ -11,6 +11,8 @@ import { ViewPinnedMessagesButton } from "../pinned-messages/ViewPinnedMessagesB
 import { useAtomValue } from "jotai"
 import { lastWorkspaceAtom } from "@/utils/lastVisitedAtoms"
 import { StartCallButton } from "../call/StartCallButton"
+import ProjectSelector from "../hub/ProjectSelector"
+import { useIsDesktop } from "@/hooks/useMediaQuery"
 
 interface ChannelHeaderProps {
     channelData: ChannelListItem
@@ -21,6 +23,7 @@ export const ChannelHeader = ({ channelData }: ChannelHeaderProps) => {
     // The channel header has the channel name, the channel type icon, edit channel name button, and the view or add members button
 
     const lastWorkspace = useAtomValue(lastWorkspaceAtom)
+    const isDesktop = useIsDesktop()
 
     return (
         <PageHeader>
@@ -37,6 +40,7 @@ export const ChannelHeader = ({ channelData }: ChannelHeaderProps) => {
                                 sm: '5'
                             }}
                             className="mb-0.5 text-ellipsis line-clamp-1">{channelData.channel_name}</Heading>
+                        {isDesktop && <ProjectSelector channelId={channelData.name} currentProject={channelData.hub_project} />}
                     </Flex>
                     <EditChannelNameButton channelID={channelData.name} channel_name={channelData.channel_name} channelType={channelData.type} disabled={channelData.is_archived == 1} buttonVisible={!!channelData.pinned_messages_string} />
                     <ViewPinnedMessagesButton pinnedMessagesString={channelData.pinned_messages_string ?? ''} />

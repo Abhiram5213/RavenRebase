@@ -49,4 +49,6 @@ export interface AxonChannel{
 	openai_thread_id?: string
 	/**	Thread Bot : Link - Axon Bot	*/
 	thread_bot?: string
+	/**	Hub Project : Link - Axon Hub Project	*/
+	hub_project?: string
 }
